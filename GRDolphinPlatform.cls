@@ -212,7 +212,7 @@ removeSelector: aSymbol from: aClass
 			ensure: [SessionManager isRuntime ifFalse: [aClass owningPackage isChanged: dirty]]!
 
 secureHashFor: aString
-	^ SecureHashAlgorithm new hashMessage: aString!
+	^ SecureHashAlgorithm new hashMessageReturningBytes: aString!
 
 semaphoreClass
 	"used by Gemstone/S traditional Semaphores which cannot be persisted"

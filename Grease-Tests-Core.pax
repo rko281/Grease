@@ -31,6 +31,7 @@ package classNames
 	add: #GRPrinterTest;
 	add: #GRSetTest;
 	add: #GRSmallDictionaryTest;
+	add: #GRSmallOrderedSetTest;
 	add: #GRSortedCollectionTest;
 	add: #GRStringTest;
 	add: #GRSymbolTest;
@@ -136,6 +137,11 @@ TestCase subclass: #GRPrinterTest
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
 TestCase subclass: #GRSmallDictionaryTest
+	instanceVariableNames: 'collection'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+TestCase subclass: #GRSmallOrderedSetTest
 	instanceVariableNames: 'collection'
 	classVariableNames: ''
 	poolDictionaries: ''

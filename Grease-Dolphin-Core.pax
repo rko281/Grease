@@ -101,6 +101,7 @@ package methodNames
 	add: #PositionableStream -> #isBinary;
 	add: #Random -> #nextInt:;
 	add: #Random -> #randomFrom:;
+	add: #SecureHashAlgorithm -> #hashMessageReturningBytes:;
 	add: #SequenceableCollection -> #atRandom;
 	add: #SequenceableCollection -> #atRandom:;
 	add: #SequenceableCollection -> #beginsWithSubCollection:;
@@ -936,6 +937,23 @@ randomFrom: aCollection
 					count := count + 1]]! !
 !Random categoriesFor: #nextInt:!public! !
 !Random categoriesFor: #randomFrom:!public! !
+
+!SecureHashAlgorithm methodsFor!
+
+hashMessageReturningBytes: aStringOrByteArray
+	"Hash the given message using the Secure Hash Algorithm.
+	Return the raw bytes"
+
+	| hashBytes |
+
+	self resetContext.
+	self hashInMessage: aStringOrByteArray.
+
+	hashBytes := self shaLibrary shaGetHash: self context.
+	self resetContext.
+
+	^hashBytes! !
+!SecureHashAlgorithm categoriesFor: #hashMessageReturningBytes:!helpers!private! !
 
 !SequenceableCollection methodsFor!
 

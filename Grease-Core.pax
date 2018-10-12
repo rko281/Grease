@@ -32,6 +32,7 @@ package classNames
 	add: #GRSequentialPrinter;
 	add: #GRSignPrinter;
 	add: #GRSmallDictionary;
+	add: #GRSmallOrderedSet;
 	add: #GRStringPrinter;
 	add: #GRUnboundMessage;
 	add: #GRUnitPrinter;
@@ -149,6 +150,11 @@ GRObject subclass: #GRPrinter
 	classInstanceVariableNames: ''!
 GRObject subclass: #GRSmallDictionary
 	instanceVariableNames: 'size keys values'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+GRObject subclass: #GRSmallOrderedSet
+	instanceVariableNames: 'size table'
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
