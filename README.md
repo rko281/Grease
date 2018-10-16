@@ -6,4 +6,4 @@ Please see the main [Grease GitHub repository](https://github.com/SeasideSt/Grea
 
 # Getting Started
 * This repository is primarily used as a submodule by other repositories (Seaside, Iliad...)
-* To use standalone, clone/download to a Grease subdirectory within your Dolphin working directory
+* To use standalone, clone/download to your Dolphin working directory
