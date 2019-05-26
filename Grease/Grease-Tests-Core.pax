@@ -15,26 +15,33 @@ package classNames
 	add: #GRDelayedSendTest;
 	add: #GRDictionaryTest;
 	add: #GRDurationTest;
+	add: #GRDynamicVariableTest;
 	add: #GRErrorStub;
 	add: #GRExceptionTest;
 	add: #GRIdentityDictionaryTest;
 	add: #GRIntervalTest;
+	add: #GRNotificationBasedDynamicVariableTest;
 	add: #GRNotificationStub;
 	add: #GRNullCodecStreamTest;
 	add: #GRNumberTest;
 	add: #GRObjectStub;
 	add: #GRObjectTest;
 	add: #GROrderedCollectionTest;
+	add: #GROrderedMultiMap2Test;
 	add: #GROrderedMultiMapTest;
 	add: #GRPackageTest;
 	add: #GRPlatformTest;
 	add: #GRPrinterTest;
+	add: #GRReducedConflictDictionaryTest;
 	add: #GRSetTest;
+	add: #GRSmallDictionary2Test;
 	add: #GRSmallDictionaryTest;
 	add: #GRSmallOrderedSetTest;
 	add: #GRSortedCollectionTest;
 	add: #GRStringTest;
 	add: #GRSymbolTest;
+	add: #GRTestDynamicVariable;
+	add: #GRTestNotificationBasedDynamicVariable;
 	add: #GRUtf8CodecTest;
 	add: #GRVersionTest;
 	yourself.
@@ -49,13 +56,12 @@ package binaryGlobalNames: (Set new
 package globalAliases: (Set new
 	yourself).
 
-package setPrerequisites: (IdentitySet new
-	add: '..\Core\Object Arts\Dolphin\Base\Dolphin';
-	add: 'Grease-Core';
-	add: '..\Core\Contributions\IDB\IDB DateAndTime';
-	add: '..\Core\Contributions\IDB\IDB Duration';
-	add: '..\Core\Contributions\Camp Smalltalk\SUnit\SUnit';
-	yourself).
+package setPrerequisites: #(
+	'..\Core\Object Arts\Dolphin\Base\Dolphin'
+	'..\Core\Object Arts\Dolphin\Base\Dolphin Legacy Date & Time'
+	'Grease-Core'
+	'Grease-Dolphin-Core'
+	'..\Core\Contributions\Camp Smalltalk\SUnit\SUnit').
 
 package!
 
@@ -66,8 +72,18 @@ GRError subclass: #GRErrorStub
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+GRDynamicVariable subclass: #GRTestDynamicVariable
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
 GRNotification subclass: #GRNotificationStub
 	instanceVariableNames: 'foo'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+GRNotificationBasedDynamicVariable subclass: #GRTestNotificationBasedDynamicVariable
+	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
@@ -101,7 +117,17 @@ TestCase subclass: #GRDurationTest
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+TestCase subclass: #GRDynamicVariableTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
 TestCase subclass: #GRExceptionTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+TestCase subclass: #GRNotificationBasedDynamicVariableTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -133,16 +159,6 @@ TestCase subclass: #GRPlatformTest
 	classInstanceVariableNames: ''!
 TestCase subclass: #GRPrinterTest
 	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	classInstanceVariableNames: ''!
-TestCase subclass: #GRSmallDictionaryTest
-	instanceVariableNames: 'collection'
-	classVariableNames: ''
-	poolDictionaries: ''
-	classInstanceVariableNames: ''!
-TestCase subclass: #GRSmallOrderedSetTest
-	instanceVariableNames: 'collection'
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
@@ -186,6 +202,31 @@ GRAbstractDictionaryTest subclass: #GRIdentityDictionaryTest
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+GRAbstractDictionaryTest subclass: #GRSmallDictionaryTest
+	instanceVariableNames: 'collection'
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+GRDictionaryTest subclass: #GRReducedConflictDictionaryTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+GRSmallDictionaryTest subclass: #GROrderedMultiMapTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+GRSmallDictionaryTest subclass: #GRSmallDictionary2Test
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
+GROrderedMultiMapTest subclass: #GROrderedMultiMap2Test
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
 GRAbstractSequenceableCollectionTest subclass: #GRArrayTest
 	instanceVariableNames: ''
 	classVariableNames: ''
@@ -216,8 +257,8 @@ GRAbstractSequenceableCollectionTest subclass: #GRSymbolTest
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRSmallDictionaryTest subclass: #GROrderedMultiMapTest
-	instanceVariableNames: ''
+GRSetTest subclass: #GRSmallOrderedSetTest
+	instanceVariableNames: 'collection'
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!

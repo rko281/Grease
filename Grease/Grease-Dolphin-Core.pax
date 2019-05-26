@@ -14,6 +14,7 @@ package classNames
 	add: #GRDolphinPlatform;
 	add: #GRDolphinUtf8Codec;
 	add: #GRDolphinUtf8CodecStream;
+	add: #GRDynamicVariable;
 	yourself.
 
 package methodNames
@@ -34,7 +35,6 @@ package methodNames
 	add: #ByteArray -> #greaseString;
 	add: #Character -> #asUnicode;
 	add: #Character -> #greaseInteger;
-	add: #Character -> #to:;
 	add: #Collection -> #any;
 	add: #Collection -> #associationsDo:;
 	add: #Collection -> #isCollection;
@@ -45,25 +45,17 @@ package methodNames
 	add: #Collection -> #sorted:;
 	add: #Color -> #asHTMLColor;
 	add: #Date -> #-;
-	add: #Date -> #dayOfWeek;
-	add: #Date -> #dayOfYear;
 	add: #Date -> #printFormat:;
-	add: #DateAndTime -> #asDate;
 	add: #DateAndTime -> #asDateAndTime;
-	add: #DateAndTime -> #asTime;
 	add: #DateAndTime -> #monthIndex;
 	add: #Dictionary -> #isDictionary;
 	add: #Dictionary -> #keysSortedSafely;
 	add: #Dictionary -> #removeAll;
 	add: #Dictionary -> #valuesDo:;
-	add: #Duration -> #asMilliseconds;
 	add: #Duration -> #asMilliSeconds;
-	add: #Duration -> #isZero;
 	add: #GRDelegatingStream -> #greaseNext:putAll:startingAt:;
-	add: #GRDelegatingStream -> #next:putAll:startingAt:;
 	add: #Integer -> #printPaddedWith:to:;
 	add: #Integer -> #printPaddedWith:to:base:;
-	add: #Integer -> #printStringBase:;
 	add: #Integer -> #second;
 	add: #Integer -> #seconds;
 	add: #MessageSend -> #argumentCount;
@@ -74,17 +66,11 @@ package methodNames
 	add: #MessageSend -> #valueWithPossibleArguments:;
 	add: #Number -> #asNumber;
 	add: #Number -> #day;
-	add: #Number -> #days;
-	add: #Number -> #hour;
-	add: #Number -> #hours;
 	add: #Number -> #isInfinite;
 	add: #Number -> #isNaN;
 	add: #Number -> #javascriptOn:;
-	add: #Number -> #milliseconds;
 	add: #Number -> #minute;
-	add: #Number -> #minutes;
 	add: #Number -> #second;
-	add: #Number -> #seconds;
 	add: #Number -> #weeks;
 	add: #Object -> #className;
 	add: #Object -> #copyFrom:;
@@ -142,11 +128,7 @@ package methodNames
 	add: #Symbol -> #greaseString;
 	add: #Symbol -> #isKeyword;
 	add: #Symbol -> #isUnary;
-	add: #SystemDictionary -> #globals;
 	add: #Time -> #addSeconds:;
-	add: #Time -> #hour;
-	add: #Time -> #minute;
-	add: #Time -> #second;
 	add: #UndefinedObject -> #greaseString;
 	add: #UndefinedObject -> #isEmptyOrNil;
 	add: #Utf16String -> #isByteString;
@@ -161,18 +143,13 @@ package methodNames
 	add: 'Color class' -> #fromString:;
 	add: 'Color class' -> #fromThreeDigitString:;
 	add: 'Date class' -> #daysInMonthNumber:forYear:;
-	add: 'Date class' -> #year:month:day:;
 	add: 'DateAndTime class' -> #date:time:;
 	add: 'DateAndTime class' -> #fromSeconds:;
-	add: 'DateAndTime class' -> #year:month:day:;
-	add: 'Duration class' -> #milliseconds:;
 	add: 'Duration class' -> #milliSeconds:;
 	add: 'Duration class' -> #weeks:;
 	add: 'GRCountingStream class' -> #on:;
 	add: 'GRPackage class' -> #greaseDolphinCore;
-	add: 'String class' -> #cr;
 	add: 'String class' -> #crlf;
-	add: 'String class' -> #lf;
 	add: 'Time class' -> #hour:minute:second:;
 	add: 'Time class' -> #midnight;
 	add: 'Time class' -> #milliseconds:since:;
@@ -186,22 +163,26 @@ package binaryGlobalNames: (Set new
 package globalAliases: (Set new
 	yourself).
 
-package setPrerequisites: (IdentitySet new
-	add: '..\Core\Object Arts\Dolphin\ActiveX\Components\CDO\CDO';
-	add: '..\Core\Object Arts\Dolphin\Base\Dolphin';
-	add: '..\Core\Object Arts\Dolphin\MVP\Base\Dolphin MVP Base';
-	add: '..\Core\Object Arts\Dolphin\MVP\Presenters\Prompters\Dolphin Prompter';
-	add: '..\Core\Object Arts\Dolphin\System\Random\Dolphin Random Stream';
-	add: '..\Core\Object Arts\Dolphin\DolphinSure\DolphinSure';
-	add: 'Grease-Core';
-	add: '..\Core\Contributions\IDB\IDB DateAndTime';
-	add: '..\Core\Contributions\IDB\IDB Duration';
-	yourself).
+package setPrerequisites: #(
+	'..\Core\Object Arts\Dolphin\ActiveX\Components\CDO\CDO'
+	'..\Core\Object Arts\Dolphin\Base\Dolphin'
+	'..\Core\Object Arts\Dolphin\Base\Dolphin Legacy Date & Time'
+	'..\Core\Object Arts\Dolphin\MVP\Base\Dolphin MVP Base'
+	'..\Core\Object Arts\Dolphin\MVP\Presenters\Prompters\Dolphin Prompter'
+	'..\Core\Object Arts\Dolphin\System\Random\Dolphin Random Stream'
+	'..\Core\Object Arts\Dolphin\DolphinSure\DolphinSure'
+	'Grease-Core'
+	'..\Portishead\Portishead-Core').
 
 package!
 
 "Class Definitions"!
 
+DynamicVariable subclass: #GRDynamicVariable
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	classInstanceVariableNames: ''!
 GRCodec subclass: #GRDolphinUtf8Codec
 	instanceVariableNames: ''
 	classVariableNames: ''
@@ -362,13 +343,9 @@ asUnicode
 greaseInteger
 	"Answer an unicode code point of the receiver."
 
-	^self codePoint bitAnd: 16r3FFFFF!
-
-to: aCharacter
-	^(self asciiValue to: aCharacter asciiValue) collect: [:i | i asCharacter]! !
+	^self codePoint bitAnd: 16r3FFFFF! !
 !Character categoriesFor: #asUnicode!public! !
 !Character categoriesFor: #greaseInteger!*seaside-squeak-platform!public! !
-!Character categoriesFor: #to:!public! !
 
 !Character class methodsFor!
 
@@ -499,29 +476,12 @@ fromThreeDigitString: aString
 	^Duration seconds: (self asSeconds - operand asSeconds)
 !
 
-dayOfWeek
-	"Sunday=1, ... , Saturday=7"
-
-	| weekdayIndex |
-
-	^(weekdayIndex := self weekdayIndex) = 7
-		ifTrue: [1]
-		ifFalse: [weekdayIndex + 1]!
-
-dayOfYear
-	"Answer an <integer> between 1 and 366, inclusive, representing the day 
-	of the year in the local time of the receiver, which includes the receiver."
-
-	^self day!
-
 printFormat: format
 	"Pharo / Squeak compatibility.
 	Not implemented yet."
 
 	^String streamContents: [:stream | self printOn: stream format: Locale default dateFormat]! !
 !Date categoriesFor: #-!public! !
-!Date categoriesFor: #dayOfWeek!accessing!public! !
-!Date categoriesFor: #dayOfYear!accessing!public! !
 !Date categoriesFor: #printFormat:!printing!public! !
 
 !Date class methodsFor!
@@ -529,35 +489,21 @@ printFormat: format
 daysInMonthNumber: monthIndex forYear: yearInteger 
 
 	^self daysInMonthIndex: monthIndex forYear: yearInteger
-!
-
-year: year  month: month day: day
-	"For compatibility with Squeak."
- 
-	^self newDay: day monthIndex: month year: year! !
+! !
 !Date class categoriesFor: #daysInMonthNumber:forYear:!*seaside-squeak-platform!public! !
-!Date class categoriesFor: #year:month:day:!public! !
 
 !DateAndTime methodsFor!
-
-asDate
-	^Date newDay: self dayOfMonth monthIndex: self month year: self year!
 
 asDateAndTime
 	"Answer the receiver asDateAndTime."
 
 	^self!
 
-asTime
-	^Time hours: self hour24 minutes: self minute seconds: self second!
-
 monthIndex
 	"Answer the month integer index of the receiver."
 
 	^self month! !
-!DateAndTime categoriesFor: #asDate!public! !
 !DateAndTime categoriesFor: #asDateAndTime!public! !
-!DateAndTime categoriesFor: #asTime!public! !
 !DateAndTime categoriesFor: #monthIndex!converting!public! !
 
 !DateAndTime class methodsFor!
@@ -568,15 +514,9 @@ date: aDate time: aTime
 fromSeconds: seconds
 	"Answer a DateAndTime since the Squeak epoch: 1 January 1901"
 
-	^ self seconds: seconds offset: self defaultOffset!
-
-year: year month: month day: day
-	"Answer a new instance of receiver in a day of month of year."
-
-	^self year: year month: month day: day hour: 0 minute: 0 second: 0! !
+	^ self utcSeconds: seconds offset: Locale timeZoneInformation offset seconds! !
 !DateAndTime class categoriesFor: #date:time:!public! !
 !DateAndTime class categoriesFor: #fromSeconds:!initializing!public! !
-!DateAndTime class categoriesFor: #year:month:day:!public! !
 
 !Dictionary methodsFor!
 
@@ -615,24 +555,13 @@ valuesDo: aBlock
 
 !Duration methodsFor!
 
-asMilliseconds
-	^ self asMilliSeconds!
-
 asMilliSeconds
 	"Seaside Compatibility."
 
-	^self asSeconds * 1000!
-
-isZero
-	^self = self class zero! !
-!Duration categoriesFor: #asMilliseconds!*grease-pharo-core!public! !
+	^self asSeconds * 1000! !
 !Duration categoriesFor: #asMilliSeconds!converting!public! !
-!Duration categoriesFor: #isZero!*grease-pharo-core!public! !
 
 !Duration class methodsFor!
-
-milliseconds: anInteger
-	^ self milliSeconds: anInteger!
 
 milliSeconds: milliSeconds
 	"Answer a <Duration> which is <number> seconds in length."
@@ -641,7 +570,6 @@ milliSeconds: milliSeconds
 
 weeks: aNumber
 	^self days: (aNumber * 7)! !
-!Duration class categoriesFor: #milliseconds:!*grease-pharo-core!public! !
 !Duration class categoriesFor: #milliSeconds:!instance creation!public! !
 !Duration class categoriesFor: #weeks:!*grease-pharo-core!public! !
 
@@ -657,15 +585,8 @@ on: aStream
 !GRDelegatingStream methodsFor!
 
 greaseNext: anInteger putAll: aCollection startingAt: startIndex
-	stream greaseNext: anInteger putAll: aCollection startingAt: startIndex!
-
-next: size putAll: aSequenceableCollection startingAt: start
-	"Append countInteger elements of aSequenceableCollection from startInteger
-	to the receiver. Answer aSequenceableCollection."
-
-	^stream next: size putAll: aSequenceableCollection startingAt: start! !
+	stream greaseNext: anInteger putAll: aCollection startingAt: startIndex! !
 !GRDelegatingStream categoriesFor: #greaseNext:putAll:startingAt:!public!streaming! !
-!GRDelegatingStream categoriesFor: #next:putAll:startingAt:!public!streaming! !
 
 !GRPackage class methodsFor!
 
@@ -704,11 +625,6 @@ printPaddedWith: aCharacter to: anInteger base: aRadix
 	padding > 0 ifFalse: [^digits].
 	^((String new: padding) atAllPut: aCharacter; yourself) , digits!
 
-printStringBase: anInteger 
-	"Prints the receiver with anInteger as its base."
-
-	^self printStringRadix: anInteger showRadix: false!
-
 second
 	^self sign seconds
  !
@@ -717,7 +633,6 @@ seconds
 	^Duration seconds: self! !
 !Integer categoriesFor: #printPaddedWith:to:!printing!public! !
 !Integer categoriesFor: #printPaddedWith:to:base:!printing!public! !
-!Integer categoriesFor: #printStringBase:!public! !
 !Integer categoriesFor: #second!public! !
 !Integer categoriesFor: #seconds!public! !
 
@@ -776,18 +691,6 @@ day
 
 	^self sign days!
 
-days
-
-	^Duration days: self!
-
-hour
-
-	^self sign hours!
-
-hours
-
-	^Duration hours: self!
-
 isInfinite
 	^false!
 
@@ -797,41 +700,24 @@ isNaN
 javascriptOn: aStream
 	aStream nextPutAll: self printString!
 
-milliseconds
-	^Duration milliseconds: self!
-
 minute
 
 	^self sign minutes!
 
-minutes
-
-	^Duration minutes: self!
-
 second
 
 	^self sign seconds!
-
-seconds
-
-	^Duration seconds: self!
 
 weeks
 
 	^Duration weeks: self! !
 !Number categoriesFor: #asNumber!constants!public! !
 !Number categoriesFor: #day!public! !
-!Number categoriesFor: #days!public! !
-!Number categoriesFor: #hour!public! !
-!Number categoriesFor: #hours!public! !
 !Number categoriesFor: #isInfinite!public! !
 !Number categoriesFor: #isNaN!public! !
 !Number categoriesFor: #javascriptOn:!public! !
-!Number categoriesFor: #milliseconds!*grease-pharo-core!public! !
 !Number categoriesFor: #minute!public! !
-!Number categoriesFor: #minutes!public! !
 !Number categoriesFor: #second!public! !
-!Number categoriesFor: #seconds!public! !
 !Number categoriesFor: #weeks!public! !
 
 !Object methodsFor!
@@ -1222,23 +1108,11 @@ withCRs
 
 !String class methodsFor!
 
-cr
-	"Answer the cr String"
-
-	^##(String with: Character cr)!
-
 crlf
 	"Answer the crlf String"
 
-	^##(String with: Character cr with: Character lf)!
-
-lf
-	"Answer the lf String"
-
-	^##(String with: Character lf)! !
-!String class categoriesFor: #cr!public! !
+	^##(String with: Character cr with: Character lf)! !
 !String class categoriesFor: #crlf!public! !
-!String class categoriesFor: #lf!public! !
 
 !Symbol methodsFor!
 
@@ -1273,35 +1147,13 @@ isUnary
 !Symbol categoriesFor: #isKeyword!public!testing! !
 !Symbol categoriesFor: #isUnary!public!testing! !
 
-!SystemDictionary methodsFor!
-
-globals
-
-	^self! !
-!SystemDictionary categoriesFor: #globals!accessing!public! !
-
 !Time methodsFor!
 
 addSeconds: anInteger 
 	"Adds anInteger seconds to the receiver."
 
-	^self class fromMilliseconds: milliseconds + (anInteger * 1000)!
-
-hour
-
-	^self hours!
-
-minute
-
-	^self minutes!
-
-second
-
-	^self seconds! !
+	^self class fromMilliseconds: self millisecond + (anInteger * 1000)! !
 !Time categoriesFor: #addSeconds:!arithmetic!public! !
-!Time categoriesFor: #hour!accessing!public! !
-!Time categoriesFor: #minute!accessing!public! !
-!Time categoriesFor: #second!accessing!public! !
 
 !Time class methodsFor!
 

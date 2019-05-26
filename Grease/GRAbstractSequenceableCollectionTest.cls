@@ -5,7 +5,7 @@ GRCollectionTest subclass: #GRAbstractSequenceableCollectionTest
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRAbstractSequenceableCollectionTest guid: (GUID fromString: '{853381ab-acb0-4b40-a41e-b4eb4ab3af17}')!
+GRAbstractSequenceableCollectionTest guid: (GUID fromString: '{03bd5044-eeae-4a10-a67a-c572dcc8c7c9}')!
 GRAbstractSequenceableCollectionTest comment: ''!
 !GRAbstractSequenceableCollectionTest categoriesForClass!Grease-Tests-Core! !
 !GRAbstractSequenceableCollectionTest methodsFor!

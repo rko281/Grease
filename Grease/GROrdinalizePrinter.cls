@@ -5,7 +5,7 @@ GRPrinter subclass: #GROrdinalizePrinter
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GROrdinalizePrinter guid: (GUID fromString: '{277ab5d1-d10c-42e7-9ee9-424668b36a7d}')!
+GROrdinalizePrinter guid: (GUID fromString: '{78b07ac9-8667-47c1-b2ee-226da6ac922c}')!
 GROrdinalizePrinter comment: ''!
 !GROrdinalizePrinter categoriesForClass!Grease-Core-Text! !
 !GROrdinalizePrinter methodsFor!

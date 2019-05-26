@@ -5,7 +5,7 @@ TestCase subclass: #GRDurationTest
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRDurationTest guid: (GUID fromString: '{1db20b58-2170-439b-8b71-33d31d2047d8}')!
+GRDurationTest guid: (GUID fromString: '{ab410f12-8be7-474f-a5b7-abaeaddc7884}')!
 GRDurationTest comment: ''!
 !GRDurationTest categoriesForClass!Grease-Tests-Core! !
 !GRDurationTest methodsFor!
@@ -14,11 +14,11 @@ testAccessors	| duration |	duration := Duration seconds: 356521.	self assert:
 
 testBasicInstanceCreation	self assert: (Duration days: 1 hours: 1 minutes: 1 seconds: 1) asMilliseconds = 90061000.	self assert: (Duration weeks: 1) asMilliseconds = 604800000.	self assert: (Duration days: 1) asMilliseconds = 86400000.	self assert: (Duration hours: 1) asMilliseconds = 3600000.	self assert: (Duration minutes: 1) asMilliseconds = 60000.	self assert: (Duration seconds: 1) asMilliseconds = 1000.	self assert: (Duration milliseconds: 1) asMilliseconds = 1!
 
-testConversions	| duration |	duration := Duration days: 4 hours: 3 minutes: 2 seconds: 1.	self assert: duration asSeconds = 356521.	self assert: duration asMilliseconds = 356521000.	self assert: duration negated asSeconds = -356521.	self assert: duration negated asMilliseconds = -356521000	!
+testConversions	| duration |	duration := Duration days: 4 hours: 3 minutes: 2 seconds: 1.	self assert: duration asSeconds = 356521.	self assert: duration asMilliseconds = 356521000.	self assert: duration negated asSeconds = -356521.	self assert: duration negated asMilliseconds = -356521000!
 
 testIntegerConvenienceMethods	self assert: 5 weeks = (Duration weeks: 5).	self assert: 5 days = (Duration days: 5).	self assert: 5 hours = (Duration hours: 5).	self assert: 5 minutes = (Duration minutes: 5).	self assert: 5 seconds = (Duration seconds: 5).	self assert: 5 milliseconds = (Duration milliseconds: 5)!
 
-testMixedInstanceCreation	self assert: (Duration days: 1 hours: -23 minutes: 1 seconds: -59) asMilliseconds = 3601000!
+testMixedInstanceCreation	self assert: (Duration days: 1 hours: -23 minutes: 1 seconds: -59) asMilliseconds = 3601000!
 
 testNegativeInstanceCreation	self assert: (Duration days: -1 hours: -1 minutes: -1 seconds: -1) asMilliseconds = -90061000.	self assert: (Duration weeks: -1) asMilliseconds = -604800000.	self assert: (Duration days: -1) asMilliseconds = -86400000.	self assert: (Duration hours: -1) asMilliseconds = -3600000.	self assert: (Duration minutes: -1) asMilliseconds = -60000.	self assert: (Duration seconds: -1) asMilliseconds = -1000.	self assert: (Duration milliseconds: -1) asMilliseconds = -1!
 

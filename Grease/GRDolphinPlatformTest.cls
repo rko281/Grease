@@ -21,9 +21,11 @@ testCompileIntoClassified
 
 	GRPlatform current compile: source into: self class classified: protocol.
 	[	self assert: (self class selectors includes: selector).
-		selectors := (MethodCategory name: protocol) contents collect: [:each | each selector].
+		selectors := (MethodCategory name: protocol) methods collect: [:each | each selector].
 		self assert: (selectors includes: selector).
 	 	] ensure: [ GRPlatform current removeSelector: selector from: self class ]!
+
+testDaysInMonthForYear	(1 to: 12) with: #(31 28 31 30 31 30 31 31 30 31 30 31) do: [ :month :days |		self assert: days = (Date daysInMonth: (Locale default monthName: month) forYear: 2007) ]!
 
 testFullName
 	self assert: Object fullName = 'Object'!
@@ -61,9 +63,16 @@ testMessageSendValueWithPossibleArguments
 		argument: 2.
 	self assert: send argumentCount isZero.
 	self assert: send arguments size = 1.
-	self assert: send fixCallbackTemps == send! !
+	self assert: send fixCallbackTemps == send!
+
+testSeconds
+
+	"Does not hold true for Dolphin:
+	self assert: Time now seconds isInteger"! !
 !GRDolphinPlatformTest categoriesFor: #decodeUtf8Character:!private! !
 !GRDolphinPlatformTest categoriesFor: #testCompileIntoClassified!public!tests! !
+!GRDolphinPlatformTest categoriesFor: #testDaysInMonthForYear!public!tests! !
 !GRDolphinPlatformTest categoriesFor: #testFullName!public!tests! !
 !GRDolphinPlatformTest categoriesFor: #testMessageSendValueWithPossibleArguments!public!tests! !
+!GRDolphinPlatformTest categoriesFor: #testSeconds!public!tests! !
 

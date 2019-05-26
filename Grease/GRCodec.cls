@@ -5,7 +5,7 @@ GRObject subclass: #GRCodec
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRCodec guid: (GUID fromString: '{75e73c97-c44f-48ed-a6af-2486d0650e00}')!
+GRCodec guid: (GUID fromString: '{17c6e658-3b9d-46d7-8a1c-02a5a4ada304}')!
 GRCodec comment: 'A codec defines how Seaside communicates without the outside world and how outside data is converted into the image (decoding) and back outside the image (encoding). The codec is essentially a stream factory that provides wrappers around standard streams. All streams do support binary mode for non-converted transfer.'!
 !GRCodec categoriesForClass!Grease-Core-Text! !
 !GRCodec methodsFor!

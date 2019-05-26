@@ -5,7 +5,7 @@ GRAbstractSequenceableCollectionTest subclass: #GROrderedCollectionTest
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GROrderedCollectionTest guid: (GUID fromString: '{6f02fac4-a32d-4bdc-9b46-0e21e70462ea}')!
+GROrderedCollectionTest guid: (GUID fromString: '{76e9e2fc-7c0e-40e8-8d4a-3a663357fe01}')!
 GROrderedCollectionTest comment: ''!
 !GROrderedCollectionTest categoriesForClass!Grease-Tests-Core! !
 !GROrderedCollectionTest methodsFor!

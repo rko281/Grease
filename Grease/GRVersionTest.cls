@@ -5,16 +5,18 @@ TestCase subclass: #GRVersionTest
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRVersionTest guid: (GUID fromString: '{7d8501fa-c15f-420f-a136-f7b23b4ae687}')!
+GRVersionTest guid: (GUID fromString: '{8190cc26-5985-437f-bbcf-36db72b4eb08}')!
 GRVersionTest comment: ''!
 !GRVersionTest categoriesForClass!Grease-Tests-Core! !
 !GRVersionTest methodsFor!
 
-assert: aVersionArray equals: bVersionArray	| a b |	a := self buildVersion: aVersionArray.	b := self buildVersion: bVersionArray.	self deny: a < b.	self assert: a <= b.	self deny: b < a.	self assert: b <= a.	self deny: b > a.	self assert: b >= a.	self deny: a > b.	self assert: a >= b.	self assert: a = b!
+assert: aVersionArray equals: bVersionArray	| a b |	a := self buildVersion: aVersionArray.	b := self buildVersion: bVersionArray.	self deny: a < b.	self assert: a <= b.	self deny: b < a.	self assert: b <= a.	self deny: b > a.	self assert: b >= a.	self deny: a > b.	self assert: a >= b.	self assert: a = b.	self assert: a hash = b hash!
 
 assert: aVersionArray sortsBefore: bVersionArray	| a b |	a := self buildVersion: aVersionArray.	b := self buildVersion: bVersionArray.	self assert: a < b.	self assert: a <= b.	self deny: b < a.	self deny: b <= a.	self assert: b > a.	self assert: b >= a.	self deny: a > b.	self deny: a >= b.	self deny: a = b!
 
 buildVersion: anArray	^ (GRVersion		major: (anArray at: 1 ifAbsent: [ nil ])		minor: (anArray at: 2 ifAbsent: [ nil ])		revision: (anArray at: 3 ifAbsent: [ nil ]))			stage: (anArray at: 4 ifAbsent: [ nil ]) number: (anArray at: 5 ifAbsent: [ nil ]);			yourself!
+
+testAccessors	| version |	version := self buildVersion: #(1 2 3 #alpha 4).	self assert: version major = 1.	self assert: version minor = 2.	self assert: version revision = 3.	self assert: version stage = #alpha.	self assert: version stageNumber = 4.!
 
 testComparison	self assert: #(1) sortsBefore: #(2).	self assert: #(2) sortsBefore: #(10).	self assert: #(1) sortsBefore: #(1 1).	self assert: #(1 nil nil #alpha) sortsBefore: #(1).	self assert: #(1 nil nil #alpha) sortsBefore: #(1 0).	self assert: #(1 nil nil #alpha) sortsBefore: #(1 0 0).	self assert: #(1 0) sortsBefore: #(2).	self assert: #(1 0) sortsBefore: #(2 0).	self assert: #(1 0) sortsBefore: #(1 1).	self assert: #(1 2) sortsBefore: #(1 10).	self assert: #(1 0 nil #alpha) sortsBefore: #(1 0).	self assert: #(1 0 nil #alpha) sortsBefore: #(1 0 0).	self assert: #(1 0 0) sortsBefore: #(2).	self assert: #(1 0 0) sortsBefore: #(1 1).	self assert: #(1 0 1) sortsBefore: #(1 1).	self assert: #(1 0 1 #alpha) sortsBefore: #(1 1).	self assert: #(1 1 0 #alpha) sortsBefore: #(1 1).	self assert: #(1 1 0 #alpha 2) sortsBefore: #(1 1).	self assert: #(1 1 0 #beta) sortsBefore: #(1 1).	self assert: #(1 1 0 #beta 2) sortsBefore: #(1 1).	self assert: #(1 nil nil #alpha) sortsBefore: #(1 nil nil #alpha 2).	self assert: #(1 nil nil #beta) sortsBefore: #(1 nil nil #beta 2).	self assert: #(1 0 nil #alpha) sortsBefore: #(1 0 nil #alpha 2).	self assert: #(1 0 nil #beta) sortsBefore: #(1 0 nil #beta 2).	self assert: #(1 0 0 #alpha) sortsBefore: #(1 0 0 #alpha 2).	self assert: #(1 0 0 #beta) sortsBefore: #(1 0 0 #beta 2)!
 
@@ -26,6 +28,7 @@ testStringConversion	self assert: (GRVersion major: 1 minor: 2 revision: 3) gre
 !GRVersionTest categoriesFor: #assert:equals:!asserting!public! !
 !GRVersionTest categoriesFor: #assert:sortsBefore:!asserting!public! !
 !GRVersionTest categoriesFor: #buildVersion:!private! !
+!GRVersionTest categoriesFor: #testAccessors!public!tests! !
 !GRVersionTest categoriesFor: #testComparison!public!tests! !
 !GRVersionTest categoriesFor: #testConvenience!public!tests! !
 !GRVersionTest categoriesFor: #testEquality!public!tests! !

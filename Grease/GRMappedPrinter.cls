@@ -5,7 +5,7 @@ GRPrinter subclass: #GRMappedPrinter
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRMappedPrinter guid: (GUID fromString: '{867e0435-dee5-4c1d-802c-88ddac5491ce}')!
+GRMappedPrinter guid: (GUID fromString: '{ed16b5fa-1024-454b-9b85-09e7327296c7}')!
 GRMappedPrinter comment: ''!
 !GRMappedPrinter categoriesForClass!Grease-Core-Text! !
 !GRMappedPrinter methodsFor!

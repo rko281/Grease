@@ -5,7 +5,7 @@ GRAbstractSequenceableCollectionTest subclass: #GRIntervalTest
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRIntervalTest guid: (GUID fromString: '{0e44bf3f-8c22-4eb9-bb9d-c6dc8b76d2ef}')!
+GRIntervalTest guid: (GUID fromString: '{e76237eb-ee45-4016-8203-12611ef56246}')!
 GRIntervalTest comment: ''!
 !GRIntervalTest categoriesForClass!Grease-Tests-Core! !
 !GRIntervalTest methodsFor!

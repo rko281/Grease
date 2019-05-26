@@ -5,6 +5,6 @@ GRError subclass: #GRInvalidUtf8Error
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRInvalidUtf8Error guid: (GUID fromString: '{d49f3318-437f-4f0c-8775-fe0c2f5fa43d}')!
-GRInvalidUtf8Error comment: 'A WAInvalidUtf8Error signals that the input is not valid UTF-8.'!
+GRInvalidUtf8Error guid: (GUID fromString: '{72bdb433-efca-4bcf-bba4-a48528e074be}')!
+GRInvalidUtf8Error comment: 'GRCodec subclass: #GRNullCodec	instanceVariableNames: ''''	classVariableNames: ''''	poolDictionaries: ''''	category: ''Grease-Core-Text'''!
 !GRInvalidUtf8Error categoriesForClass!Grease-Core-Text! !

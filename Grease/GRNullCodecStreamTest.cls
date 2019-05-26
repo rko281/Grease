@@ -5,14 +5,12 @@ TestCase subclass: #GRNullCodecStreamTest
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRNullCodecStreamTest guid: (GUID fromString: '{1ed62b18-24d1-4335-9084-245257910302}')!
+GRNullCodecStreamTest guid: (GUID fromString: '{1ef9e951-3c5e-4910-8ce3-7e566b2dfbde}')!
 GRNullCodecStreamTest comment: ''!
 !GRNullCodecStreamTest categoriesForClass!Grease-Tests-Core! !
 !GRNullCodecStreamTest methodsFor!
 
 codecStreamClass	^ GRNullCodecStream!
-
-seasideByteArray	^ #(83 101 97 115 105 100 101) "Seaside" asByteArray!
 
 testCrlf	| stream |	stream := GRNullCodec new 		encoderFor: (WriteStream on: String new).	stream crlf.		self assert: stream contents size = 2.	self assert: stream contents first = Character cr.	self assert: stream contents last = Character lf!
 
@@ -34,7 +32,6 @@ testTab	| stream |	stream := GRNullCodec new 		encoderFor: (WriteStream on: S
 
 testWriteString	| stream codecStream |	stream := WriteStream on: String new.	codecStream := GRNullCodec new encoderFor: stream.	codecStream		nextPut: $A;		nextPutAll: 'BC';		nextPut: 68;		nextPutAll: #(69 70 ) asByteArray.	self assert: codecStream contents = 'ABCDEF'! !
 !GRNullCodecStreamTest categoriesFor: #codecStreamClass!accessing!public! !
-!GRNullCodecStreamTest categoriesFor: #seasideByteArray!private! !
 !GRNullCodecStreamTest categoriesFor: #testCrlf!public!tests/characters! !
 !GRNullCodecStreamTest categoriesFor: #testFlush!public!tests/protocol! !
 !GRNullCodecStreamTest categoriesFor: #testName!public!tests/characters! !

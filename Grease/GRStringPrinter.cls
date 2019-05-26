@@ -5,7 +5,7 @@ GRPrinter subclass: #GRStringPrinter
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRStringPrinter guid: (GUID fromString: '{5ea2531b-5f0a-4528-aedb-1d01da09e450}')!
+GRStringPrinter guid: (GUID fromString: '{70d3f035-c2c8-4363-918c-3bc26c5ecaca}')!
 GRStringPrinter comment: ''!
 !GRStringPrinter categoriesForClass!Grease-Core-Text! !
 !GRStringPrinter methodsFor!
@@ -24,7 +24,7 @@ padNone	"Do not pad the input."		pad := nil!
 
 padRight	"Pad to the right."		pad := #pad:right:to:!
 
-print: anObject on: aStream 	| string |	string := anObject greaseString.	trim isNil		ifFalse: [ string := string perform: trim ].	length isNil ifFalse: [		length < string size 			ifTrue: [ string := string copyFrom: 1to: length ].		(pad isNil or: [ character isNil ])			ifFalse: [ string := self perform: pad with: string with: character with: length ] ].	aStream nextPutAll: string!
+print: anObject on: aStream 	| string |	string := anObject greaseString.	trim isNil		ifFalse: [ string := string perform: trim ].	length isNil ifFalse: [		length < string size 			ifTrue: [ string := string copyFrom: 1 to: length ].		(pad isNil or: [ character isNil ])			ifFalse: [ string := self perform: pad with: string with: character with: length ] ].	aStream nextPutAll: string!
 
 trimBoth	"Trim to the left and to the right."	trim := #trimBoth!
 

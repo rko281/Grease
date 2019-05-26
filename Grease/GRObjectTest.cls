@@ -5,7 +5,7 @@ TestCase subclass: #GRObjectTest
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRObjectTest guid: (GUID fromString: '{857d7e78-930a-493a-9005-bc6db4b0cf29}')!
+GRObjectTest guid: (GUID fromString: '{badc14b4-d3ff-47c9-9af2-0c2722026811}')!
 GRObjectTest comment: ''!
 !GRObjectTest categoriesForClass!Grease-Tests-Core! !
 !GRObjectTest methodsFor!

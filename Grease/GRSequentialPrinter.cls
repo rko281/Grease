@@ -5,7 +5,7 @@ GRPrinter subclass: #GRSequentialPrinter
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRSequentialPrinter guid: (GUID fromString: '{f3b5f346-ccf3-4383-8573-676bb5a48070}')!
+GRSequentialPrinter guid: (GUID fromString: '{a89071a5-3de4-47bc-a094-3f5b47bf6ead}')!
 GRSequentialPrinter comment: ''!
 !GRSequentialPrinter categoriesForClass!Grease-Core-Text! !
 !GRSequentialPrinter methodsFor!

@@ -5,7 +5,7 @@ GRObject subclass: #GRObjectStub
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRObjectStub guid: (GUID fromString: '{5950e5b7-5057-49ca-99e2-60210c98d90b}')!
+GRObjectStub guid: (GUID fromString: '{5f4c6856-1f08-405b-93e5-42497c5b1a30}')!
 GRObjectStub comment: ''!
 !GRObjectStub categoriesForClass!Grease-Tests-Core! !
 !GRObjectStub methodsFor!

@@ -5,8 +5,8 @@ GRObject subclass: #GRInflector
 	classVariableNames: 'InflectionRules Uninflected'
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRInflector guid: (GUID fromString: '{32602bb1-b6b5-4f88-add6-0f6e8b381e8e}')!
-GRInflector comment: 'The Inflector transforms words from singular to plural.'!
+GRInflector guid: (GUID fromString: '{0e07324c-8f0a-4990-a174-b288ffeb6c68}')!
+GRInflector comment: 'GRInflector class	instanceVariableNames: '''''!
 !GRInflector categoriesForClass!Grease-Core-Text! !
 !GRInflector class methodsFor!
 

@@ -249,6 +249,10 @@ terminateProcess: aProcess
 	"Permanently terminate the process, unwinding first to execute #ensure: and #ifCurtailed: blocks."
 	aProcess terminate!
 
+thisContext	"Answer the current activation of a method execution or block activation"
+
+	^Processor activeProcess topFrame sender!
+
 useByteArrayLiterals
 	"whether ByteArray literals can/should be used"
 	
@@ -300,6 +304,7 @@ write: aStringOrByteArray toFile: aFileNameString inFolder: aFolderString
 !GRDolphinPlatform categoriesFor: #smtpServer!private-email!public! !
 !GRDolphinPlatform categoriesFor: #stackDepth!exceptions!public! !
 !GRDolphinPlatform categoriesFor: #terminateProcess:!processes!public! !
+!GRDolphinPlatform categoriesFor: #thisContext!processes!public! !
 !GRDolphinPlatform categoriesFor: #useByteArrayLiterals!private-file library!public! !
 !GRDolphinPlatform categoriesFor: #weakDictionaryOfSize:!factory!public! !
 !GRDolphinPlatform categoriesFor: #write:toFile:inFolder:!file library!public! !

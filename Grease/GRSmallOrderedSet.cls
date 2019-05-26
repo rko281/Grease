@@ -5,88 +5,44 @@ GRObject subclass: #GRSmallOrderedSet
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRSmallOrderedSet guid: (GUID fromString: '{5bd081b7-3bca-4b5a-87a7-f7b132ff3b17}')!
+GRSmallOrderedSet guid: (GUID fromString: '{b24983e4-28f4-42af-b732-61b8452a322f}')!
 GRSmallOrderedSet comment: 'I am an implementation of a dictionary. Compared to other dictionaries I am very efficient for small sizes, speed- and space-wise. I also mantain the order in which elements are added when iterating.'!
 !GRSmallOrderedSet categoriesForClass!Grease-Core-Collections! !
 !GRSmallOrderedSet methodsFor!
 
-add: newObject
-	(self findIndexFor: newObject) = 0
-		ifTrue: [ self privateAdd: newObject ].
-	^ newObject!
+add: newObject	(self findIndexFor: newObject) = 0		ifTrue: [ self privateAdd: newObject ].	^ newObject!
 
-addAll: aCollection
-	aCollection do: [ :each |
-		self add: each ].
-	^ aCollection!
+addAll: aCollection	aCollection do: [ :each |		self add: each ].	^ aCollection!
 
-do: aOneArgumentBlock
-	1 to: size do: [ :i |
-		aOneArgumentBlock value: (table at: i) ]!
+do: aOneArgumentBlock	1 to: size do: [ :i |		aOneArgumentBlock value: (table at: i) ]!
 
-do: aOneArgumentBlock separatedBy: aNiladicBlock
-	1 to: size do: [ :i |
-		i > 1 ifTrue: [ aNiladicBlock value ].
-		aOneArgumentBlock value: (table at: i) ]!
+do: aOneArgumentBlock separatedBy: aNiladicBlock	1 to: size do: [ :i |		i > 1 ifTrue: [ aNiladicBlock value ].		aOneArgumentBlock value: (table at: i) ]!
 
-errorNotFound
-	self error: 'Not found'!
+errorNotFound	self error: 'Not found'!
 
-findIndexFor: aKey
-	1 to: size do: [ :index |
-		(table at: index) = aKey
-			ifTrue: [ ^ index ] ].
-	^ 0!
+findIndexFor: aKey	1 to: size do: [ :index |		(table at: index) = aKey			ifTrue: [ ^ index ] ].	^ 0!
 
-grow
-	| newTable |
-	"#replaceFrom:to:with:startingAt: would be better but not portable"
-	newTable := Array new: 2 * size.
-	1 to: size do: [ :index |
-		newTable at: index put: (table at: index) ].
-	table := newTable!
+grow	| newTable |	"#replaceFrom:to:with:startingAt: would be better but not portable"	newTable := Array new: 2 * size.	1 to: size do: [ :index |		newTable at: index put: (table at: index) ].	table := newTable!
 
-includes: anObject
-	^ (self findIndexFor: anObject) ~= 0!
+includes: anObject	^ (self findIndexFor: anObject) ~= 0!
 
-initialize: anInteger
-	self initialize.
-	size := 0.
-	table := Array new: anInteger!
+initialize: anInteger	self initialize.	size := 0.	table := Array new: anInteger!
 
-isCollection
-	^ true!
+isCollection	^ true!
 
-isEmpty
-	^ size = 0!
+isEmpty	^ size = 0!
 
-postCopy
-	super postCopy.
-	table := table copy!
+postCopy	super postCopy.	table := table copy!
 
-privateAdd: newObject
-	size = table size ifTrue: [ self grow ].
-	table at: (size := size + 1) put: newObject.!
+privateAdd: newObject	size = table size ifTrue: [ self grow ].	table at: (size := size + 1) put: newObject.!
 
-remove: anObject
-	^ self remove: anObject ifAbsent: [ self errorNotFound ]!
+remove: anObject	^ self remove: anObject ifAbsent: [ self errorNotFound ]!
 
-remove: anObject ifAbsent: aNiladicBlock
-	| index |
-	index := self findIndexFor: anObject.
-	index = 0
-		ifTrue: [ ^ aNiladicBlock value ]
-		ifFalse: [ self removeIndex: index ].
-	^ anObject!
+remove: anObject ifAbsent: aNiladicBlock	| index |	index := self findIndexFor: anObject.	index = 0		ifTrue: [ ^ aNiladicBlock value ]		ifFalse: [ self removeIndex: index ].	^ anObject!
 
-removeIndex: index
-	table at: index put: nil.
-	index to: size - 1 do: [ :i |
-		table at: i put: (table at: i + 1) ].
-	size := size - 1!
+removeIndex: index	table at: index put: nil.	index to: size - 1 do: [ :i |		table at: i put: (table at: i + 1) ].	size := size - 1!
 
-size
-	^ size! !
+size	^ size! !
 !GRSmallOrderedSet categoriesFor: #add:!adding!public! !
 !GRSmallOrderedSet categoriesFor: #addAll:!adding!public! !
 !GRSmallOrderedSet categoriesFor: #do:!enumerating!public! !
@@ -107,16 +63,11 @@ size
 
 !GRSmallOrderedSet class methodsFor!
 
-new
-	^ self new: 3!
+new	^ self new: 3!
 
-new: anInteger
-	^ self basicNew initialize: anInteger; yourself!
+new: anInteger	^ self basicNew initialize: anInteger; yourself!
 
-withAll: aDictionary
-	^ (self new: aDictionary size)
-		addAll: aDictionary;
-		yourself! !
+withAll: aDictionary	^ (self new: aDictionary size)		addAll: aDictionary;		yourself! !
 !GRSmallOrderedSet class categoriesFor: #new!instance creation!public! !
 !GRSmallOrderedSet class categoriesFor: #new:!instance creation!public! !
 !GRSmallOrderedSet class categoriesFor: #withAll:!instance creation!public! !

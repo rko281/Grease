@@ -5,7 +5,7 @@ GRNotification subclass: #GRNotificationStub
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRNotificationStub guid: (GUID fromString: '{67d2b75a-b8b7-4ca8-90d3-eeabe709a672}')!
+GRNotificationStub guid: (GUID fromString: '{2c41ff4a-3f08-4a76-a786-8a228bb267ef}')!
 GRNotificationStub comment: ''!
 !GRNotificationStub categoriesForClass!Grease-Tests-Core! !
 !GRNotificationStub methodsFor!

@@ -5,7 +5,7 @@ GRPrinter subclass: #GRSignPrinter
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRSignPrinter guid: (GUID fromString: '{0898cfed-a09f-49ce-932f-02076b2124fc}')!
+GRSignPrinter guid: (GUID fromString: '{628bb6f6-c595-43aa-a46e-db380fa67fa1}')!
 GRSignPrinter comment: ''!
 !GRSignPrinter categoriesForClass!Grease-Core-Text! !
 !GRSignPrinter methodsFor!

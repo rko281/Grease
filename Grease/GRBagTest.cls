@@ -5,7 +5,7 @@ GRCollectionTest subclass: #GRBagTest
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRBagTest guid: (GUID fromString: '{0a2fc4c1-fc8e-4372-a122-55e7fb84cc1e}')!
+GRBagTest guid: (GUID fromString: '{805bb46e-f756-42b4-b788-2d7d0a6ac983}')!
 GRBagTest comment: ''!
 !GRBagTest categoriesForClass!Grease-Tests-Core! !
 !GRBagTest methodsFor!

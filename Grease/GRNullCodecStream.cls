@@ -5,7 +5,7 @@ GRCodecStream subclass: #GRNullCodecStream
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRNullCodecStream guid: (GUID fromString: '{7aa3050b-92ef-4b0e-a7dd-316f1eaa9896}')!
+GRNullCodecStream guid: (GUID fromString: '{936d7e78-99cb-4459-8721-97fb199e1877}')!
 GRNullCodecStream comment: 'A WANullCodecStream is a WriteStream on a String on which you can both put binary and character data without encoding happening.Instance Variables	stream:		<WriteStream>stream	- a WriteStream on a String'!
 !GRNullCodecStream categoriesForClass!Grease-Core-Text! !
 !GRNullCodecStream methodsFor!

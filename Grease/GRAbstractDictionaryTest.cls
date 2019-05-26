@@ -5,7 +5,7 @@ GRCollectionTest subclass: #GRAbstractDictionaryTest
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRAbstractDictionaryTest guid: (GUID fromString: '{5f29cbd2-6dbf-4e19-9469-231f4fb26dd3}')!
+GRAbstractDictionaryTest guid: (GUID fromString: '{47d71d3e-66e9-48f0-ae88-aa05bd1c12d6}')!
 GRAbstractDictionaryTest comment: ''!
 !GRAbstractDictionaryTest categoriesForClass!Grease-Tests-Core! !
 !GRAbstractDictionaryTest methodsFor!

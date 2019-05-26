@@ -1,87 +1,37 @@
 ﻿"Filed out from Dolphin Smalltalk 7"!
 
-TestCase subclass: #GRSmallOrderedSetTest
+GRSetTest subclass: #GRSmallOrderedSetTest
 	instanceVariableNames: 'collection'
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRSmallOrderedSetTest guid: (GUID fromString: '{a18c3bfa-d7fa-4783-8029-45159a5ead37}')!
+GRSmallOrderedSetTest guid: (GUID fromString: '{59ab8de0-a163-4d5f-b69f-bb653f3198f1}')!
 GRSmallOrderedSetTest comment: ''!
 !GRSmallOrderedSetTest categoriesForClass!Grease-Tests-Core! !
 !GRSmallOrderedSetTest methodsFor!
 
-setUp
-	super setUp.
-	collection := GRSmallOrderedSet new!
+collectionClass	^ GRSmallOrderedSet!
 
-testAdd
-	| object |
-	object := Object new.
-	self assert: collection size = 0.
-	self assert: (collection add: object) == object.
-	self assert: collection size = 1.
-	self assert: (collection add: object) == object!
+setUp	super setUp.	collection := GRSmallOrderedSet new!
 
-testAddAll
-	collection addAll: #(2 1 1).
-	self assert: collection size = 2.
-	self assert: (collection includes: 1).
-	self assert: (collection includes: 2)!
+testAdd	| object |	object := Object new.	self assert: collection size = 0.	self assert: (collection add: object) == object.	self assert: collection size = 1.	self assert: (collection add: object) == object!
 
-testCopy
-	| copy |
-	collection add: 1.
-	copy := collection copy.
-	collection add: 2.
-	
-	self assert: collection size = 2.
-	self assert: copy size = 1.
-	
-	self assert: (collection includes: 2).
-	self deny: (copy includes: 2).!
+testAddAll	collection addAll: #(2 1 1).	self assert: collection size = 2.	self assert: (collection includes: 1).	self assert: (collection includes: 2)!
 
-testDo
-	| seen |
-	collection addAll: #(2 1 1).
-	seen := Array streamContents: [ :stream |
-		collection do: [ :each |
-			stream nextPut: each ] ].
-	self assert: seen size = 2.
-	self assert: (seen at: 1) = 2.
-	self assert: (seen at: 2) = 1!
+testCopy	| copy |	collection add: 1.	copy := collection copy.	collection add: 2.		self assert: collection size = 2.	self assert: copy size = 1.		self assert: (collection includes: 2).	self deny: (copy includes: 2).!
 
-testIncludes
-	self deny: (collection includes: 0).
-	collection add: 0.
-	self assert: (collection includes: 0)!
+testDo	| seen |	collection addAll: #(2 1 1).	seen := Array streamContents: [ :stream |		collection do: [ :each |			stream nextPut: each ] ].	self assert: seen size = 2.	self assert: (seen at: 1) = 2.	self assert: (seen at: 2) = 1!
 
-testIsEmpty
-	self assert: collection isEmpty.
-	collection add: 1.
-	self deny: collection isEmpty.
-	collection remove: 1.
-	self assert: collection isEmpty!
+testIncludes	self deny: (collection includes: 0).	collection add: 0.	self assert: (collection includes: 0)!
 
-testRemove
-	collection add: 1.
-	self assert: (collection remove: 1) = 1.
-	self should: [ collection remove: 1 ] raise: Error!
+testIsEmpty	self assert: collection isEmpty.	collection add: 1.	self deny: collection isEmpty.	collection remove: 1.	self assert: collection isEmpty!
 
-testRemoveIfAbsent
-	| absent |
-	collection add: 1.
-	absent := false.
-	
-	self assert: (collection remove: 1 ifAbsent: [ absent := true ]) = 1.
-	self deny: absent.
-	
-	collection remove: 1 ifAbsent: [ absent := true ].
-	self assert: absent.!
+testRemove	collection add: 1.	self assert: (collection remove: 1) = 1.	self should: [ collection remove: 1 ] raise: Error!
 
-testSize
-	self assert: collection size = 0.
-	collection addAll: #(2 1 1).
-	self assert: collection size = 2.! !
+testRemoveIfAbsent	| absent |	collection add: 1.	absent := false.		self assert: (collection remove: 1 ifAbsent: [ absent := true ]) = 1.	self deny: absent.		collection remove: 1 ifAbsent: [ absent := true ].	self assert: absent.!
+
+testSize	self assert: collection size = 0.	collection addAll: #(2 1 1).	self assert: collection size = 2.! !
+!GRSmallOrderedSetTest categoriesFor: #collectionClass!configuration!public! !
 !GRSmallOrderedSetTest categoriesFor: #setUp!public!running! !
 !GRSmallOrderedSetTest categoriesFor: #testAdd!public!testing! !
 !GRSmallOrderedSetTest categoriesFor: #testAddAll!public!testing! !

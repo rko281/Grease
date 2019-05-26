@@ -5,7 +5,7 @@ TestCase subclass: #GRExceptionTest
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRExceptionTest guid: (GUID fromString: '{fdfa38e3-8b4d-4439-bc29-d7f2d66784a0}')!
+GRExceptionTest guid: (GUID fromString: '{16094cf1-ddb2-4161-87bd-d56cb027ef0f}')!
 GRExceptionTest comment: ''!
 !GRExceptionTest categoriesForClass!Grease-Tests-Core! !
 !GRExceptionTest methodsFor!

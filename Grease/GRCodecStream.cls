@@ -5,6 +5,6 @@ GRDelegatingStream subclass: #GRCodecStream
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRCodecStream guid: (GUID fromString: '{5f3e52a3-2094-4a77-92bb-287a2a31cd7e}')!
-GRCodecStream comment: 'GRCodecStream is the abstract base class for codec streams'!
+GRCodecStream guid: (GUID fromString: '{1445f22a-a942-4cbe-a8b3-d71a84d7eb73}')!
+GRCodecStream comment: 'GRObject subclass: #GRInflector	instanceVariableNames: ''''	classVariableNames: ''InflectionRules Uninflected''	poolDictionaries: ''''	category: ''Grease-Core-Text'''!
 !GRCodecStream categoriesForClass!Grease-Core-Text! !

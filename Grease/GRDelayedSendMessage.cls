@@ -5,7 +5,7 @@ GRObject subclass: #GRDelayedSendMessage
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRDelayedSendMessage guid: (GUID fromString: '{aa1727fa-e6b9-4bb1-90b7-8b075450dde0}')!
+GRDelayedSendMessage guid: (GUID fromString: '{537ce68c-e383-43a8-b495-d424445d3f77}')!
 GRDelayedSendMessage comment: 'GRDelayedSendMessage is an abstract base for objects that provide currying functionality for GRDelayedSend'!
 !GRDelayedSendMessage categoriesForClass!Grease-Core-Utilities! !
 !GRDelayedSendMessage methodsFor!

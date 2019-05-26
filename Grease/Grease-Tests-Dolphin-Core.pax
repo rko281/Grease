@@ -10,7 +10,6 @@ package classNames
 	add: #GRDolphinCodecTest;
 	add: #GRDolphinColorTest;
 	add: #GRDolphinCountingStreamTest;
-	add: #GRDolphinGenericCodecTest;
 	add: #GRDolphinPlatformTest;
 	add: #GRDolphinStringTest;
 	add: #GRDolphinUtf8CodecTest;
@@ -22,6 +21,7 @@ package methodNames
 	add: 'GRCountingStreamTest class' -> #isAbstract;
 	add: 'GRPackage class' -> #greaseTestsDolphinCore;
 	add: 'GRPlatformTest class' -> #isAbstract;
+	add: 'GRSmallOrderedSetTest class' -> #shouldInheritSelectors;
 	add: 'GRStringTest class' -> #allTestSelectors;
 	add: 'GRStringTest class' -> #subStringsTestSelectors;
 	add: 'GRStringTest class' -> #testSelectors;
@@ -34,14 +34,14 @@ package binaryGlobalNames: (Set new
 package globalAliases: (Set new
 	yourself).
 
-package setPrerequisites: (IdentitySet new
-	add: '..\Core\Object Arts\Dolphin\Base\Dolphin';
-	add: '..\Core\Object Arts\Dolphin\MVP\Base\Dolphin MVP Base';
-	add: 'Grease-Core';
-	add: 'Grease-Dolphin-Core';
-	add: 'Grease-Tests-Core';
-	add: '..\Core\Contributions\Camp Smalltalk\SUnit\SUnit';
-	yourself).
+package setPrerequisites: #(
+	'..\Core\Object Arts\Dolphin\Base\Dolphin'
+	'..\Core\Object Arts\Dolphin\Base\Dolphin Legacy Date & Time'
+	'..\Core\Object Arts\Dolphin\MVP\Base\Dolphin MVP Base'
+	'Grease-Core'
+	'Grease-Dolphin-Core'
+	'Grease-Tests-Core'
+	'..\Core\Contributions\Camp Smalltalk\SUnit\SUnit').
 
 package setManualPrerequisites: #(
 	'Grease-Dolphin-Core').
@@ -56,11 +56,6 @@ TestCase subclass: #GRDolphinCodecTest
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
 TestCase subclass: #GRDolphinColorTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	classInstanceVariableNames: ''!
-TestCase subclass: #GRDolphinGenericCodecTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -120,6 +115,13 @@ isAbstract
 
 	^self == ##(self)! !
 !GRPlatformTest class categoriesFor: #isAbstract!public! !
+
+!GRSmallOrderedSetTest class methodsFor!
+
+shouldInheritSelectors
+
+	^false! !
+!GRSmallOrderedSetTest class categoriesFor: #shouldInheritSelectors!public! !
 
 !GRStringTest class methodsFor!
 

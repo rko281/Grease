@@ -5,6 +5,6 @@ GRError subclass: #GRUnsupportedEncodingError
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRUnsupportedEncodingError guid: (GUID fromString: '{4c1444bc-ad16-4ce1-a735-7d2a160546fb}')!
+GRUnsupportedEncodingError guid: (GUID fromString: '{a55935a7-918f-4f73-baac-57542927f171}')!
 GRUnsupportedEncodingError comment: ''!
 !GRUnsupportedEncodingError categoriesForClass!Grease-Core-Text! !

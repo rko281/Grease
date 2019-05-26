@@ -5,7 +5,7 @@ TestCase subclass: #GRCodecTest
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRCodecTest guid: (GUID fromString: '{c7ec3ea5-b80c-4216-a7c5-8cafa2899d2f}')!
+GRCodecTest guid: (GUID fromString: '{1f3c8881-d475-43ff-82ff-55f63c700670}')!
 GRCodecTest comment: ''!
 !GRCodecTest categoriesForClass!Grease-Tests-Core! !
 !GRCodecTest methodsFor!

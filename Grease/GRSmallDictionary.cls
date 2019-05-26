@@ -5,14 +5,16 @@ GRObject subclass: #GRSmallDictionary
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRSmallDictionary guid: (GUID fromString: '{8ebc614a-598f-4502-af08-2a2e747defc2}')!
+GRSmallDictionary guid: (GUID fromString: '{f890efe5-2480-4923-955c-cec3c15a5617}')!
 GRSmallDictionary comment: 'I am an implementation of a dictionary. Compared to other dictionaries I am very efficient for small sizes, speed- and space-wise. I also mantain the order in which elements are added when iterating. My implementation features some ideas from the RefactoringBrowser.'!
 !GRSmallDictionary categoriesForClass!Grease-Core-Collections! !
 !GRSmallDictionary methodsFor!
 
 add: anAssociation	self at: anAssociation key put: anAssociation value.	^ anAssociation!
 
-addAll: aDictionary	aDictionary keysAndValuesDo: [ :key :value | self add: key -> value ].	^ aDictionary!
+addAll: aDictionary	aDictionary keysAndValuesDo: [ :key :value | self at: key put: value ].	^ aDictionary!
+
+any	self isEmpty		ifTrue: [ ^ self errorEmptyCollection ].	^ values at: 1!
 
 associations	"Answer a Collection containing the receiver's associations."	| result |	result := WriteStream on: (Array new: self size).	self associationsDo: [ :assoc | result nextPut: assoc ].	^ result contents!
 
@@ -29,6 +31,8 @@ at: aKey ifPresent: aBlock	"Lookup aKey in the receiver. If it is present, answ
 at: aKey put: aValue	"Set the value of aKey to be aValue."	| index |	index := self findIndexFor: aKey.	^ index = 0		ifFalse: [ values at: index put: aValue ]		ifTrue: [ self privateAt: aKey put: aValue ]!
 
 do: aBlock	1 to: size do: [ :index | aBlock value: (values at: index) ]!
+
+errorEmptyCollection	self error: 'Empty'!
 
 errorKeyNotFound	self error: 'Key not found'!
 
@@ -50,6 +54,10 @@ keysAndValuesDo: aBlock	1 to: size do: [ :index | aBlock value: (keys at: index
 
 keysDo: aBlock	1 to: size do: [ :each | aBlock value: (keys at: each) ]!
 
+noneSatisfy: aOneArgumentBlock	1 to: size do: [ :index |		(aOneArgumentBlock value: (values at: index)) ifTrue: [ ^ false ] ].	^ true!
+
+notEmpty	^ size ~= 0!
+
 postCopy	super postCopy.	keys := keys copy.	values := values copy!
 
 printOn: aStream	super printOn: aStream.		aStream nextPut: $(.	self size <= 100		ifTrue: [			| first |			first := true.			self keysAndValuesDo: [ :key :value |				"keysAndValuesDo:separatedBy: would be nice"				first					ifTrue: [ first := false ]					ifFalse: [ aStream space ].				aStream					print: key;					nextPutAll: '->';									print: value ] ]		ifFalse: [			aStream				nextPutAll: 'size ';				print: self size ].	aStream nextPut: $)	!
@@ -64,9 +72,14 @@ removeKey: aKey ifAbsent: aBlock	"Remove aKey from the receiver, evaluate aBloc
 
 size	^ size!
 
+sorted	^ self values sorted!
+
+sorted: aTwoArgumentBlock	^ self values sorted: aTwoArgumentBlock!
+
 values	^ values copyFrom: 1 to: size! !
 !GRSmallDictionary categoriesFor: #add:!accessing!public! !
-!GRSmallDictionary categoriesFor: #addAll:!accessing!public! !
+!GRSmallDictionary categoriesFor: #addAll:!adding!public! !
+!GRSmallDictionary categoriesFor: #any!accessing!public! !
 !GRSmallDictionary categoriesFor: #associations!accessing!public! !
 !GRSmallDictionary categoriesFor: #associationsDo:!enumerating!public! !
 !GRSmallDictionary categoriesFor: #at:!accessing!public! !
@@ -75,6 +88,7 @@ values	^ values copyFrom: 1 to: size! !
 !GRSmallDictionary categoriesFor: #at:ifPresent:!accessing!public! !
 !GRSmallDictionary categoriesFor: #at:put:!accessing!public! !
 !GRSmallDictionary categoriesFor: #do:!enumerating!public! !
+!GRSmallDictionary categoriesFor: #errorEmptyCollection!private! !
 !GRSmallDictionary categoriesFor: #errorKeyNotFound!private! !
 !GRSmallDictionary categoriesFor: #findIndexFor:!private! !
 !GRSmallDictionary categoriesFor: #grow!private! !
@@ -85,6 +99,8 @@ values	^ values copyFrom: 1 to: size! !
 !GRSmallDictionary categoriesFor: #keys!enumerating!public! !
 !GRSmallDictionary categoriesFor: #keysAndValuesDo:!enumerating!public! !
 !GRSmallDictionary categoriesFor: #keysDo:!enumerating!public! !
+!GRSmallDictionary categoriesFor: #noneSatisfy:!enumerating!public! !
+!GRSmallDictionary categoriesFor: #notEmpty!public!testing! !
 !GRSmallDictionary categoriesFor: #postCopy!copying!public! !
 !GRSmallDictionary categoriesFor: #printOn:!printing!public! !
 !GRSmallDictionary categoriesFor: #privateAt:put:!private! !
@@ -92,6 +108,8 @@ values	^ values copyFrom: 1 to: size! !
 !GRSmallDictionary categoriesFor: #removeKey:!accessing!public! !
 !GRSmallDictionary categoriesFor: #removeKey:ifAbsent:!accessing!public! !
 !GRSmallDictionary categoriesFor: #size!accessing!public! !
+!GRSmallDictionary categoriesFor: #sorted!public!sorting! !
+!GRSmallDictionary categoriesFor: #sorted:!public!sorting! !
 !GRSmallDictionary categoriesFor: #values!enumerating!public! !
 
 !GRSmallDictionary class methodsFor!

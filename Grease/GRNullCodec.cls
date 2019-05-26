@@ -5,7 +5,7 @@ GRCodec subclass: #GRNullCodec
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRNullCodec guid: (GUID fromString: '{a5270c93-dece-4b3e-a68d-3446867427fe}')!
+GRNullCodec guid: (GUID fromString: '{ffbdd2b9-25aa-41aa-bdb3-b614654e8dcc}')!
 GRNullCodec comment: 'The null codec always returns the original streams. It assumes that the outside world uses the same encoding as the inside world. This is highly efficient as no transformation is applied to the data, but has its drawbacks.'!
 !GRNullCodec categoriesForClass!Grease-Core-Text! !
 !GRNullCodec methodsFor!

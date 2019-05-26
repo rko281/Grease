@@ -5,7 +5,7 @@ Object subclass: #GRObject
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRObject guid: (GUID fromString: '{697fe973-5d7c-419e-a8e2-4f4a0f2ebfcd}')!
+GRObject guid: (GUID fromString: '{b7b1d7e2-f131-431b-9b38-59ba0421cd4b}')!
 GRObject comment: 'A common superclass that ensures consistent initialization behaviour on all platforms and provides #error: methods that signal an instance of WAPlatformError.Packages that are using Seaside-Platform should normally subclass GRObject instead of Object.'!
 !GRObject categoriesForClass!Grease-Core! !
 !GRObject methodsFor!

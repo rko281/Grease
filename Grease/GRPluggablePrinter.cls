@@ -5,7 +5,7 @@ GRPrinter subclass: #GRPluggablePrinter
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRPluggablePrinter guid: (GUID fromString: '{fb95a356-7f42-4e79-b371-654b20b8d2f4}')!
+GRPluggablePrinter guid: (GUID fromString: '{6923360d-5f0c-4ee3-bc7b-8365e0852d52}')!
 GRPluggablePrinter comment: ''!
 !GRPluggablePrinter categoriesForClass!Grease-Core-Text! !
 !GRPluggablePrinter methodsFor!

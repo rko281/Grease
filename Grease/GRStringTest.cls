@@ -5,7 +5,7 @@ GRAbstractSequenceableCollectionTest subclass: #GRStringTest
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRStringTest guid: (GUID fromString: '{07251476-7b81-45b1-b9a4-0a1674caf433}')!
+GRStringTest guid: (GUID fromString: '{118a26c5-1699-44bb-929f-645a29222cfd}')!
 GRStringTest comment: ''!
 !GRStringTest categoriesForClass!Grease-Tests-Core! !
 !GRStringTest methodsFor!
@@ -60,7 +60,7 @@ testInflectorTsssSuffixes	self assert: 'church' pluralize = 'churches'.	self a
 
 testInflectorYyyySuffixes	self assert: 'story' pluralize = 'stories'.	self assert: 'lady' pluralize = 'ladies'.	self assert: 'stay' pluralize = 'stays'!
 
-testSubStrings	"#subStrings: is defined by ANSI 5.7.10.15:	Answer an array containing the substrings in the receiver separated by the elements of separators."	| mimeType tokens |	mimeType := 'application/xhtml+xml'.	tokens := mimeType subStrings: '/'.	self assert: tokens size = 2.	self assert: tokens first = 'application'.	self assert: tokens second = 'xhtml+xml'.		"ANSI is a bit unclear on how multiple sequential delimiters should be treated.	Make sure behaviour is consistent for several delimiters in a row (taken from	Squeak's behaviour)"	tokens := 'abc,.def.ghi' subStrings: '.,'.	self assert: tokens size = 3.	self assert: tokens first = 'abc'.	self assert: tokens second = 'def'.	self assert: tokens third = 'ghi'.	"also ensure behavior consistent for several delimiters in a row at beginning and end of string...for completeness"	tokens := ',.abc,.def.ghi.,' subStrings: '.,'.	self assert: tokens size = 3.	self assert: tokens first = 'abc'.	self assert: tokens second = 'def'.	self assert: tokens third = 'ghi'!
+testSubStrings	"#subStrings: is defined by ANSI 5.7.10.15:	Answer an array containing the substrings in the receiver separated by the elements of separators."	| mimeType tokens |	mimeType := 'application/xhtml+xml'.	tokens := mimeType substrings: '/'.	self assert: tokens size = 2.	self assert: tokens first = 'application'.	self assert: tokens second = 'xhtml+xml'.		"ANSI is a bit unclear on how multiple sequential delimiters should be treated.	Make sure behaviour is consistent for several delimiters in a row (taken from	Squeak's behaviour)"	tokens := 'abc,.def.ghi' substrings: '.,'.	self assert: tokens size = 3.	self assert: tokens first = 'abc'.	self assert: tokens second = 'def'.	self assert: tokens third = 'ghi'.	"also ensure behavior consistent for several delimiters in a row at beginning and end of string...for completeness"	tokens := ',.abc,.def.ghi.,' substrings: '.,'.	self assert: tokens size = 3.	self assert: tokens first = 'abc'.	self assert: tokens second = 'def'.	self assert: tokens third = 'ghi'!
 
 testTrimBoth	self assert: '' trimBoth = ''.	self assert: ' ' trimBoth = ''.	self assert: '	' trimBoth = ''.	self assert: 'foo' trimBoth = 'foo'.	self assert: ' foo ' trimBoth = 'foo'.	self assert: '  foo  ' trimBoth = 'foo'.	self assert: ((String with: Character cr), '   foo  ') trimBoth = 'foo'.		self assert: ('aabbaa' trimBoth: [ :each | each = $a ]) = 'bb'.	self assert: ('bbaabb' trimBoth: [ :each | each = $a ]) = 'bbaabb'!
 

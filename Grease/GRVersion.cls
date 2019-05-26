@@ -5,7 +5,7 @@ GRObject subclass: #GRVersion
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRVersion guid: (GUID fromString: '{46b22d52-f270-4c57-9a44-2d90acf9f379}')!
+GRVersion guid: (GUID fromString: '{7fabd82f-5152-4b08-9b06-f258cbacf135}')!
 GRVersion comment: 'I model version numbers. I am comparable and I define a natural order.'!
 !GRVersion categoriesForClass!Grease-Core! !
 !GRVersion methodsFor!
@@ -36,7 +36,7 @@ beReleaseCandidate: anInteger	self stage: #rc number: anInteger!
 
 greaseString	^ String streamContents: [ :stream |		stream nextPutAll: major greaseString.		stream nextPut: $..		stream nextPutAll: (minor ifNil: [ 0 ]) greaseString.		revision isNil ifFalse: [			stream nextPut: $..			stream nextPutAll: revision greaseString ].		stageLabel isNil ifFalse: [			stream nextPutAll: stageLabel greaseString.			stageNumber isNil ifFalse: [ stream nextPutAll: stageNumber greaseString ] ] ]!
 
-hash	^ (major hash bitXor: minor hash) bitXor: revision hash!
+hash	^ (major hash		bitXor: (minor ifNil: [ 0 ]) hash)		bitXor: (revision ifNil: [ 0 ]) hash!
 
 initializeWithMajor: majorInteger minor: minorInteger revision: revisionInteger	self initialize.	major := majorInteger.	minor := minorInteger.	revision := revisionInteger!
 

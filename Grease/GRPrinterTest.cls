@@ -5,10 +5,12 @@ TestCase subclass: #GRPrinterTest
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRPrinterTest guid: (GUID fromString: '{c90d2e9b-771a-4a85-93b3-5fbbc059cc66}')!
+GRPrinterTest guid: (GUID fromString: '{5eb4178d-4599-4f76-9870-17fa9f01b317}')!
 GRPrinterTest comment: ''!
 !GRPrinterTest categoriesForClass!Grease-Tests-Core! !
 !GRPrinterTest methodsFor!
+
+separate: aString left: aCharacter	| converter |	converter := GRNumberPrinter new.	^ String streamContents: [ :stream |		converter 			separate: aString			left: aCharacter			on: stream ]!
 
 testComposedPrinter	| converter |	converter := GRSequentialPrinter new , 'CHF ' , GRNumberPrinter new.	self assert: (converter print: 1234) = 'CHF 1234'.	self assert: (converter print: -1234) = 'CHF 1234'.	converter := GRSignPrinter new , GRNumberPrinter new , '%'.	self assert: (converter print: 1234) = '1234%'.	self assert: (converter print: -1234) = '-1234%'!
 
@@ -38,7 +40,7 @@ testFullWeekName	| printer |	printer := GRPrinter fullWeekName.	self assert: 
 
 testHttp	| printer date offsetHour |	offsetHour := 2.	printer := GRPrinter httpDate.	date := DateAndTime 		year: 1994		month: 11		day: 6		hour: 8 + offsetHour		minute: 49		second: 37		offset: (Duration 				days: 0				hours: offsetHour				minutes: 0				seconds: 0).	self assert: (printer print: date) = 'Sun, 06 Nov 1994 08:49:37 GMT'!
 
-testIntegerPrinter	| converter |	converter := GRNumberPrinter new.	self assert: (converter print: 1234) = '1234'.	self assert: (converter print: -1234) = '1234'.	converter separator: $..	self assert: (converter print: 1234) = '1.234'.	self assert: (converter print: 1234567) = '1.234.567'.	converter		base: 16;		separator: nil.	self assert: (converter print: 1234) = '4d2'.	self assert: (converter print: 123123) = '1e0f3'.	converter uppercase.	self assert: (converter print: 1234) = '4D2'.	self assert: (converter print: 123123) = '1E0F3'!
+testIntegerPrinter	| converter |	converter := GRNumberPrinter new.	self assert: (converter print: 1234) = '1234'.	self assert: (converter print: -1234) = '1234'.	converter separator: $..	self assert: (converter print: 1234) = '1.234'.	self assert: (converter print: 1234567) = '1.234.567'.	converter		base: 16;		separator: nil.	self assert: (converter print: 1234) = '4d2'.	self assert: (converter print: 123123) = '1e0f3'.	converter uppercase.	self assert: (converter print: 1234) = '4D2'.	self assert: (converter print: 123123) = '1E0F3'.			converter		base: 10;		separator: $';		digits: 6;		padding: $0.	self assert: (converter print: 1234) = '001''234'.	self assert: (converter print: 12345) = '012''345'.	self assert: (converter print: 123456) = '123''456'.	self assert: (converter print: 1234567) = '1''234''567'.	self assert: (converter print: 12345678) = '12''345''678'.	self assert: (converter print: 123456789) = '123''456''789'.	self assert: (converter print: 0) = '000''000'!
 
 testIsoDate	| printer |	printer := GRPrinter isoDate.	self assert: (printer print: (Date 				year: 1980				month: 6				day: 11)) = '1980-06-11'.	self assert: (printer print: (Date 				year: 2003				month: 12				day: 1)) = '2003-12-01'.	self assert: (printer print: (Date 				year: 800				month: 12				day: 24)) = '0800-12-24'!
 
@@ -60,7 +62,7 @@ testRfc822	| printer date |	printer := GRPrinter rfc822.	date := DateAndTime 
 
 testRfc822WithTimeZone	| printer date |	printer := GRPrinter rfc822WithTimeZone: 'GMT'.	date := DateAndTime 		year: 2008		month: 8		day: 1		hour: 9		minute: 4		second: 4		offset: (Duration 				days: 0				hours: 0				minutes: 0				seconds: 0).	self assert: (printer print: date) = 'Fri, 01 Aug 2008 09:04:04 GMT'!
 
-testSeparateLeft	| converter |	converter := GRNumberPrinter new.	self assert: (converter 			separate: ''			left: $*) = ''.	self assert: (converter 			separate: '1'			left: $*) = '1'.	self assert: (converter 			separate: '12'			left: $*) = '12'.	self assert: (converter 			separate: '123'			left: $*) = '123'.	self assert: (converter 			separate: '1234'			left: $*) = '123*4'.	self assert: (converter 			separate: '12345'			left: $*) = '123*45'.	self assert: (converter 			separate: '123456'			left: $*) = '123*456'.	self assert: (converter 			separate: '1234567'			left: $*) = '123*456*7'.	self assert: (converter 			separate: '12345678'			left: $*) = '123*456*78'.	self assert: (converter 			separate: '123456789'			left: $*) = '123*456*789'!
+testSeparateLeft	self assert: (self 			separate: ''			left: $*) = ''.	self assert: (self 			separate: '1'			left: $*) = '1'.	self assert: (self 			separate: '12'			left: $*) = '12'.	self assert: (self 			separate: '123'			left: $*) = '123'.	self assert: (self 			separate: '1234'			left: $*) = '123*4'.	self assert: (self 			separate: '12345'			left: $*) = '123*45'.	self assert: (self 			separate: '123456'			left: $*) = '123*456'.	self assert: (self 			separate: '1234567'			left: $*) = '123*456*7'.	self assert: (self 			separate: '12345678'			left: $*) = '123*456*78'.	self assert: (self 			separate: '123456789'			left: $*) = '123*456*789'!
 
 testSeparateRight	| converter |	converter := GRNumberPrinter new.	self assert: (converter 			separate: ''			right: $*) = ''.	self assert: (converter 			separate: '1'			right: $*) = '1'.	self assert: (converter 			separate: '12'			right: $*) = '12'.	self assert: (converter 			separate: '123'			right: $*) = '123'.	self assert: (converter 			separate: '1234'			right: $*) = '1*234'.	self assert: (converter 			separate: '12345'			right: $*) = '12*345'.	self assert: (converter 			separate: '123456'			right: $*) = '123*456'.	self assert: (converter 			separate: '1234567'			right: $*) = '1*234*567'.	self assert: (converter 			separate: '12345678'			right: $*) = '12*345*678'.	self assert: (converter 			separate: '123456789'			right: $*) = '123*456*789'!
 
@@ -93,6 +95,7 @@ testUnpaddedSecond	| printer |	printer := GRPrinter unpaddedSecond.	self asse
 testUnpaddedYear	| printer |	printer := GRPrinter unpaddedYear.	self assert: (printer print: (Date year: 766 month: 1 day: 1)) = '766'.	self assert: (printer print: (Date year: 1980 month: 1 day: 1)) = '1980'.	self assert: (printer print: (Date year: 2009 month: 1 day: 1)) = '2009'!
 
 testUsCurrency	| printer |	printer := GRPrinter usCurrency.	self assert: (printer print: 12.34) = '$12.34'.	self assert: (printer print: -12.34) = '-$12.34'! !
+!GRPrinterTest categoriesFor: #separate:left:!public!tests/utilites! !
 !GRPrinterTest categoriesFor: #testComposedPrinter!public!tests! !
 !GRPrinterTest categoriesFor: #testCookieTimestamp!public!tests/timestamp! !
 !GRPrinterTest categoriesFor: #testDigitsOf!public!tests/utilites! !

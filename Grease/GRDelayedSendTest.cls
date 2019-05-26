@@ -5,7 +5,7 @@ TestCase subclass: #GRDelayedSendTest
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRDelayedSendTest guid: (GUID fromString: '{8a869478-16d9-481d-a652-ee7d2952bcc0}')!
+GRDelayedSendTest guid: (GUID fromString: '{b8178fb1-14af-40bb-bf42-757961249db9}')!
 GRDelayedSendTest comment: ''!
 !GRDelayedSendTest categoriesForClass!Grease-Tests-Core! !
 !GRDelayedSendTest methodsFor!

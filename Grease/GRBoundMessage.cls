@@ -5,7 +5,7 @@ GRDelayedSendMessage subclass: #GRBoundMessage
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRBoundMessage guid: (GUID fromString: '{7f8c4205-357a-4739-b789-544115a4a018}')!
+GRBoundMessage guid: (GUID fromString: '{2d008eb0-d439-47f1-8bcb-ce0d52d20a44}')!
 GRBoundMessage comment: 'A delayed send that has some or all of the arguments defined in advance. Additionally supplied arguments will be added, if possible, to these when the object is evaluate.Instance Variables	arguments:		<Array>arguments	- the predefined arguments'!
 !GRBoundMessage categoriesForClass!Grease-Core-Utilities! !
 !GRBoundMessage methodsFor!

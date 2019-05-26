@@ -5,7 +5,7 @@ GRObject subclass: #GRDelegatingStream
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRDelegatingStream guid: (GUID fromString: '{1b0cb027-35b9-4d09-9a4d-bec485b180df}')!
+GRDelegatingStream guid: (GUID fromString: '{4df4d4c8-4bd1-4ea9-bafd-7e17eba8733e}')!
 GRDelegatingStream comment: 'A GRDelegatingStream is a wrapper around a write stream and defines common behavior.Instance Variables	stream:		<WriteStream>stream	- a WriteStream'!
 !GRDelegatingStream categoriesForClass!Grease-Core-Text! !
 !GRDelegatingStream methodsFor!

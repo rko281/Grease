@@ -5,7 +5,7 @@ TestCase subclass: #GRUtf8CodecTest
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRUtf8CodecTest guid: (GUID fromString: '{6b60710f-e3dc-4fca-a8a8-51fdc211342a}')!
+GRUtf8CodecTest guid: (GUID fromString: '{07ae8fcf-8d47-4dce-b09c-5af33d299538}')!
 GRUtf8CodecTest comment: ''!
 !GRUtf8CodecTest categoriesForClass!Grease-Tests-Core! !
 !GRUtf8CodecTest methodsFor!

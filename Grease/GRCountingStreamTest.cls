@@ -5,7 +5,7 @@ TestCase subclass: #GRCountingStreamTest
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRCountingStreamTest guid: (GUID fromString: '{9ff53d40-55d2-47c9-ae4b-c94f0230f2b6}')!
+GRCountingStreamTest guid: (GUID fromString: '{bded3d34-3070-4cd2-bda5-81b6cc3fecba}')!
 GRCountingStreamTest comment: ''!
 !GRCountingStreamTest categoriesForClass!Grease-Tests-Core! !
 !GRCountingStreamTest methodsFor!

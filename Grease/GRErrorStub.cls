@@ -5,7 +5,7 @@ GRError subclass: #GRErrorStub
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRErrorStub guid: (GUID fromString: '{1cb1c418-199a-4015-a2b8-43848112f56f}')!
+GRErrorStub guid: (GUID fromString: '{1bf2291c-6a6b-454d-aaf2-de95d5963b9e}')!
 GRErrorStub comment: ''!
 !GRErrorStub categoriesForClass!Grease-Tests-Core! !
 !GRErrorStub methodsFor!

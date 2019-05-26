@@ -5,7 +5,7 @@ GRAbstractSequenceableCollectionTest subclass: #GRArrayTest
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRArrayTest guid: (GUID fromString: '{c36fcc2d-8e60-4557-9fc8-aa727ad044be}')!
+GRArrayTest guid: (GUID fromString: '{030d9460-6950-445a-bce7-b667a05b9d59}')!
 GRArrayTest comment: ''!
 !GRArrayTest categoriesForClass!Grease-Tests-Core! !
 !GRArrayTest methodsFor!

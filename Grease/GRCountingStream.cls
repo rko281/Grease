@@ -5,7 +5,7 @@ GRDelegatingStream subclass: #GRCountingStream
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRCountingStream guid: (GUID fromString: '{80c3455c-2b30-4d8a-99b0-adc6ab150f78}')!
+GRCountingStream guid: (GUID fromString: '{0255b6c7-c81d-4199-b86e-c35aa39a201a}')!
 GRCountingStream comment: 'A GRCountingStream counts how many elements have been added to it. This is necessary because the underlying stream may inflate the number of elements in the stream.Instance Variables:	count	<Integer>		count  - number of elements added to this stream'!
 !GRCountingStream categoriesForClass!Grease-Core! !
 !GRCountingStream methodsFor!

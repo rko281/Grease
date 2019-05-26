@@ -5,7 +5,7 @@ GRAbstractSequenceableCollectionTest subclass: #GRSymbolTest
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRSymbolTest guid: (GUID fromString: '{c23accd8-dffb-406b-9307-f41d27190ac5}')!
+GRSymbolTest guid: (GUID fromString: '{70c9a161-d825-40f4-94ee-ff1ae79dddd2}')!
 GRSymbolTest comment: ''!
 !GRSymbolTest categoriesForClass!Grease-Tests-Core! !
 !GRSymbolTest methodsFor!

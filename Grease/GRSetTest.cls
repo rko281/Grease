@@ -5,7 +5,7 @@ GRCollectionTest subclass: #GRSetTest
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRSetTest guid: (GUID fromString: '{168cf2cc-fce9-4ef0-b504-4f1db4153550}')!
+GRSetTest guid: (GUID fromString: '{289f8c3b-310b-45f8-b080-d2e0914f52c3}')!
 GRSetTest comment: ''!
 !GRSetTest categoriesForClass!Grease-Tests-Core! !
 !GRSetTest methodsFor!

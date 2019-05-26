@@ -5,7 +5,7 @@ GRObject subclass: #GRPackage
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRPackage guid: (GUID fromString: '{63daa48b-0f8d-402d-a951-995afddba3a1}')!
+GRPackage guid: (GUID fromString: '{46b7df6e-76de-41fc-9f0c-fb2c49607e5f}')!
 GRPackage comment: 'I am a platform independent package representation. I know my name, description, my dependencies, the license and the repository URL. Packages are declared by creating a class side extension method that answers a configured package instance. The expression    GRPackage packagesanswers the collection of the complete package graph.'!
 !GRPackage categoriesForClass!Grease-Core! !
 !GRPackage methodsFor!
@@ -40,7 +40,7 @@ name: aString	name := aString!
 
 printOn: aStream	super printOn: aStream.	aStream nextPut: $(; nextPutAll: self name; nextPut: $)!
 
-resolveWith: aDictionary	dependencies := dependencies 		collect: [ :each |			aDictionary at: each ifAbsent: [				"if Foo-Pharo-Bar fails try Foo-Pharo20-Bar and Foo-Pharo30-Bar"				(each indexOfSubCollection: '-Pharo-' startingAt: 1) ~= 0 ifTrue: [ 					"try -Pharo20-"					aDictionary at: (each copyReplaceAll: '-Pharo-' with: '-Pharo20-') ifAbsent: [						"try -Pharo30-"						aDictionary at: (each copyReplaceAll: '-Pharo-' with: '-Pharo30-') ifAbsent: [							"try -Pharo40-"							aDictionary at: (each copyReplaceAll: '-Pharo-' with: '-Pharo40-') ifAbsent: [								"try -Pharo50-"								aDictionary at: (each copyReplaceAll: '-Pharo-' with: '-Pharo50-') ifAbsent: [									self error: self name printString , ' depends on unknown package ' , each printString ] ] ] ] ] ] ]!
+resolveWith: aDictionary	dependencies := dependencies 		collect: [ :each |			aDictionary at: each ifAbsent: [				"if Foo-Pharo-Bar fails try Foo-Pharo20-Bar and Foo-Pharo30-Bar"				(each indexOfSubCollection: '-Pharo-' startingAt: 1) ~= 0 ifTrue: [ 					"try -Pharo20-"					aDictionary at: (each copyReplaceAll: '-Pharo-' with: '-Pharo20-') ifAbsent: [						"try -Pharo30-"						aDictionary at: (each copyReplaceAll: '-Pharo-' with: '-Pharo30-') ifAbsent: [							"try -Pharo40-"							aDictionary at: (each copyReplaceAll: '-Pharo-' with: '-Pharo40-') ifAbsent: [								"try -Pharo50-"								aDictionary at: (each copyReplaceAll: '-Pharo-' with: '-Pharo50-') ifAbsent: [									"try -Pharo60-"									aDictionary at: (each copyReplaceAll: '-Pharo-' with: '-Pharo60-') ifAbsent: [										"try -Pharo70-"										aDictionary at: (each copyReplaceAll: '-Pharo-' with: '-Pharo70-') ifAbsent: [											"try -Squeak-"											aDictionary at: (each copyReplaceAll: '-Pharo-' with: '-Squeak-') ifAbsent: [												"try -Squeak5-"												aDictionary at: (each copyReplaceAll: '-Pharo-' with: '-Squeak5-') ifAbsent: [													"try -Squeak6-"													aDictionary at: (each copyReplaceAll: '-Pharo-' with: '-Squeak6-') ifAbsent: [													self error: self name printString , ' depends on unknown package ' , each printString ] ] ] ] ] ] ] ] ] ] ] ]!
 
 seasideAddonsUrl	^ 'http://smalltalkhub.com/mc/Seaside/Seaside30Addons/main'!
 

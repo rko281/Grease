@@ -5,7 +5,7 @@ TestCase subclass: #GRNumberTest
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRNumberTest guid: (GUID fromString: '{bc3ac025-7560-4b09-bfd5-5975b7e43182}')!
+GRNumberTest guid: (GUID fromString: '{7d92e90c-be30-4532-a56a-dc90b1c492a0}')!
 GRNumberTest comment: ''!
 !GRNumberTest categoriesForClass!Grease-Tests-Core! !
 !GRNumberTest methodsFor!

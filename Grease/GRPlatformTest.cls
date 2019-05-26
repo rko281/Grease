@@ -5,7 +5,7 @@ TestCase subclass: #GRPlatformTest
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRPlatformTest guid: (GUID fromString: '{8ee783d5-f708-4fc8-9257-3cf070e52ec2}')!
+GRPlatformTest guid: (GUID fromString: '{2085f599-9cfe-4d54-997b-01d25ea3317b}')!
 GRPlatformTest comment: 'A GRPlatformTest is a test to make sure the platform (= the Smalltalk dialect we are running on) implements the protocol we need for system classes like Collection. An example would be to make sure Collection implements #count: with the semantics we need.'!
 !GRPlatformTest categoriesForClass!Grease-Tests-Core! !
 !GRPlatformTest methodsFor!
@@ -52,7 +52,7 @@ testGreaseIntegerOnNumber	self assert: 2007 greaseInteger = 2007.	self assert:
 
 testGreaseIntegerOnString	self assert: '' greaseInteger isNil.	self assert: 'a' greaseInteger isNil.	self assert: ' 1' greaseInteger isNil.	self assert: 'a1' greaseInteger isNil.	self assert: '-' greaseInteger isNil.	self assert: '-a' greaseInteger isNil.	self assert: '0' greaseInteger = 0.	self assert: '12' greaseInteger = 12.	self assert: '123' greaseInteger = 123.	self assert: '123456789' greaseInteger = 123456789.	self assert: '-0' greaseInteger = 0.	self assert: '-12' greaseInteger = -12.	self assert: '-123.4' greaseInteger = -123.	self assert: '-123456789' greaseInteger = -123456789!
 
-testGreaseString	self assert: 'Timberwolf' greaseString = 'Timberwolf'.	self assert: #DireWolf greaseString = 'DireWolf'.	self assert: true greaseString = 'true'.	self assert: 666 greaseString = '666'.	"make sure we're not immediate"	self assert: ((2 raisedTo: 64) + 1) greaseString = '18446744073709551617'.	"make sure we're not immediate"	self assert: ((2 raisedTo: 64) + 1) negated greaseString = '-18446744073709551617'.	self assert: $A greaseString = 'A'.	self assert: nil greaseString = 'nil'.	[	"Smalltalk/X has constant folding so 1 / 0 will be evaluated at compile time		resulting in an error when loading the code."		1 perform: #/ with: 0 ] 		on: ZeroDivide		do: [ :error | self assert: error greaseString isString ].	self assert: 15.25 greaseString = '15.25'.	self assert: nil greaseString isString.	self assert: (4 @ 2) greaseString = '4@2'.	"#greaseString for a byte array should not do any decoding	this is in place to catch encoding errors early"	self assert: #(101 97 ) asByteArray greaseString ~= 'ea'.	self assert: #(101 97 ) asByteArray greaseString isString.	self assert: Object new greaseString isString.	"Printing scaled decimals (https://github.com/SeasideSt/Grease/issues/1)"	self assert: 1.21s3 greaseString = '1.210'.	self assert: -1.21s3 greaseString = '-1.210'	!
+testGreaseString	self assert: 'Timberwolf' greaseString = 'Timberwolf'.	self assert: #DireWolf greaseString = 'DireWolf'.	self deny: #DireWolf greaseString isSymbol.	self assert: true greaseString = 'true'.	self assert: 666 greaseString = '666'.	"make sure we're not immediate"	self assert: ((2 raisedTo: 64) + 1) greaseString = '18446744073709551617'.	"make sure we're not immediate"	self assert: ((2 raisedTo: 64) + 1) negated greaseString = '-18446744073709551617'.	self assert: $A greaseString = 'A'.	self assert: nil greaseString = 'nil'.	[	"Smalltalk/X has constant folding so 1 / 0 will be evaluated at compile time		resulting in an error when loading the code."		1 perform: #/ with: 0 ] 		on: ZeroDivide		do: [ :error | self assert: error greaseString isString ].	self assert: 15.25 greaseString = '15.25'.	self assert: nil greaseString isString.	self assert: (4 @ 2) greaseString = '4@2'.	"#greaseString for a byte array should not do any decoding	this is in place to catch encoding errors early"	self assert: #(101 97 ) asByteArray greaseString ~= 'ea'.	self assert: #(101 97 ) asByteArray greaseString isString.	self assert: Object new greaseString isString.	"Printing scaled decimals (https://github.com/SeasideSt/Grease/issues/1)"	self assert: 1.21s3 greaseString = '1.210'.	self assert: -1.21s3 greaseString = '-1.210'!
 
 testIfNil	self assert: (nil ifNil: [ 1 ]) = 1.	self assert: (1 ifNil: [ 2 ]) = 1!
 
@@ -88,7 +88,7 @@ testReadStreamNext	"ANSI 5.9.2.3"		| stream |	stream := 'abcd' readStream.	
 
 testReadStreamPeek	"ANSI 5.9.2.7"		| stream |	stream := 'abcd' readStream.	self assert: stream peek = $a.		stream := '' readStream.	self assert: stream peek isNil!
 
-testReadStreamPosition	"ANSI 5.9.1.4 and 5.9.1.5"		| stream |	stream := 'abc' readStream.	self assert: stream position = 0.	stream next.	self assert: stream position = 1.	stream next.	self assert: stream position = 2.	stream next.	self assert: stream position = 3.		stream position: 1.	self assert: stream position = 1.	self assert: stream next = $b.	stream position: 0.	self assert: stream position = 0.	self assert: stream next = $a.	stream position: 3.	self assert: stream atEnd	!
+testReadStreamPosition	"ANSI 5.9.1.4 and 5.9.1.5"		| stream |	stream := 'abc' readStream.	self assert: stream position = 0.	stream next.	self assert: stream position = 1.	stream next.	self assert: stream position = 2.	stream next.	self assert: stream position = 3.		stream position: 1.	self assert: stream position = 1.	self assert: stream next = $b.	stream position: 0.	self assert: stream position = 0.	self assert: stream next = $a.	stream position: 3.	self assert: stream atEnd!
 
 testReadStreamReset	"ANSI 5.9.1.6"		| stream |	stream := 'abc' readStream.	stream next: 2.	stream reset.	self assert: stream next = $a!
 
@@ -139,6 +139,8 @@ testStartUpList	"A smoke test: checks if the test-class can be added and remove
 testSymbolAsMutator	"test for:	Symbol >> #asMutator	^ (self copyWith: $:) asSymbol"	self assert: #name asMutator = #name:!
 
 testTerminate	| ensureRun ifCurtailedRun semaphore1 semaphore2 semaphore3 semaphore4 process |	ensureRun := false.	ifCurtailedRun := false.	semaphore1 := self platform semaphoreClass new.	semaphore2 := self platform semaphoreClass new.	semaphore3 := self platform semaphoreClass new.	semaphore4 := self platform semaphoreClass new.	process := [		[ [ semaphore1 signal. semaphore2 wait ]			ensure: [ ensureRun := true. semaphore3 signal ] ]			ifCurtailed: [ ifCurtailedRun := true. semaphore4 signal ] ] newProcess.	self deny: (self platform isProcessTerminated: process).	process resume.	semaphore1 wait.	self deny: (self platform isProcessTerminated: process).	self platform terminateProcess: process.	semaphore3 wait.	self assert: ensureRun.	semaphore4 wait.	self assert: ifCurtailedRun.	self assert: (self platform isProcessTerminated: process)!
+
+testThisContext  | methodContext |  methodContext := self platform thisContext.  [   | blockContext |  blockContext := self platform thisContext.  self assert: blockContext sender = methodContext ]    value!
 
 testTotalSeconds	"Answer the total seconds since the Squeak epoch: 1 January 1901."	| seconds |	seconds := Time totalSeconds.	self assert: seconds isInteger.	self assert: seconds > 3421645167!
 
@@ -224,6 +226,7 @@ testWriteStreamTab	"ANSI 5.9.4.6"		| stream |	stream := WriteStream on: Stri
 !GRPlatformTest categoriesFor: #testStartUpList!public!tests/image! !
 !GRPlatformTest categoriesFor: #testSymbolAsMutator!public!tests! !
 !GRPlatformTest categoriesFor: #testTerminate!public!tests/processes! !
+!GRPlatformTest categoriesFor: #testThisContext!public!tests/processes! !
 !GRPlatformTest categoriesFor: #testTotalSeconds!public!tests! !
 !GRPlatformTest categoriesFor: #testVersion!public!tests! !
 !GRPlatformTest categoriesFor: #testWriteStreamContents!public!tests/streams! !
