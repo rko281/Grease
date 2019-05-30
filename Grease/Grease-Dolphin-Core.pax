@@ -37,12 +37,8 @@ package methodNames
 	add: #Character -> #greaseInteger;
 	add: #Collection -> #any;
 	add: #Collection -> #associationsDo:;
-	add: #Collection -> #isCollection;
-	add: #Collection -> #isEmptyOrNil;
 	add: #Collection -> #isSequenceable;
 	add: #Collection -> #noneSatisfy:;
-	add: #Collection -> #sorted;
-	add: #Collection -> #sorted:;
 	add: #Color -> #asHTMLColor;
 	add: #Date -> #-;
 	add: #Date -> #printFormat:;
@@ -98,8 +94,6 @@ package methodNames
 	add: #SequenceableCollection -> #endsWithSubCollection:;
 	add: #SequenceableCollection -> #isSequenceable;
 	add: #SequenceableCollection -> #reversed;
-	add: #SequenceableCollection -> #sort;
-	add: #SequenceableCollection -> #sort:;
 	add: #StackFrame -> #equalsTo:;
 	add: #String -> #caseInsensitiveLessOrEqual:;
 	add: #String -> #characterCount;
@@ -375,14 +369,6 @@ associationsDo: aBlock
 
 	self do: aBlock!
 
-isCollection
-	^true!
-
-isEmptyOrNil
-	"Answer whether receiver is emtpy or nil. Receiver never can be nil."
-
-	^self isEmpty!
-
 isSequenceable
 	^false!
 
@@ -392,21 +378,11 @@ noneSatisfy: aBlock
 	Otherwise return false"
 
 	self do: [:item | (aBlock value: item) ifTrue: [^false]].
-	^true!
-
-sorted
-	^ self sorted: [ :a :b | a <= b ]!
-
-sorted: sortBlock
-	^self asSortedCollection: sortBlock! !
+	^true! !
 !Collection categoriesFor: #any!*grease-pharo-core!public! !
 !Collection categoriesFor: #associationsDo:!enumerating!public! !
-!Collection categoriesFor: #isCollection!public!testing! !
-!Collection categoriesFor: #isEmptyOrNil!public!testing! !
 !Collection categoriesFor: #isSequenceable!public! !
 !Collection categoriesFor: #noneSatisfy:!enumerating!public! !
-!Collection categoriesFor: #sorted!*grease-pharo-core!public! !
-!Collection categoriesFor: #sorted:!*grease-pharo-core!public! !
 
 !Collection class methodsFor!
 
@@ -885,17 +861,7 @@ isSequenceable
 reversed
 	"Answer a copy of receiver with its elements in reversed order."
 
-	^self reverse!
-
-sort
-	"Sort this collection into ascending order using the '<=' operator."
-
-	self sort: [:a :b | a <= b]!
-
-sort: sortBlock
-	"Sort the receiver using sortBlock."
-
-	(DefaultSortAlgorithm sortBlock: sortBlock) sort: self from: 1 to: self size! !
+	^self reverse! !
 !SequenceableCollection categoriesFor: #atRandom!public! !
 !SequenceableCollection categoriesFor: #atRandom:!public! !
 !SequenceableCollection categoriesFor: #beginsWithSubCollection:!*grease-pharo-core!public! !
@@ -906,8 +872,6 @@ sort: sortBlock
 !SequenceableCollection categoriesFor: #endsWithSubCollection:!*grease-pharo-core!public! !
 !SequenceableCollection categoriesFor: #isSequenceable!public! !
 !SequenceableCollection categoriesFor: #reversed!public! !
-!SequenceableCollection categoriesFor: #sort!public! !
-!SequenceableCollection categoriesFor: #sort:!public! !
 
 !StackFrame methodsFor!
 
