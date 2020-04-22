@@ -6,5 +6,5 @@ Notification subclass: #GRNotification
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
 GRNotification guid: (GUID fromString: '{519dc4db-5d48-48e3-bcdb-03b30863f125}')!
-GRNotification comment: 'GRNotification subclass: #GRDeprecatedApiNotification	instanceVariableNames: ''details''	classVariableNames: ''''	poolDictionaries: ''''	category: ''Grease-Core-Exceptions'''!
+GRNotification comment: 'GRNotification subclass: #GRDeprecatedApiNotification	instanceVariableNames: ''details''	classVariableNames: ''''	package: ''Grease-Core-Exceptions'''!
 !GRNotification categoriesForClass!Grease-Core-Exceptions! !

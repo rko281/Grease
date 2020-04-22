@@ -30,7 +30,9 @@ isUnique	^ false!
 
 testBeginsWithSubCollection	self assert: ((-5 to: 10 by: 3) beginsWithSubCollection: (-5 to: 7 by: 3)).	self assert: ((-5 to: 10 by: 3) beginsWithSubCollection: (-5 to: 10 by: 3)).	self deny: ((-5 to: 10 by: 3) beginsWithSubCollection: (-8 to: 10 by: 3))!
 
-testEndsWithSubCollection	self assert: ((-5 to: 10 by: 3) endsWithSubCollection: (-2 to: 10 by: 3)).	self assert: ((-5 to: 10 by: 3) endsWithSubCollection: (-5 to: 10 by: 3)).	self deny: ((-5 to: 10 by: 3) endsWithSubCollection: (-5 to: 13 by: 3))! !
+testEndsWithSubCollection	self assert: ((-5 to: 10 by: 3) endsWithSubCollection: (-2 to: 10 by: 3)).	self assert: ((-5 to: 10 by: 3) endsWithSubCollection: (-5 to: 10 by: 3)).	self deny: ((-5 to: 10 by: 3) endsWithSubCollection: (-5 to: 13 by: 3))!
+
+testSorted	"Unlike super implementation do not assume Interval >> #sorted returns a new object"	| sorted collection |	collection := self arbitraryCollection.	sorted := collection sorted.	self assert: sorted validSequencedResponseFrom: collection.	self assert: sorted sortedWith: [ :a :b | a <= b ].		sorted := collection sorted: [ :a :b | a > b ].	self assert: sorted validSequencedNewResponseFrom: collection.	self assert: sorted sortedWith: [ :a :b | a > b ]! !
 !GRIntervalTest categoriesFor: #allowsDuplicateValues!configuration!public! !
 !GRIntervalTest categoriesFor: #arbitraryCollection!configuration!public! !
 !GRIntervalTest categoriesFor: #collectionClass!configuration!public! !
@@ -42,4 +44,5 @@ testEndsWithSubCollection	self assert: ((-5 to: 10 by: 3) endsWithSubCollection
 !GRIntervalTest categoriesFor: #isUnique!public!testing! !
 !GRIntervalTest categoriesFor: #testBeginsWithSubCollection!public!tests! !
 !GRIntervalTest categoriesFor: #testEndsWithSubCollection!public!tests! !
+!GRIntervalTest categoriesFor: #testSorted!public!tests! !
 

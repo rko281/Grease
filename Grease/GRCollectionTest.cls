@@ -18,6 +18,8 @@ assert: aCollection sortedWith: sortBlock	"Assert that aCollection is correctly
 
 assert: responseCollection validSequencedNewResponseFrom: receiverCollection	"Assert that the returned object is, in fact a new object, and that it is	of a valid response class for the tested collection."		self deny: responseCollection == receiverCollection.	self assert: (self isValidNewSequencedResponseClass: responseCollection class)!
 
+assert: responseCollection validSequencedResponseFrom: receiverCollection	"Assert that the returned object is of a valid response class for the tested collection."		self assert: (self isValidNewSequencedResponseClass: responseCollection class)!
+
 collectionClass	"Answer the collection class that is being tested."	self subclassResponsibility!
 
 duplicateElement	"Answer an element that appears multiple times in #arbitraryCollection."	^ 3!
@@ -51,6 +53,7 @@ valuesOf: aCollection	"Answer the values of aCollecion. Dictionary tests overri
 !GRCollectionTest categoriesFor: #arbitraryCollection!configuration!public! !
 !GRCollectionTest categoriesFor: #assert:sortedWith:!asserting!public! !
 !GRCollectionTest categoriesFor: #assert:validSequencedNewResponseFrom:!asserting!public! !
+!GRCollectionTest categoriesFor: #assert:validSequencedResponseFrom:!asserting!public! !
 !GRCollectionTest categoriesFor: #collectionClass!configuration!public! !
 !GRCollectionTest categoriesFor: #duplicateElement!configuration!public! !
 !GRCollectionTest categoriesFor: #emptyCollection!configuration!public! !

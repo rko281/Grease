@@ -12,8 +12,6 @@ GRDelayedSendTest comment: ''!
 
 testArgumentCount	" unary "	| send |	send := GRDelayedSend 		receiver: 1		selector: #negated.	self assert: send argumentCount = 0.	send := GRDelayedSend 		receiver: 1		selector: #negated		arguments: #().	self assert: send argumentCount = 0.	" binary "	send := GRDelayedSend 		receiver: 1		selector: #+.	self assert: send argumentCount = 1.	send := GRDelayedSend 		receiver: 1		selector: #+		argument: 2.	self assert: send argumentCount = 0.	" keyword "	send := GRDelayedSend 		receiver: 1		selector: #between:and:.	self assert: send argumentCount = 2.	send := GRDelayedSend 		receiver: 1		selector: #between:and:		argument: 2.	self assert: send argumentCount = 1.	send := GRDelayedSend 		receiver: 1		selector: #between:and:		arguments: (Array 				with: 2				with: 3).	self assert: send argumentCount = 0!
 
-testFixCallbackTemps	| send |	send := GRDelayedSend 		receiver: 1		selector: #+.	self assert: send fixCallbackTemps == send.	send := GRDelayedSend 		receiver: 1		selector: #+		argument: 2.	self assert: send fixCallbackTemps == send!
-
 testValueBinary	| send |	send := GRDelayedSend 		receiver: 1		selector: #+.	self 		should: [ send value ]		raise: GRInvalidArgumentCount.	send := GRDelayedSend 		receiver: 1		selector: #+		argument: 2.	self assert: send value = 3!
 
 testValueKeyword	| send |	send := GRDelayedSend 		receiver: 1		selector: #between:and:.	self 		should: [ send value ]		raise: GRInvalidArgumentCount.	send := GRDelayedSend 		receiver: 1		selector: #between:and:		argument: 2.	self 		should: [ send value ]		raise: GRInvalidArgumentCount.	send := GRDelayedSend 		receiver: 1		selector: #between:and:		arguments: (Array 				with: 2				with: 3).	self deny: send value!
@@ -44,7 +42,6 @@ testValueWithPossibleArgumentsKeyword	| send |	send := GRDelayedSend 		receiv
 
 testValueWithPossibleArgumentsUnary	| send |	send := GRDelayedSend 		receiver: 1		selector: #negated.	self assert: (send valueWithPossibleArguments: #()) = -1.	send := GRDelayedSend 		receiver: 1		selector: #negated		arguments: #().	self assert: (send valueWithPossibleArguments: #()) = -1.	send := GRDelayedSend 		receiver: 1		selector: #negated.	self assert: (send valueWithPossibleArguments: #(2 )) = -1.	send := GRDelayedSend 		receiver: 1		selector: #negated		arguments: #().	self assert: (send valueWithPossibleArguments: #(2 )) = -1.	send := GRDelayedSend 		receiver: 1		selector: #negated.	self assert: (send valueWithPossibleArguments: #(2 3 )) = -1.	send := GRDelayedSend 		receiver: 1		selector: #negated		arguments: #().	self assert: (send valueWithPossibleArguments: #(2 3 )) = -1! !
 !GRDelayedSendTest categoriesFor: #testArgumentCount!public!tests/accessing! !
-!GRDelayedSendTest categoriesFor: #testFixCallbackTemps!public!tests/evaluating! !
 !GRDelayedSendTest categoriesFor: #testValueBinary!public!tests/evaluating! !
 !GRDelayedSendTest categoriesFor: #testValueKeyword!public!tests/evaluating! !
 !GRDelayedSendTest categoriesFor: #testValueUnary!public!tests/evaluating! !

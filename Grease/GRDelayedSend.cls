@@ -12,8 +12,6 @@ GRDelayedSend comment: 'A GRDelayedSend is a future message send of a message to
 
 argumentCount	"Answer the number of arguments that must be provided to the receiver when sending it."		^ message argumentCount!
 
-fixCallbackTemps	"For polymorphism with BlockContext>>#fixCallbackTemps."!
-
 initializeWithReceiver: anObject message: aDelayedSendMessage	self initialize.	receiver := anObject.	message := aDelayedSendMessage!
 
 printOn: aStream	super printOn: aStream.	aStream nextPutAll: ' receiver: '; print: receiver.	aStream nextPut: $ .	message printOn: aStream!
@@ -28,7 +26,6 @@ valueWithArguments: anArray	^ message valueFor: receiver withArguments: anArray
 
 valueWithPossibleArguments: anArray	^ message valueFor: receiver withPossibleArguments: anArray! !
 !GRDelayedSend categoriesFor: #argumentCount!accessing!public! !
-!GRDelayedSend categoriesFor: #fixCallbackTemps!accessing!public! !
 !GRDelayedSend categoriesFor: #initializeWithReceiver:message:!initialization!public! !
 !GRDelayedSend categoriesFor: #printOn:!printing!public! !
 !GRDelayedSend categoriesFor: #value!evaluating!public! !

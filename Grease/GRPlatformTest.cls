@@ -22,7 +22,7 @@ testBindingOf	| binding |	binding := GRPlatform current bindingOf: GRPlatform.
 
 testBlockContextWithPossibleArguments	| block |	block := [ :x | 1 + x ].	self assert: (block valueWithPossibleArguments: (Array with: 2)) = 3.	block := [ false not ].	self assert: (block valueWithPossibleArguments: (Array with: 3))!
 
-testBlockValuableProtocol	self assert: [ nil ] argumentCount isZero.	self assert: [ :x | x ] argumentCount = 1.	self assert: [ :a :b | a + b ] argumentCount = 2.	self 		shouldnt: [ [ nil ] fixCallbackTemps ]		raise: Error.	self 		shouldnt: [ [ :x | x ] fixCallbackTemps ]		raise: Error.	self 		shouldnt: [ [ :a :b | a + b ] fixCallbackTemps ]		raise: Error!
+testBlockValuableProtocol	self assert: [ nil ] argumentCount isZero.	self assert: [ :x | x ] argumentCount = 1.	self assert: [ :a :b | a + b ] argumentCount = 2.	self 		shouldnt: [ [ nil ] ]		raise: Error.	self 		shouldnt: [ [ :x | x ] ]		raise: Error.	self 		shouldnt: [ [ :a :b | a + b ] ]		raise: Error!
 
 testCharacterAsUnicode	"test for:	Character >> #asUnicode		^self asInteger"	self assert: $S asUnicode = 83!
 
@@ -37,8 +37,6 @@ testDaysInMonthForYear	(1 to: 12) with: #(31 28 31 30 31 30 31 31 30 31 30 31) 
 testDigitValue	'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ' 		with: (0 to: 35)		do: [ :each :expected | self assert: each digitValue = expected ]!
 
 testEmptyOrNil	self assert: '' isEmptyOrNil.	self assert: nil isEmptyOrNil.	self assert: Array new isEmptyOrNil.	self deny: 'Timberwolf' isEmptyOrNil!
-
-testFixCallbackTemps	"Make sure that #fixCallbackTemps is properly understood by block-contexts. Make sure that this is either a nop for Smalltalks with true block closures, or it properly fixes the context otherwise."	| array blocks values |	array := #(1 2 3).	blocks := array collect: [ :each | [ each ] fixCallbackTemps ].	values := blocks collect: [ :each | each value ].	self assert: values = array!
 
 testGreaseIntegerOnCharacterAscii	"ASCII (1 byte)"	self assert: $a greaseInteger = 97.	self assert: $A greaseInteger = 65!
 
@@ -175,7 +173,6 @@ testWriteStreamTab	"ANSI 5.9.4.6"		| stream |	stream := WriteStream on: Stri
 !GRPlatformTest categoriesFor: #testDaysInMonthForYear!public!tests! !
 !GRPlatformTest categoriesFor: #testDigitValue!public!tests! !
 !GRPlatformTest categoriesFor: #testEmptyOrNil!public!tests! !
-!GRPlatformTest categoriesFor: #testFixCallbackTemps!public!tests! !
 !GRPlatformTest categoriesFor: #testGreaseIntegerOnCharacterAscii!public!tests! !
 !GRPlatformTest categoriesFor: #testGreaseIntegerOnCharacterBmp!public!tests! !
 !GRPlatformTest categoriesFor: #testGreaseIntegerOnCharacterLatin1!public!tests! !

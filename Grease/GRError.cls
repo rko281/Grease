@@ -6,5 +6,5 @@ Error subclass: #GRError
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
 GRError guid: (GUID fromString: '{d1c06336-a306-4b29-a2ab-382bce08b0e3}')!
-GRError comment: 'Notification subclass: #GRNotification	instanceVariableNames: ''''	classVariableNames: ''''	poolDictionaries: ''''	category: ''Grease-Core-Exceptions'''!
+GRError comment: 'Notification subclass: #GRNotification	instanceVariableNames: ''''	classVariableNames: ''''	package: ''Grease-Core-Exceptions'''!
 !GRError categoriesForClass!Grease-Core-Exceptions! !
