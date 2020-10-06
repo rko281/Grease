@@ -288,10 +288,10 @@ startUp: isResuming
 !Behavior categoriesFor: #allInstancesDo:!instances!public! !
 !Behavior categoriesFor: #allSubInstancesDo:!instances!public! !
 !Behavior categoriesFor: #fullName!*seaside-squeak-platform!public! !
-!Behavior categoriesFor: #shutDown!public! !
-!Behavior categoriesFor: #shutDown:!public! !
-!Behavior categoriesFor: #startUp!public! !
-!Behavior categoriesFor: #startUp:!public! !
+!Behavior categoriesFor: #shutDown!must not strip!public! !
+!Behavior categoriesFor: #shutDown:!must not strip!public! !
+!Behavior categoriesFor: #startUp!must not strip!public! !
+!Behavior categoriesFor: #startUp:!must not strip!public! !
 
 !BlockClosure methodsFor!
 
