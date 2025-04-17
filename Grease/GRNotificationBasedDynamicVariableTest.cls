@@ -1,13 +1,17 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 TestCase subclass: #GRNotificationBasedDynamicVariableTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRNotificationBasedDynamicVariableTest guid: (GUID fromString: '{f13a32e1-98b1-4221-beae-7f90c9b1ca0e}')!
+
+GRNotificationBasedDynamicVariableTest guid: (GUID fromString: '{3e4720f5-f13d-411b-a394-faa5348bff4b}')!
+
 GRNotificationBasedDynamicVariableTest comment: ''!
-!GRNotificationBasedDynamicVariableTest categoriesForClass!Grease-Tests-Core! !
+
+!GRNotificationBasedDynamicVariableTest categoriesForClass!Unclassified! !
+
 !GRNotificationBasedDynamicVariableTest methodsFor!
 
 testAnswer	self assert: (GRNotificationBasedDynamicVariable use: 'value' during: [ true ])!
@@ -19,9 +23,12 @@ testWithNestedValue	GRNotificationBasedDynamicVariable 		use: 'outer' 		durin
 testWithoutValue	self assert: GRNotificationBasedDynamicVariable value isNil!
 
 testWithValue	GRNotificationBasedDynamicVariable 		use: 'value' 		during: [ self assert: GRNotificationBasedDynamicVariable value = 'value' ]! !
-!GRNotificationBasedDynamicVariableTest categoriesFor: #testAnswer!public!tests! !
-!GRNotificationBasedDynamicVariableTest categoriesFor: #testDefaultValue!public!tests! !
-!GRNotificationBasedDynamicVariableTest categoriesFor: #testWithNestedValue!public!tests! !
-!GRNotificationBasedDynamicVariableTest categoriesFor: #testWithoutValue!public!tests! !
-!GRNotificationBasedDynamicVariableTest categoriesFor: #testWithValue!public!tests! !
+
+!GRNotificationBasedDynamicVariableTest categoriesForMethods!
+testAnswer!public!tests! !
+testDefaultValue!public!tests! !
+testWithNestedValue!public!tests! !
+testWithoutValue!public!tests! !
+testWithValue!public!tests! !
+!
 

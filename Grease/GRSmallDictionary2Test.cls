@@ -1,15 +1,22 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 GRSmallDictionaryTest subclass: #GRSmallDictionary2Test
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRSmallDictionary2Test guid: (GUID fromString: '{7df78dc1-c626-4a47-83da-22640094f2e2}')!
+
+GRSmallDictionary2Test guid: (GUID fromString: '{e75fc147-2337-495e-b75a-ec2db899192b}')!
+
 GRSmallDictionary2Test comment: ''!
-!GRSmallDictionary2Test categoriesForClass!Grease-Tests-Core! !
+
+!GRSmallDictionary2Test categoriesForClass!Unclassified! !
+
 !GRSmallDictionary2Test methodsFor!
 
 collectionClass	^ GRSmallDictionary2! !
-!GRSmallDictionary2Test categoriesFor: #collectionClass!configuration!public! !
+
+!GRSmallDictionary2Test categoriesForMethods!
+collectionClass!configuration!public! !
+!
 

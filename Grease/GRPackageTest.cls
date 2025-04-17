@@ -1,13 +1,17 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 TestCase subclass: #GRPackageTest
 	instanceVariableNames: 'package'
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRPackageTest guid: (GUID fromString: '{7c7b415e-08c9-44a4-bc82-38dbf4ca99a2}')!
+
+GRPackageTest guid: (GUID fromString: '{3e266e59-d779-4586-951b-abc23c58e13f}')!
+
 GRPackageTest comment: ''!
-!GRPackageTest categoriesForClass!Grease-Tests-Core! !
+
+!GRPackageTest categoriesForClass!Unclassified! !
+
 !GRPackageTest methodsFor!
 
 setUp	super setUp.	package := GRPackage new!
@@ -22,15 +26,18 @@ testLicense	self assert: package license = #MIT.	self assert: package isMIT.	
 
 testName	self assert: package name isNil.	package name: 'Gimme-Hope'.	self assert: package name = 'Gimme-Hope'!
 
-testPackages	| packages |	packages := GRPackage grPackages.	self assert: packages notEmpty.	packages do: [ :each | 		self assert: each name notEmpty.		self assert: each license notNil.		self assert: each url notNil ]!
+testPackages	| packages |	packages := GRPackage grPackages.	self assert: packages notEmpty.	packages do: [ :each | 		self assert: each name notEmpty.		self assert: each license notNil.		self deny: (each dependencies includes: nil).		self assert: each url notNil ].!
 
 testUrl	self assert: package url isNil.		package url: #seasideLGPLUrl.	self assert: package url = GRPackage new seasideLGPLUrl. 		package url: 'http://www.seaside.st/distributions'.	self assert: package url = 'http://www.seaside.st/distributions'! !
-!GRPackageTest categoriesFor: #setUp!public!running! !
-!GRPackageTest categoriesFor: #testAllDependencies!public!tests/dependencies! !
-!GRPackageTest categoriesFor: #testDependencies!public!tests/dependencies! !
-!GRPackageTest categoriesFor: #testDescription!public!tests! !
-!GRPackageTest categoriesFor: #testLicense!public!tests! !
-!GRPackageTest categoriesFor: #testName!public!tests! !
-!GRPackageTest categoriesFor: #testPackages!public!tests/packages! !
-!GRPackageTest categoriesFor: #testUrl!public!tests! !
+
+!GRPackageTest categoriesForMethods!
+setUp!public!running! !
+testAllDependencies!public!tests/dependencies! !
+testDependencies!public!tests/dependencies! !
+testDescription!public!tests! !
+testLicense!public!tests! !
+testName!public!tests! !
+testPackages!public!tests/packages! !
+testUrl!public!tests! !
+!
 

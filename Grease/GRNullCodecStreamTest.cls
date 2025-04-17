@@ -1,13 +1,17 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 TestCase subclass: #GRNullCodecStreamTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRNullCodecStreamTest guid: (GUID fromString: '{1ef9e951-3c5e-4910-8ce3-7e566b2dfbde}')!
+
+GRNullCodecStreamTest guid: (GUID fromString: '{6664e11f-1e24-4076-8cf6-4d6bbbed73f4}')!
+
 GRNullCodecStreamTest comment: ''!
-!GRNullCodecStreamTest categoriesForClass!Grease-Tests-Core! !
+
+!GRNullCodecStreamTest categoriesForClass!Unclassified! !
+
 !GRNullCodecStreamTest methodsFor!
 
 codecStreamClass	^ GRNullCodecStream!
@@ -31,15 +35,18 @@ testSpace	| stream |	stream := GRNullCodec new 		encoderFor: (WriteStream on:
 testTab	| stream |	stream := GRNullCodec new 		encoderFor: (WriteStream on: String new).	stream tab.		self assert: stream contents size = 1.	self assert: stream contents first = Character tab!
 
 testWriteString	| stream codecStream |	stream := WriteStream on: String new.	codecStream := GRNullCodec new encoderFor: stream.	codecStream		nextPut: $A;		nextPutAll: 'BC';		nextPut: 68;		nextPutAll: #(69 70 ) asByteArray.	self assert: codecStream contents = 'ABCDEF'! !
-!GRNullCodecStreamTest categoriesFor: #codecStreamClass!accessing!public! !
-!GRNullCodecStreamTest categoriesFor: #testCrlf!public!tests/characters! !
-!GRNullCodecStreamTest categoriesFor: #testFlush!public!tests/protocol! !
-!GRNullCodecStreamTest categoriesFor: #testName!public!tests/characters! !
-!GRNullCodecStreamTest categoriesFor: #testNext!public!tests/protocol! !
-!GRNullCodecStreamTest categoriesFor: #testPrint!public!tests/protocol! !
-!GRNullCodecStreamTest categoriesFor: #testReadString!public!tests! !
-!GRNullCodecStreamTest categoriesFor: #testSize!public!tests/protocol! !
-!GRNullCodecStreamTest categoriesFor: #testSpace!public!tests/characters! !
-!GRNullCodecStreamTest categoriesFor: #testTab!public!tests/characters! !
-!GRNullCodecStreamTest categoriesFor: #testWriteString!public!tests! !
+
+!GRNullCodecStreamTest categoriesForMethods!
+codecStreamClass!accessing!public! !
+testCrlf!public!tests/characters! !
+testFlush!public!tests/protocol! !
+testName!public!tests/characters! !
+testNext!public!tests/protocol! !
+testPrint!public!tests/protocol! !
+testReadString!public!tests! !
+testSize!public!tests/protocol! !
+testSpace!public!tests/characters! !
+testTab!public!tests/characters! !
+testWriteString!public!tests! !
+!
 

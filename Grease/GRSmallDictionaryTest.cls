@@ -1,13 +1,17 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 GRAbstractDictionaryTest subclass: #GRSmallDictionaryTest
 	instanceVariableNames: 'collection'
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRSmallDictionaryTest guid: (GUID fromString: '{15d1759a-ed21-4643-ac23-5975e87528f0}')!
+
+GRSmallDictionaryTest guid: (GUID fromString: '{4894e9a7-9043-40a5-81ef-fd9284e75b28}')!
+
 GRSmallDictionaryTest comment: ''!
-!GRSmallDictionaryTest categoriesForClass!Grease-Tests-Core! !
+
+!GRSmallDictionaryTest categoriesForClass!Unclassified! !
+
 !GRSmallDictionaryTest methodsFor!
 
 allowsDuplicateKeys	^ false!
@@ -65,32 +69,35 @@ testSize	self assert: collection size = 0.	collection add: '1' -> 'foo'.	self
 testValues	collection add: '1' -> 'foo'; add: '2' -> 'bar'; add: '1' -> 'baz'.	self assert: collection values =		(self allowsDuplicateKeys ifTrue: [ #('foo' 'bar' 'baz') ] ifFalse: [ #('baz' 'bar') ])!
 
 testWithAll	| dict |	dict := (Dictionary new at: '1' put: 'foo'; yourself).	collection := self collectionClass withAll: dict.	self assertAssociations: (Array with: '1' -> 'foo').		dict := (GROrderedMultiMap new at: '1' put: 'foo'; at: '1' add: 'bar'; yourself).	collection := self collectionClass withAll: dict.	self assertAssociations:		(self allowsDuplicateKeys			ifFalse: [ Array with: '1' -> 'bar' ]			ifTrue: [ Array with: '1' -> 'foo' with: '1' -> 'bar' ])! !
-!GRSmallDictionaryTest categoriesFor: #allowsDuplicateKeys!configuration!public! !
-!GRSmallDictionaryTest categoriesFor: #assertAssociations:!asserting!public! !
-!GRSmallDictionaryTest categoriesFor: #collectionClass!configuration!public! !
-!GRSmallDictionaryTest categoriesFor: #createArbitraryAssociations!configuration!public! !
-!GRSmallDictionaryTest categoriesFor: #isKey:equivalentTo:!configuration!public! !
-!GRSmallDictionaryTest categoriesFor: #newCollection!configuration!public! !
-!GRSmallDictionaryTest categoriesFor: #setUp!public!running! !
-!GRSmallDictionaryTest categoriesFor: #testAddAll!public!tests/accessing! !
-!GRSmallDictionaryTest categoriesFor: #testAddAndAssociations!public!tests/accessing! !
-!GRSmallDictionaryTest categoriesFor: #testAt!public!tests/accessing! !
-!GRSmallDictionaryTest categoriesFor: #testAtIfAbsent!public!tests/accessing! !
-!GRSmallDictionaryTest categoriesFor: #testAtIfAbsentPut!public!tests/accessing! !
-!GRSmallDictionaryTest categoriesFor: #testAtIfPresent!public!tests/accessing! !
-!GRSmallDictionaryTest categoriesFor: #testAtPut!public!tests/accessing! !
-!GRSmallDictionaryTest categoriesFor: #testCopy!public!tests! !
-!GRSmallDictionaryTest categoriesFor: #testDo!public!tests/enumerating! !
-!GRSmallDictionaryTest categoriesFor: #testGrow!public!tests! !
-!GRSmallDictionaryTest categoriesFor: #testIncludesKey!public!tests/testing! !
-!GRSmallDictionaryTest categoriesFor: #testIsEmpty!public!tests/testing! !
-!GRSmallDictionaryTest categoriesFor: #testKeys!public!tests/enumerating! !
-!GRSmallDictionaryTest categoriesFor: #testKeysAndValuesDo!public!tests/enumerating! !
-!GRSmallDictionaryTest categoriesFor: #testKeysDo!public!tests/enumerating! !
-!GRSmallDictionaryTest categoriesFor: #testRemoveKey!public!tests/accessing! !
-!GRSmallDictionaryTest categoriesFor: #testRemoveKey2!public!tests/accessing! !
-!GRSmallDictionaryTest categoriesFor: #testRemoveKeyIfAbsent!public!tests/accessing! !
-!GRSmallDictionaryTest categoriesFor: #testSize!public!tests/accessing! !
-!GRSmallDictionaryTest categoriesFor: #testValues!public!tests/enumerating! !
-!GRSmallDictionaryTest categoriesFor: #testWithAll!public!tests! !
+
+!GRSmallDictionaryTest categoriesForMethods!
+allowsDuplicateKeys!configuration!public! !
+assertAssociations:!asserting!public! !
+collectionClass!configuration!public! !
+createArbitraryAssociations!configuration!public! !
+isKey:equivalentTo:!configuration!public! !
+newCollection!configuration!public! !
+setUp!public!running! !
+testAddAll!public!tests/accessing! !
+testAddAndAssociations!public!tests/accessing! !
+testAt!public!tests/accessing! !
+testAtIfAbsent!public!tests/accessing! !
+testAtIfAbsentPut!public!tests/accessing! !
+testAtIfPresent!public!tests/accessing! !
+testAtPut!public!tests/accessing! !
+testCopy!public!tests! !
+testDo!public!tests/enumerating! !
+testGrow!public!tests! !
+testIncludesKey!public!tests/testing! !
+testIsEmpty!public!tests/testing! !
+testKeys!public!tests/enumerating! !
+testKeysAndValuesDo!public!tests/enumerating! !
+testKeysDo!public!tests/enumerating! !
+testRemoveKey!public!tests/accessing! !
+testRemoveKey2!public!tests/accessing! !
+testRemoveKeyIfAbsent!public!tests/accessing! !
+testSize!public!tests/accessing! !
+testValues!public!tests/enumerating! !
+testWithAll!public!tests! !
+!
 

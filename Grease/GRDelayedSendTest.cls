@@ -1,13 +1,17 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 TestCase subclass: #GRDelayedSendTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRDelayedSendTest guid: (GUID fromString: '{b8178fb1-14af-40bb-bf42-757961249db9}')!
+
+GRDelayedSendTest guid: (GUID fromString: '{8fa666f4-3b43-48c8-9bbe-76479788ff0f}')!
+
 GRDelayedSendTest comment: ''!
-!GRDelayedSendTest categoriesForClass!Grease-Tests-Core! !
+
+!GRDelayedSendTest categoriesForClass!Unclassified! !
+
 !GRDelayedSendTest methodsFor!
 
 testArgumentCount	" unary "	| send |	send := GRDelayedSend 		receiver: 1		selector: #negated.	self assert: send argumentCount = 0.	send := GRDelayedSend 		receiver: 1		selector: #negated		arguments: #().	self assert: send argumentCount = 0.	" binary "	send := GRDelayedSend 		receiver: 1		selector: #+.	self assert: send argumentCount = 1.	send := GRDelayedSend 		receiver: 1		selector: #+		argument: 2.	self assert: send argumentCount = 0.	" keyword "	send := GRDelayedSend 		receiver: 1		selector: #between:and:.	self assert: send argumentCount = 2.	send := GRDelayedSend 		receiver: 1		selector: #between:and:		argument: 2.	self assert: send argumentCount = 1.	send := GRDelayedSend 		receiver: 1		selector: #between:and:		arguments: (Array 				with: 2				with: 3).	self assert: send argumentCount = 0!
@@ -41,20 +45,23 @@ testValueWithPossibleArgumentsBinary	| send |	send := GRDelayedSend 		receive
 testValueWithPossibleArgumentsKeyword	| send |	send := GRDelayedSend 		receiver: 1		selector: #between:and:.	self 		should: [ send valueWithPossibleArguments: #() ]		raise: GRInvalidArgumentCount.	send := GRDelayedSend 		receiver: 1		selector: #between:and:		argument: 2.	self 		should: [ send valueWithPossibleArguments: #() ]		raise: GRInvalidArgumentCount.	send := GRDelayedSend 		receiver: 1		selector: #between:and:		arguments: (Array 				with: 2				with: 3).	self deny: (send valueWithPossibleArguments: #()).	send := GRDelayedSend 		receiver: 1		selector: #between:and:.	self 		should: [ send valueWithPossibleArguments: #(2 ) ]		raise: GRInvalidArgumentCount.	send := GRDelayedSend 		receiver: 1		selector: #between:and:		argument: 2.	self deny: (send valueWithPossibleArguments: #(3 )).	send := GRDelayedSend 		receiver: 1		selector: #between:and:		arguments: (Array 				with: 2				with: 3).	self deny: (send valueWithPossibleArguments: #(4 )).	send := GRDelayedSend 		receiver: 1		selector: #between:and:.	self deny: (send valueWithPossibleArguments: #(2 3 )).	send := GRDelayedSend 		receiver: 1		selector: #between:and:		argument: 2.	self deny: (send valueWithPossibleArguments: #(3 4 )).	send := GRDelayedSend 		receiver: 1		selector: #between:and:		arguments: (Array 				with: 2				with: 3).	self deny: (send valueWithPossibleArguments: #(4 5 ))!
 
 testValueWithPossibleArgumentsUnary	| send |	send := GRDelayedSend 		receiver: 1		selector: #negated.	self assert: (send valueWithPossibleArguments: #()) = -1.	send := GRDelayedSend 		receiver: 1		selector: #negated		arguments: #().	self assert: (send valueWithPossibleArguments: #()) = -1.	send := GRDelayedSend 		receiver: 1		selector: #negated.	self assert: (send valueWithPossibleArguments: #(2 )) = -1.	send := GRDelayedSend 		receiver: 1		selector: #negated		arguments: #().	self assert: (send valueWithPossibleArguments: #(2 )) = -1.	send := GRDelayedSend 		receiver: 1		selector: #negated.	self assert: (send valueWithPossibleArguments: #(2 3 )) = -1.	send := GRDelayedSend 		receiver: 1		selector: #negated		arguments: #().	self assert: (send valueWithPossibleArguments: #(2 3 )) = -1! !
-!GRDelayedSendTest categoriesFor: #testArgumentCount!public!tests/accessing! !
-!GRDelayedSendTest categoriesFor: #testValueBinary!public!tests/evaluating! !
-!GRDelayedSendTest categoriesFor: #testValueKeyword!public!tests/evaluating! !
-!GRDelayedSendTest categoriesFor: #testValueUnary!public!tests/evaluating! !
-!GRDelayedSendTest categoriesFor: #testValueValueBinary!public!tests/evaluating! !
-!GRDelayedSendTest categoriesFor: #testValueValueKeyword!public!tests/evaluating! !
-!GRDelayedSendTest categoriesFor: #testValueValueUnary!public!tests/evaluating! !
-!GRDelayedSendTest categoriesFor: #testValueWithArgumentBinary!public!tests/evaluating! !
-!GRDelayedSendTest categoriesFor: #testValueWithArgumentKeyword!public!tests/evaluating! !
-!GRDelayedSendTest categoriesFor: #testValueWithArgumentsBinary!public!tests/evaluating! !
-!GRDelayedSendTest categoriesFor: #testValueWithArgumentsKeyword!public!tests/evaluating! !
-!GRDelayedSendTest categoriesFor: #testValueWithArgumentsUnary!public!tests/evaluating! !
-!GRDelayedSendTest categoriesFor: #testValueWithArgumentUnary!public!tests/evaluating! !
-!GRDelayedSendTest categoriesFor: #testValueWithPossibleArgumentsBinary!public!tests/evaluating! !
-!GRDelayedSendTest categoriesFor: #testValueWithPossibleArgumentsKeyword!public!tests/evaluating! !
-!GRDelayedSendTest categoriesFor: #testValueWithPossibleArgumentsUnary!public!tests/evaluating! !
+
+!GRDelayedSendTest categoriesForMethods!
+testArgumentCount!public!tests/accessing! !
+testValueBinary!public!tests/evaluating! !
+testValueKeyword!public!tests/evaluating! !
+testValueUnary!public!tests/evaluating! !
+testValueValueBinary!public!tests/evaluating! !
+testValueValueKeyword!public!tests/evaluating! !
+testValueValueUnary!public!tests/evaluating! !
+testValueWithArgumentBinary!public!tests/evaluating! !
+testValueWithArgumentKeyword!public!tests/evaluating! !
+testValueWithArgumentsBinary!public!tests/evaluating! !
+testValueWithArgumentsKeyword!public!tests/evaluating! !
+testValueWithArgumentsUnary!public!tests/evaluating! !
+testValueWithArgumentUnary!public!tests/evaluating! !
+testValueWithPossibleArgumentsBinary!public!tests/evaluating! !
+testValueWithPossibleArgumentsKeyword!public!tests/evaluating! !
+testValueWithPossibleArgumentsUnary!public!tests/evaluating! !
+!
 

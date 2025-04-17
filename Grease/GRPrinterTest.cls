@@ -1,13 +1,17 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 TestCase subclass: #GRPrinterTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRPrinterTest guid: (GUID fromString: '{5eb4178d-4599-4f76-9870-17fa9f01b317}')!
+
+GRPrinterTest guid: (GUID fromString: '{6471c887-d12c-4590-9958-a19c816eebd6}')!
+
 GRPrinterTest comment: ''!
-!GRPrinterTest categoriesForClass!Grease-Tests-Core! !
+
+!GRPrinterTest categoriesForClass!Unclassified! !
+
 !GRPrinterTest methodsFor!
 
 separate: aString left: aCharacter	| converter |	converter := GRNumberPrinter new.	^ String streamContents: [ :stream |		converter 			separate: aString			left: aCharacter			on: stream ]!
@@ -95,52 +99,50 @@ testUnpaddedSecond	| printer |	printer := GRPrinter unpaddedSecond.	self asse
 testUnpaddedYear	| printer |	printer := GRPrinter unpaddedYear.	self assert: (printer print: (Date year: 766 month: 1 day: 1)) = '766'.	self assert: (printer print: (Date year: 1980 month: 1 day: 1)) = '1980'.	self assert: (printer print: (Date year: 2009 month: 1 day: 1)) = '2009'!
 
 testUsCurrency	| printer |	printer := GRPrinter usCurrency.	self assert: (printer print: 12.34) = '$12.34'.	self assert: (printer print: -12.34) = '-$12.34'! !
-!GRPrinterTest categoriesFor: #separate:left:!public!tests/utilites! !
-!GRPrinterTest categoriesFor: #testComposedPrinter!public!tests! !
-!GRPrinterTest categoriesFor: #testCookieTimestamp!public!tests/timestamp! !
-!GRPrinterTest categoriesFor: #testDigitsOf!public!tests/utilites! !
-!GRPrinterTest categoriesFor: #testDigitsOfBase!public!tests/utilites! !
-!GRPrinterTest categoriesFor: #testFileSizePrinterBinary!public!tests! !
-!GRPrinterTest categoriesFor: #testFileSizePrinterDecimal!public!tests! !
-!GRPrinterTest categoriesFor: #testFloatPrinter!public!tests! !
-!GRPrinterTest categoriesFor: #testFloatPrinterInfinity!public!tests! !
-!GRPrinterTest categoriesFor: #testFloatPrinterNaN!public!tests! !
-!GRPrinterTest categoriesFor: #testFloatPrinterPadding!public!tests! !
-!GRPrinterTest categoriesFor: #testFloatPrinterSeparator!public!tests! !
-!GRPrinterTest categoriesFor: #testFullMonthName!public!tests/parts/date! !
-!GRPrinterTest categoriesFor: #testFullWeekName!public!tests/parts/date! !
-!GRPrinterTest categoriesFor: #testHttp!public!tests/timestamp! !
-!GRPrinterTest categoriesFor: #testIntegerPrinter!public!tests! !
-!GRPrinterTest categoriesFor: #testIsoDate!public!tests/timestamp! !
-!GRPrinterTest categoriesFor: #testIsoTime!public!tests/timestamp! !
-!GRPrinterTest categoriesFor: #testOrdinalizePrinter!public!tests! !
-!GRPrinterTest categoriesFor: #testPadCenter!public!tests/utilites! !
-!GRPrinterTest categoriesFor: #testPaddedCentury!public!tests/parts/date! !
-!GRPrinterTest categoriesFor: #testPaddedHour12!public!tests/parts/time! !
-!GRPrinterTest categoriesFor: #testPadLeft!public!tests/utilites! !
-!GRPrinterTest categoriesFor: #testPadRight!public!tests/utilites! !
-!GRPrinterTest categoriesFor: #testRfc822!public!tests/timestamp! !
-!GRPrinterTest categoriesFor: #testRfc822WithTimeZone!public!tests/timestamp! !
-!GRPrinterTest categoriesFor: #testSeparateLeft!public!tests/utilites! !
-!GRPrinterTest categoriesFor: #testSeparateRight!public!tests/utilites! !
-!GRPrinterTest categoriesFor: #testSignPrinter!public!tests! !
-!GRPrinterTest categoriesFor: #testStringPrinter!public!tests! !
-!GRPrinterTest categoriesFor: #testStringPrinterLength!public!tests! !
-!GRPrinterTest categoriesFor: #testStringPrinterPad!public!tests! !
-!GRPrinterTest categoriesFor: #testStringPrinterTrim!public!tests! !
-!GRPrinterTest categoriesFor: #testSwissCurrency!public!tests/currency! !
-!GRPrinterTest categoriesFor: #testUnpaddedCentury!public!tests/parts/date! !
-!GRPrinterTest categoriesFor: #testUnpaddedDay!public!tests/parts/date! !
-!GRPrinterTest categoriesFor: #testUnpaddedHour12!public!tests/parts/time! !
-!GRPrinterTest categoriesFor: #testUnpaddedHour24!public!tests/parts/time! !
-!GRPrinterTest categoriesFor: #testUnpaddedMinute!public!tests/parts/time! !
-!GRPrinterTest categoriesFor: #testUnpaddedMonth!public!tests/parts/date! !
-!GRPrinterTest categoriesFor: #testUnpaddedSecond!public!tests/parts/time! !
-!GRPrinterTest categoriesFor: #testUnpaddedYear!public!tests/parts/date! !
-!GRPrinterTest categoriesFor: #testUsCurrency!public!tests/currency! !
 
-!GRPrinterTest class methodsFor!
-
-packageNamesUnderTest	^ #('Grease-Core')! !
-!GRPrinterTest class categoriesFor: #packageNamesUnderTest!accessing!public! !
+!GRPrinterTest categoriesForMethods!
+separate:left:!public!tests/utilites! !
+testComposedPrinter!public!tests! !
+testCookieTimestamp!public!tests/timestamp! !
+testDigitsOf!public!tests/utilites! !
+testDigitsOfBase!public!tests/utilites! !
+testFileSizePrinterBinary!public!tests! !
+testFileSizePrinterDecimal!public!tests! !
+testFloatPrinter!public!tests! !
+testFloatPrinterInfinity!public!tests! !
+testFloatPrinterNaN!public!tests! !
+testFloatPrinterPadding!public!tests! !
+testFloatPrinterSeparator!public!tests! !
+testFullMonthName!public!tests/parts/date! !
+testFullWeekName!public!tests/parts/date! !
+testHttp!public!tests/timestamp! !
+testIntegerPrinter!public!tests! !
+testIsoDate!public!tests/timestamp! !
+testIsoTime!public!tests/timestamp! !
+testOrdinalizePrinter!public!tests! !
+testPadCenter!public!tests/utilites! !
+testPaddedCentury!public!tests/parts/date! !
+testPaddedHour12!public!tests/parts/time! !
+testPadLeft!public!tests/utilites! !
+testPadRight!public!tests/utilites! !
+testRfc822!public!tests/timestamp! !
+testRfc822WithTimeZone!public!tests/timestamp! !
+testSeparateLeft!public!tests/utilites! !
+testSeparateRight!public!tests/utilites! !
+testSignPrinter!public!tests! !
+testStringPrinter!public!tests! !
+testStringPrinterLength!public!tests! !
+testStringPrinterPad!public!tests! !
+testStringPrinterTrim!public!tests! !
+testSwissCurrency!public!tests/currency! !
+testUnpaddedCentury!public!tests/parts/date! !
+testUnpaddedDay!public!tests/parts/date! !
+testUnpaddedHour12!public!tests/parts/time! !
+testUnpaddedHour24!public!tests/parts/time! !
+testUnpaddedMinute!public!tests/parts/time! !
+testUnpaddedMonth!public!tests/parts/date! !
+testUnpaddedSecond!public!tests/parts/time! !
+testUnpaddedYear!public!tests/parts/date! !
+testUsCurrency!public!tests/currency! !
+!
 

@@ -1,13 +1,17 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 TestCase subclass: #GRExceptionTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRExceptionTest guid: (GUID fromString: '{16094cf1-ddb2-4161-87bd-d56cb027ef0f}')!
+
+GRExceptionTest guid: (GUID fromString: '{9dec81b0-65f1-4e69-b128-65cd2005fc43}')!
+
 GRExceptionTest comment: ''!
-!GRExceptionTest categoriesForClass!Grease-Tests-Core! !
+
+!GRExceptionTest categoriesForClass!Unclassified! !
+
 !GRExceptionTest methodsFor!
 
 onExceptionReturn: anObject	[ GRError signal ]		on: GRError		do: [ :ex | ^ anObject ].		^ self!
@@ -41,20 +45,23 @@ testSignalWithErrorClassSide	"Exception class>>signal: is part of the ANSI Smal
 testSignalWithNotification	"Exception>>signal: is part of the ANSI Smalltalk standard. However, Seaside	only signals subclasses of GRError and GRNotification so Smalltalk	implementations that do not otherwise provide it can implement it on	these two classes."	| text |	text := 'Notification'.	[ GRNotification new signal: text ] 		on: GRNotification		do: 			[ :e | 			self assert: e messageText = text.			^ self ].	self assert: false!
 
 testSignalWithNotificationClassSide	"Exception class>>signal: is part of the ANSI Smalltalk standard. However, Seaside	only signals subclasses of GRError and GRNotification so Smalltalk	implementations that do not otherwise provide it can implement it on	these two classes."	| text |	text := 'Notification'.	[ GRNotification signal: text ] 		on: GRNotification		do: 			[ :e | 			self assert: e messageText = text.			^ self ].	self assert: false! !
-!GRExceptionTest categoriesFor: #onExceptionReturn:!private! !
-!GRExceptionTest categoriesFor: #testDefaultActionResume!public!tests! !
-!GRExceptionTest categoriesFor: #testDeprecatedApi!public!tests! !
-!GRExceptionTest categoriesFor: #testErrorInitialization!public!tests! !
-!GRExceptionTest categoriesFor: #testIsResumable!public!tests! !
-!GRExceptionTest categoriesFor: #testNotificationInitialization!public!tests! !
-!GRExceptionTest categoriesFor: #testOnDoImplicitReturn!public!tests! !
-!GRExceptionTest categoriesFor: #testOnDoNonLocalReturn!public!tests! !
-!GRExceptionTest categoriesFor: #testSignalError!public!tests! !
-!GRExceptionTest categoriesFor: #testSignalErrorClassSide!public!tests! !
-!GRExceptionTest categoriesFor: #testSignalNotification!public!tests! !
-!GRExceptionTest categoriesFor: #testSignalNotificationClassSide!public!tests! !
-!GRExceptionTest categoriesFor: #testSignalWithError!public!tests! !
-!GRExceptionTest categoriesFor: #testSignalWithErrorClassSide!public!tests! !
-!GRExceptionTest categoriesFor: #testSignalWithNotification!public!tests! !
-!GRExceptionTest categoriesFor: #testSignalWithNotificationClassSide!public!tests! !
+
+!GRExceptionTest categoriesForMethods!
+onExceptionReturn:!private! !
+testDefaultActionResume!public!tests! !
+testDeprecatedApi!public!tests! !
+testErrorInitialization!public!tests! !
+testIsResumable!public!tests! !
+testNotificationInitialization!public!tests! !
+testOnDoImplicitReturn!public!tests! !
+testOnDoNonLocalReturn!public!tests! !
+testSignalError!public!tests! !
+testSignalErrorClassSide!public!tests! !
+testSignalNotification!public!tests! !
+testSignalNotificationClassSide!public!tests! !
+testSignalWithError!public!tests! !
+testSignalWithErrorClassSide!public!tests! !
+testSignalWithNotification!public!tests! !
+testSignalWithNotificationClassSide!public!tests! !
+!
 

@@ -1,13 +1,17 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 GRCollectionTest subclass: #GRBagTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRBagTest guid: (GUID fromString: '{805bb46e-f756-42b4-b788-2d7d0a6ac983}')!
+
+GRBagTest guid: (GUID fromString: '{d0f1a789-ddc0-4c33-9894-16d041e064ff}')!
+
 GRBagTest comment: ''!
-!GRBagTest categoriesForClass!Grease-Tests-Core! !
+
+!GRBagTest categoriesForClass!Unclassified! !
+
 !GRBagTest methodsFor!
 
 allowsDuplicateValues	^ true!
@@ -17,8 +21,11 @@ collectionClass	^ Bag!
 isExtensible	^ true!
 
 isInitializable	^ true! !
-!GRBagTest categoriesFor: #allowsDuplicateValues!configuration!public! !
-!GRBagTest categoriesFor: #collectionClass!configuration!public! !
-!GRBagTest categoriesFor: #isExtensible!public!testing/ansi! !
-!GRBagTest categoriesFor: #isInitializable!public!testing/ansi! !
+
+!GRBagTest categoriesForMethods!
+allowsDuplicateValues!configuration!public! !
+collectionClass!configuration!public! !
+isExtensible!public!testing/ansi! !
+isInitializable!public!testing/ansi! !
+!
 

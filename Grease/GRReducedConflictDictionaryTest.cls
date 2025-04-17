@@ -1,15 +1,22 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 GRDictionaryTest subclass: #GRReducedConflictDictionaryTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRReducedConflictDictionaryTest guid: (GUID fromString: '{82bc201a-b127-4470-8e1f-4fa113ef50c4}')!
+
+GRReducedConflictDictionaryTest guid: (GUID fromString: '{9e6f024c-4307-4188-9ab9-0eaeccb75743}')!
+
 GRReducedConflictDictionaryTest comment: ''!
-!GRReducedConflictDictionaryTest categoriesForClass!Grease-Tests-Core! !
+
+!GRReducedConflictDictionaryTest categoriesForClass!Unclassified! !
+
 !GRReducedConflictDictionaryTest methodsFor!
 
 collectionClass	^ GRPlatform current reducedConflictDictionary! !
-!GRReducedConflictDictionaryTest categoriesFor: #collectionClass!configuration!public! !
+
+!GRReducedConflictDictionaryTest categoriesForMethods!
+collectionClass!configuration!public! !
+!
 

@@ -1,13 +1,17 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 TestCase subclass: #GRObjectTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRObjectTest guid: (GUID fromString: '{badc14b4-d3ff-47c9-9af2-0c2722026811}')!
+
+GRObjectTest guid: (GUID fromString: '{89aca37b-f6a2-40fc-8877-6aa77f0989bb}')!
+
 GRObjectTest comment: ''!
-!GRObjectTest categoriesForClass!Grease-Tests-Core! !
+
+!GRObjectTest categoriesForClass!Unclassified! !
+
 !GRObjectTest methodsFor!
 
 testError	"Make sure #error: signals a subclass of GRError."	self 		should: [ GRObject new error: 'oh dear' ]		raise: GRError.	self 		should: [ GRObject error: 'oh dear' ]		raise: GRError!
@@ -15,7 +19,10 @@ testError	"Make sure #error: signals a subclass of GRError."	self 		should: [
 testInitialize	"Make sure #initialize is called on #new and that calling 'super initialize' doesn't error."	self assert: GRObjectStub new foo!
 
 testRespondsTo	self assert: (GRObject new respondsTo: #greaseString).	self deny: (GRObject new respondsTo: #makeMeASandwich)! !
-!GRObjectTest categoriesFor: #testError!public!tests! !
-!GRObjectTest categoriesFor: #testInitialize!public!tests! !
-!GRObjectTest categoriesFor: #testRespondsTo!public!tests! !
+
+!GRObjectTest categoriesForMethods!
+testError!public!tests! !
+testInitialize!public!tests! !
+testRespondsTo!public!tests! !
+!
 

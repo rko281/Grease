@@ -1,13 +1,17 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 GRCollectionTest subclass: #GRAbstractSequenceableCollectionTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRAbstractSequenceableCollectionTest guid: (GUID fromString: '{03bd5044-eeae-4a10-a67a-c572dcc8c7c9}')!
+
+GRAbstractSequenceableCollectionTest guid: (GUID fromString: '{3bd5c52e-7ac8-4498-97af-a87b05eea202}')!
+
 GRAbstractSequenceableCollectionTest comment: ''!
-!GRAbstractSequenceableCollectionTest categoriesForClass!Grease-Tests-Core! !
+
+!GRAbstractSequenceableCollectionTest categoriesForClass!Unclassified! !
+
 !GRAbstractSequenceableCollectionTest methodsFor!
 
 isHomogeneous	"Some classes can contain only objects of a particular class.  String is an example of such a class."	^ self subclassResponsibility!
@@ -34,23 +38,35 @@ testEndsWithEmptySubCollection	| collection | 	collection := self arbitraryCol
 
 testEndsWithSubCollection	| collection |	collection := self arbitraryCollection.	self assert: (collection endsWithSubCollection: (collection copyWithout: collection first)).	self assert: (collection endsWithSubCollection: collection).	self deny: (collection endsWithSubCollection: (collection copyWith: collection first))!
 
+testGreaseBeginsWith	| collection |	collection := self arbitraryCollection.	self assert: (collection greaseBeginsWith: (collection copyWithout: collection last)).	self assert: (collection greaseBeginsWith: collection).	self deny: (collection greaseBeginsWith: (collection copyWith: collection first)).	self assert: (collection greaseBeginsWith: self emptyCollection).	self deny: (self emptyCollection greaseBeginsWith: collection)!
+
+testGreaseEndsWith	| collection |	collection := self arbitraryCollection.	self assert: (collection greaseEndsWith: (collection copyWithout: collection first)).	self assert: (collection greaseEndsWith: collection).	self deny: (collection greaseEndsWith: (collection copyWith: collection first)).	self assert: (collection greaseEndsWith: self emptyCollection).	self deny: (self emptyCollection greaseEndsWith: collection)!
+
 testSort	| collection |	self isSequenced ifFalse: [ ^ self ].		collection := self arbitraryCollection.	collection sort.	self assert: collection sortedWith: [ :a :b | a <= b ].		collection sort: [ :a :b | a > b ].	self assert: collection sortedWith: [ :a :b | a > b ]! !
-!GRAbstractSequenceableCollectionTest categoriesFor: #isHomogeneous!public!testing! !
-!GRAbstractSequenceableCollectionTest categoriesFor: #isSequenced!public!testing/ansi! !
-!GRAbstractSequenceableCollectionTest categoriesFor: #isUnique!public!testing! !
-!GRAbstractSequenceableCollectionTest categoriesFor: #testAddFirst!public!tests! !
-!GRAbstractSequenceableCollectionTest categoriesFor: #testBeginsWithEmptySubCollection!public!tests! !
-!GRAbstractSequenceableCollectionTest categoriesFor: #testBeginsWithSubCollection!public!tests! !
-!GRAbstractSequenceableCollectionTest categoriesFor: #testCopyAfter!public!tests! !
-!GRAbstractSequenceableCollectionTest categoriesFor: #testCopyAfterLast!public!tests! !
-!GRAbstractSequenceableCollectionTest categoriesFor: #testCopyUpTo!public!tests! !
-!GRAbstractSequenceableCollectionTest categoriesFor: #testCopyUpToLast!public!tests! !
-!GRAbstractSequenceableCollectionTest categoriesFor: #testEndsWithEmptySubCollection!public!tests! !
-!GRAbstractSequenceableCollectionTest categoriesFor: #testEndsWithSubCollection!public!tests! !
-!GRAbstractSequenceableCollectionTest categoriesFor: #testSort!public!tests! !
+
+!GRAbstractSequenceableCollectionTest categoriesForMethods!
+isHomogeneous!public!testing! !
+isSequenced!public!testing/ansi! !
+isUnique!public!testing! !
+testAddFirst!public!tests! !
+testBeginsWithEmptySubCollection!public!tests! !
+testBeginsWithSubCollection!public!tests! !
+testCopyAfter!public!tests! !
+testCopyAfterLast!public!tests! !
+testCopyUpTo!public!tests! !
+testCopyUpToLast!public!tests! !
+testEndsWithEmptySubCollection!public!tests! !
+testEndsWithSubCollection!public!tests! !
+testGreaseBeginsWith!public!tests! !
+testGreaseEndsWith!public!tests! !
+testSort!public!tests! !
+!
 
 !GRAbstractSequenceableCollectionTest class methodsFor!
 
 isAbstract	^ self name = #GRAbstractSequenceableCollectionTest! !
-!GRAbstractSequenceableCollectionTest class categoriesFor: #isAbstract!public!testing! !
+
+!GRAbstractSequenceableCollectionTest class categoriesForMethods!
+isAbstract!public!testing! !
+!
 

@@ -1,13 +1,17 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 GRSetTest subclass: #GRSmallOrderedSetTest
 	instanceVariableNames: 'collection'
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRSmallOrderedSetTest guid: (GUID fromString: '{59ab8de0-a163-4d5f-b69f-bb653f3198f1}')!
+
+GRSmallOrderedSetTest guid: (GUID fromString: '{4bb0c7fd-7aa5-4ad5-8e66-cf7bc8fb6fc1}')!
+
 GRSmallOrderedSetTest comment: ''!
-!GRSmallOrderedSetTest categoriesForClass!Grease-Tests-Core! !
+
+!GRSmallOrderedSetTest categoriesForClass!Unclassified! !
+
 !GRSmallOrderedSetTest methodsFor!
 
 collectionClass	^ GRSmallOrderedSet!
@@ -31,15 +35,18 @@ testRemove	collection add: 1.	self assert: (collection remove: 1) = 1.	self s
 testRemoveIfAbsent	| absent |	collection add: 1.	absent := false.		self assert: (collection remove: 1 ifAbsent: [ absent := true ]) = 1.	self deny: absent.		collection remove: 1 ifAbsent: [ absent := true ].	self assert: absent.!
 
 testSize	self assert: collection size = 0.	collection addAll: #(2 1 1).	self assert: collection size = 2.! !
-!GRSmallOrderedSetTest categoriesFor: #collectionClass!configuration!public! !
-!GRSmallOrderedSetTest categoriesFor: #setUp!public!running! !
-!GRSmallOrderedSetTest categoriesFor: #testAdd!public!testing! !
-!GRSmallOrderedSetTest categoriesFor: #testAddAll!public!testing! !
-!GRSmallOrderedSetTest categoriesFor: #testCopy!public!testing! !
-!GRSmallOrderedSetTest categoriesFor: #testDo!public!testing! !
-!GRSmallOrderedSetTest categoriesFor: #testIncludes!public!testing! !
-!GRSmallOrderedSetTest categoriesFor: #testIsEmpty!public!testing! !
-!GRSmallOrderedSetTest categoriesFor: #testRemove!public!testing! !
-!GRSmallOrderedSetTest categoriesFor: #testRemoveIfAbsent!public!testing! !
-!GRSmallOrderedSetTest categoriesFor: #testSize!public!testing! !
+
+!GRSmallOrderedSetTest categoriesForMethods!
+collectionClass!configuration!public! !
+setUp!public!running! !
+testAdd!public!testing! !
+testAddAll!public!testing! !
+testCopy!public!testing! !
+testDo!public!testing! !
+testIncludes!public!testing! !
+testIsEmpty!public!testing! !
+testRemove!public!testing! !
+testRemoveIfAbsent!public!testing! !
+testSize!public!testing! !
+!
 

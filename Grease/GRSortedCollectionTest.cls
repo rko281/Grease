@@ -1,13 +1,17 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 GRAbstractSequenceableCollectionTest subclass: #GRSortedCollectionTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRSortedCollectionTest guid: (GUID fromString: '{69548de4-a846-4497-a3b1-bb1448b16a34}')!
+
+GRSortedCollectionTest guid: (GUID fromString: '{df36bc23-8cb4-473d-b56b-0484c83c6efd}')!
+
 GRSortedCollectionTest comment: ''!
-!GRSortedCollectionTest categoriesForClass!Grease-Tests-Core! !
+
+!GRSortedCollectionTest categoriesForClass!Unclassified! !
+
 !GRSortedCollectionTest methodsFor!
 
 allowsDuplicateValues	^ true!
@@ -23,11 +27,14 @@ isInitializable	^ true!
 isSequenced	^ false!
 
 isUnique	^ false! !
-!GRSortedCollectionTest categoriesFor: #allowsDuplicateValues!configuration!public! !
-!GRSortedCollectionTest categoriesFor: #collectionClass!configuration!public! !
-!GRSortedCollectionTest categoriesFor: #isExtensible!public!testing/ansi! !
-!GRSortedCollectionTest categoriesFor: #isHomogeneous!public!testing! !
-!GRSortedCollectionTest categoriesFor: #isInitializable!public!testing/ansi! !
-!GRSortedCollectionTest categoriesFor: #isSequenced!public!testing/ansi! !
-!GRSortedCollectionTest categoriesFor: #isUnique!public!testing! !
+
+!GRSortedCollectionTest categoriesForMethods!
+allowsDuplicateValues!configuration!public! !
+collectionClass!configuration!public! !
+isExtensible!public!testing/ansi! !
+isHomogeneous!public!testing! !
+isInitializable!public!testing/ansi! !
+isSequenced!public!testing/ansi! !
+isUnique!public!testing! !
+!
 

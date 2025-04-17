@@ -3,7 +3,6 @@ package := Package name: 'Grease-Tests-Core'.
 package paxVersion: 1;
 	basicComment: ''.
 
-
 package classNames
 	add: #GRAbstractDictionaryTest;
 	add: #GRAbstractSequenceableCollectionTest;
@@ -61,6 +60,7 @@ package setPrerequisites: #(
 	'..\Core\Object Arts\Dolphin\Base\Dolphin Legacy Date & Time'
 	'Grease-Core'
 	'Grease-Dolphin-Core'
+	'..\Portishead\Portishead-Pragmas'
 	'..\Core\Contributions\Camp Smalltalk\SUnit\SUnit').
 
 package!
@@ -72,206 +72,244 @@ GRError subclass: #GRErrorStub
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRDynamicVariable subclass: #GRTestDynamicVariable
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRNotification subclass: #GRNotificationStub
 	instanceVariableNames: 'foo'
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRNotificationBasedDynamicVariable subclass: #GRTestNotificationBasedDynamicVariable
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRObject subclass: #GRObjectStub
 	instanceVariableNames: 'foo'
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 TestCase subclass: #GRCodecTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 TestCase subclass: #GRCollectionTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 TestCase subclass: #GRCountingStreamTest
 	instanceVariableNames: 'countingStream'
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 TestCase subclass: #GRDelayedSendTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 TestCase subclass: #GRDurationTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 TestCase subclass: #GRDynamicVariableTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 TestCase subclass: #GRExceptionTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 TestCase subclass: #GRNotificationBasedDynamicVariableTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 TestCase subclass: #GRNullCodecStreamTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 TestCase subclass: #GRNumberTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 TestCase subclass: #GRObjectTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 TestCase subclass: #GRPackageTest
 	instanceVariableNames: 'package'
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 TestCase subclass: #GRPlatformTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 TestCase subclass: #GRPrinterTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 TestCase subclass: #GRUtf8CodecTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 TestCase subclass: #GRVersionTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRCollectionTest subclass: #GRAbstractDictionaryTest
 	instanceVariableNames: 'associations'
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRCollectionTest subclass: #GRAbstractSequenceableCollectionTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRCollectionTest subclass: #GRBagTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRCollectionTest subclass: #GRSetTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRAbstractDictionaryTest subclass: #GRDictionaryTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRAbstractDictionaryTest subclass: #GRIdentityDictionaryTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRAbstractDictionaryTest subclass: #GRSmallDictionaryTest
 	instanceVariableNames: 'collection'
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRDictionaryTest subclass: #GRReducedConflictDictionaryTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRSmallDictionaryTest subclass: #GROrderedMultiMapTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRSmallDictionaryTest subclass: #GRSmallDictionary2Test
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GROrderedMultiMapTest subclass: #GROrderedMultiMap2Test
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRAbstractSequenceableCollectionTest subclass: #GRArrayTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRAbstractSequenceableCollectionTest subclass: #GRIntervalTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRAbstractSequenceableCollectionTest subclass: #GROrderedCollectionTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRAbstractSequenceableCollectionTest subclass: #GRSortedCollectionTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRAbstractSequenceableCollectionTest subclass: #GRStringTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRAbstractSequenceableCollectionTest subclass: #GRSymbolTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRSetTest subclass: #GRSmallOrderedSetTest
 	instanceVariableNames: 'collection'
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
 
-"Global Aliases"!
-
-
 "Loose Methods"!
 
 !GRPackage class methodsFor!
 
 greaseTestsCore	^ self new		name: 'Grease-Tests-Core';		description: 'Unit tests for the package Grease-Core.';		addDependency: 'Grease-Core';		url: #greaseUrl;		yourself! !
-!GRPackage class categoriesFor: #greaseTestsCore!*grease/tests/core!public! !
+
+!GRPackage class categoriesForMethods!
+greaseTestsCore!*grease/tests/core!public! !
+!
 
 "End of package definition"!
 

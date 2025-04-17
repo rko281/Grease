@@ -1,18 +1,25 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 GRError subclass: #GRErrorStub
 	instanceVariableNames: 'foo'
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRErrorStub guid: (GUID fromString: '{1bf2291c-6a6b-454d-aaf2-de95d5963b9e}')!
+
+GRErrorStub guid: (GUID fromString: '{a3e27a8c-bf43-461b-83bb-55ec1754eb2c}')!
+
 GRErrorStub comment: ''!
-!GRErrorStub categoriesForClass!Grease-Tests-Core! !
+
+!GRErrorStub categoriesForClass!Unclassified! !
+
 !GRErrorStub methodsFor!
 
 foo	^ foo!
 
 initialize	super initialize.	foo := true! !
-!GRErrorStub categoriesFor: #foo!accessing!public! !
-!GRErrorStub categoriesFor: #initialize!initialization!public! !
+
+!GRErrorStub categoriesForMethods!
+foo!accessing!public! !
+initialize!initialization!public! !
+!
 

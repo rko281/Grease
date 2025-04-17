@@ -1,13 +1,17 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 TestCase subclass: #GRCodecTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRCodecTest guid: (GUID fromString: '{1f3c8881-d475-43ff-82ff-55f63c700670}')!
+
+GRCodecTest guid: (GUID fromString: '{396c70e2-c409-44f2-b593-03671407c40a}')!
+
 GRCodecTest comment: ''!
-!GRCodecTest categoriesForClass!Grease-Tests-Core! !
+
+!GRCodecTest categoriesForClass!Unclassified! !
+
 !GRCodecTest methodsFor!
 
 asString: aCollectionOfIntegers	^ String streamContents: [ :stream |		aCollectionOfIntegers do: [ :each |			stream nextPut: (Character codePoint: each) ] ]!
@@ -37,18 +41,21 @@ utf16beString	^ self asString: #(0 220 0 98 0 232 0 114 0 115 0 116 0 114 0 238
 utf16leString	^ self asString: #(220 0 98 0 232 0 114 0 115 0 116 0 114 0 238 0 241 0 103 0 233 0)!
 
 utf8String	^ self asString: #(195 156 98 195 168 114 115 116 114 195 174 195 177 103 195 169)! !
-!GRCodecTest categoriesFor: #asString:!private! !
-!GRCodecTest categoriesFor: #decodedString!accessing!public! !
-!GRCodecTest categoriesFor: #latin1String!accessing!public! !
-!GRCodecTest categoriesFor: #macromanString!accessing!public! !
-!GRCodecTest categoriesFor: #seasideByteArray!private! !
-!GRCodecTest categoriesFor: #testAllCodecs!public!tests! !
-!GRCodecTest categoriesFor: #testCodecLatin1!public!tests! !
-!GRCodecTest categoriesFor: #testCodecLatin1BorderLineString!public!tests! !
-!GRCodecTest categoriesFor: #testNext!public!tests! !
-!GRCodecTest categoriesFor: #testNullCodec!public!tests! !
-!GRCodecTest categoriesFor: #testReset!public!tests! !
-!GRCodecTest categoriesFor: #utf16beString!accessing!public! !
-!GRCodecTest categoriesFor: #utf16leString!accessing!public! !
-!GRCodecTest categoriesFor: #utf8String!accessing!public! !
+
+!GRCodecTest categoriesForMethods!
+asString:!private! !
+decodedString!accessing!public! !
+latin1String!accessing!public! !
+macromanString!accessing!public! !
+seasideByteArray!private! !
+testAllCodecs!public!tests! !
+testCodecLatin1!public!tests! !
+testCodecLatin1BorderLineString!public!tests! !
+testNext!public!tests! !
+testNullCodec!public!tests! !
+testReset!public!tests! !
+utf16beString!accessing!public! !
+utf16leString!accessing!public! !
+utf8String!accessing!public! !
+!
 

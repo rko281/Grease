@@ -1,15 +1,22 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 GRDynamicVariable subclass: #GRTestDynamicVariable
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRTestDynamicVariable guid: (GUID fromString: '{8fb724ba-080d-41f1-a2f9-aaf1ad9fdc4b}')!
+
+GRTestDynamicVariable guid: (GUID fromString: '{4c16fbf2-75bd-4bb9-8584-e9ecffdf024c}')!
+
 GRTestDynamicVariable comment: ''!
-!GRTestDynamicVariable categoriesForClass!Grease-Tests-Core! !
+
+!GRTestDynamicVariable categoriesForClass!Unclassified! !
+
 !GRTestDynamicVariable class methodsFor!
 
 defaultValue	^ 'default test value'! !
-!GRTestDynamicVariable class categoriesFor: #defaultValue!defaults!public! !
+
+!GRTestDynamicVariable class categoriesForMethods!
+defaultValue!defaults!public! !
+!
 

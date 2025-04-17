@@ -1,13 +1,17 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 GRAbstractSequenceableCollectionTest subclass: #GRStringTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRStringTest guid: (GUID fromString: '{118a26c5-1699-44bb-929f-645a29222cfd}')!
+
+GRStringTest guid: (GUID fromString: '{082bf9f0-cdc3-4ebe-bb24-ef3e62ab8bae}')!
+
 GRStringTest comment: ''!
-!GRStringTest categoriesForClass!Grease-Tests-Core! !
+
+!GRStringTest categoriesForClass!Unclassified! !
+
 !GRStringTest methodsFor!
 
 allowsDuplicateValues	^ true!
@@ -71,35 +75,38 @@ testTrimRight	self assert: '' trimRight = ''.	self assert: ' ' trimRight = ''.
 testTruncate	self assert: ('abc' truncate) = 'abc'.	self assert: ('abc' truncate: 3) = 'abc'.	self assert: ('abc' truncate: 2) = 'ab...'.		self assert: ('abc' truncate: 1 ellipsis: '') = 'a'.	self assert: ('abc' truncate: 0 ellipsis: 'none') = 'none'!
 
 testTruncateEmpty	self assert: '' truncate = ''! !
-!GRStringTest categoriesFor: #allowsDuplicateValues!configuration!public! !
-!GRStringTest categoriesFor: #arbitraryCollection!configuration!public! !
-!GRStringTest categoriesFor: #collectionClass!configuration!public! !
-!GRStringTest categoriesFor: #duplicateElement!configuration!public! !
-!GRStringTest categoriesFor: #excludedElement!configuration!public! !
-!GRStringTest categoriesFor: #includedElement!configuration!public! !
-!GRStringTest categoriesFor: #isExtensible!public!testing/ansi! !
-!GRStringTest categoriesFor: #isHomogeneous!public!testing! !
-!GRStringTest categoriesFor: #isInitializable!public!testing/ansi! !
-!GRStringTest categoriesFor: #isSequenced!public!testing/ansi! !
-!GRStringTest categoriesFor: #isUnique!public!testing! !
-!GRStringTest categoriesFor: #testAsUppercase!public!tests/converting! !
-!GRStringTest categoriesFor: #testCapitalized!public!tests/converting! !
-!GRStringTest categoriesFor: #testCapitalizedUmlauts!public!tests/converting! !
-!GRStringTest categoriesFor: #testExcerpt!public!tests/excerpt! !
-!GRStringTest categoriesFor: #testExcerptEmpty!public!tests/excerpt! !
-!GRStringTest categoriesFor: #testExcerptLeft!public!tests/excerpt! !
-!GRStringTest categoriesFor: #testExcerptRight!public!tests/excerpt! !
-!GRStringTest categoriesFor: #testInflectorAssimilated!public!tests/pluralize! !
-!GRStringTest categoriesFor: #testInflectorCommonSuffixes!public!tests/pluralize! !
-!GRStringTest categoriesFor: #testInflectorFfffSuffixes!public!tests/pluralize! !
-!GRStringTest categoriesFor: #testInflectorIrregular!public!tests/pluralize! !
-!GRStringTest categoriesFor: #testInflectorNotInflecting!public!tests/pluralize! !
-!GRStringTest categoriesFor: #testInflectorTsssSuffixes!public!tests/pluralize! !
-!GRStringTest categoriesFor: #testInflectorYyyySuffixes!public!tests/pluralize! !
-!GRStringTest categoriesFor: #testSubStrings!public!tests! !
-!GRStringTest categoriesFor: #testTrimBoth!public!tests/trim! !
-!GRStringTest categoriesFor: #testTrimLeft!public!tests/trim! !
-!GRStringTest categoriesFor: #testTrimRight!public!tests/trim! !
-!GRStringTest categoriesFor: #testTruncate!public!tests/truncate! !
-!GRStringTest categoriesFor: #testTruncateEmpty!public!tests/truncate! !
+
+!GRStringTest categoriesForMethods!
+allowsDuplicateValues!configuration!public! !
+arbitraryCollection!configuration!public! !
+collectionClass!configuration!public! !
+duplicateElement!configuration!public! !
+excludedElement!configuration!public! !
+includedElement!configuration!public! !
+isExtensible!public!testing/ansi! !
+isHomogeneous!public!testing! !
+isInitializable!public!testing/ansi! !
+isSequenced!public!testing/ansi! !
+isUnique!public!testing! !
+testAsUppercase!public!tests/converting! !
+testCapitalized!public!tests/converting! !
+testCapitalizedUmlauts!public!tests/converting! !
+testExcerpt!public!tests/excerpt! !
+testExcerptEmpty!public!tests/excerpt! !
+testExcerptLeft!public!tests/excerpt! !
+testExcerptRight!public!tests/excerpt! !
+testInflectorAssimilated!public!tests/pluralize! !
+testInflectorCommonSuffixes!public!tests/pluralize! !
+testInflectorFfffSuffixes!public!tests/pluralize! !
+testInflectorIrregular!public!tests/pluralize! !
+testInflectorNotInflecting!public!tests/pluralize! !
+testInflectorTsssSuffixes!public!tests/pluralize! !
+testInflectorYyyySuffixes!public!tests/pluralize! !
+testSubStrings!public!tests! !
+testTrimBoth!public!tests/trim! !
+testTrimLeft!public!tests/trim! !
+testTrimRight!public!tests/trim! !
+testTruncate!public!tests/truncate! !
+testTruncateEmpty!public!tests/truncate! !
+!
 

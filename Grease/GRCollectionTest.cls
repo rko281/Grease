@@ -1,13 +1,17 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 TestCase subclass: #GRCollectionTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRCollectionTest guid: (GUID fromString: '{13743f24-9891-43f0-bffa-a7642e212a08}')!
+
+GRCollectionTest guid: (GUID fromString: '{0cd7d009-06a1-4146-be33-12541e3c21f5}')!
+
 GRCollectionTest comment: ''!
-!GRCollectionTest categoriesForClass!Grease-Tests-Core! !
+
+!GRCollectionTest categoriesForClass!Unclassified! !
+
 !GRCollectionTest methodsFor!
 
 allowsDuplicateValues	"Does the tested collection allow storage of duplicate (equal) values."	self subclassResponsibility!
@@ -49,29 +53,35 @@ testNotEmpty		self assert: self arbitraryCollection notEmpty.	self deny:  sel
 testSorted	| sorted collection |	collection := self arbitraryCollection.	sorted := collection sorted.	self assert: sorted validSequencedNewResponseFrom: collection.	self assert: sorted sortedWith: [ :a :b | a <= b ].		sorted := collection sorted: [ :a :b | a > b ].	self assert: sorted validSequencedNewResponseFrom: collection.	self assert: sorted sortedWith: [ :a :b | a > b ]!
 
 valuesOf: aCollection	"Answer the values of aCollecion. Dictionary tests override this."		^ aCollection! !
-!GRCollectionTest categoriesFor: #allowsDuplicateValues!configuration!public! !
-!GRCollectionTest categoriesFor: #arbitraryCollection!configuration!public! !
-!GRCollectionTest categoriesFor: #assert:sortedWith:!asserting!public! !
-!GRCollectionTest categoriesFor: #assert:validSequencedNewResponseFrom:!asserting!public! !
-!GRCollectionTest categoriesFor: #assert:validSequencedResponseFrom:!asserting!public! !
-!GRCollectionTest categoriesFor: #collectionClass!configuration!public! !
-!GRCollectionTest categoriesFor: #duplicateElement!configuration!public! !
-!GRCollectionTest categoriesFor: #emptyCollection!configuration!public! !
-!GRCollectionTest categoriesFor: #excludedElement!configuration!public! !
-!GRCollectionTest categoriesFor: #includedElement!configuration!public! !
-!GRCollectionTest categoriesFor: #isExtensible!public!testing/ansi! !
-!GRCollectionTest categoriesFor: #isInitializable!public!testing/ansi! !
-!GRCollectionTest categoriesFor: #isValidNewSequencedResponseClass:!configuration!public! !
-!GRCollectionTest categoriesFor: #testAny!public!tests! !
-!GRCollectionTest categoriesFor: #testEmptyAny!public!tests! !
-!GRCollectionTest categoriesFor: #testIsCollection!public!tests! !
-!GRCollectionTest categoriesFor: #testNoneSatisfy!public!tests! !
-!GRCollectionTest categoriesFor: #testNotEmpty!public!tests! !
-!GRCollectionTest categoriesFor: #testSorted!public!tests! !
-!GRCollectionTest categoriesFor: #valuesOf:!private! !
+
+!GRCollectionTest categoriesForMethods!
+allowsDuplicateValues!configuration!public! !
+arbitraryCollection!configuration!public! !
+assert:sortedWith:!asserting!public! !
+assert:validSequencedNewResponseFrom:!asserting!public! !
+assert:validSequencedResponseFrom:!asserting!public! !
+collectionClass!configuration!public! !
+duplicateElement!configuration!public! !
+emptyCollection!configuration!public! !
+excludedElement!configuration!public! !
+includedElement!configuration!public! !
+isExtensible!public!testing/ansi! !
+isInitializable!public!testing/ansi! !
+isValidNewSequencedResponseClass:!configuration!public! !
+testAny!public!tests! !
+testEmptyAny!public!tests! !
+testIsCollection!public!tests! !
+testNoneSatisfy!public!tests! !
+testNotEmpty!public!tests! !
+testSorted!public!tests! !
+valuesOf:!private! !
+!
 
 !GRCollectionTest class methodsFor!
 
 isAbstract	^ self name = #GRCollectionTest! !
-!GRCollectionTest class categoriesFor: #isAbstract!public!testing! !
+
+!GRCollectionTest class categoriesForMethods!
+isAbstract!public!testing! !
+!
 

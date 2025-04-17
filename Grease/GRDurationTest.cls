@@ -1,13 +1,17 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 TestCase subclass: #GRDurationTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRDurationTest guid: (GUID fromString: '{ab410f12-8be7-474f-a5b7-abaeaddc7884}')!
+
+GRDurationTest guid: (GUID fromString: '{fbb15036-7052-4961-9e1b-106747315985}')!
+
 GRDurationTest comment: ''!
-!GRDurationTest categoriesForClass!Grease-Tests-Core! !
+
+!GRDurationTest categoriesForClass!Unclassified! !
+
 !GRDurationTest methodsFor!
 
 testAccessors	| duration |	duration := Duration seconds: 356521.	self assert: duration days = 4.	self assert: duration hours = 3.	self assert: duration minutes = 2.	self assert: duration seconds = 1.	self assert: duration milliseconds = 0!
@@ -27,13 +31,16 @@ testPartialSecondsInstanceCreation	"ANSI 5.8.3.1 and 5.8.3.2 specify that the s
 testRolloverInstanceCreation	self assert: (Duration days: 0 hours: 25 minutes: 61 seconds: 61) asMilliseconds = 93721000.	self assert: (Duration hours: 25) asMilliseconds = 90000000.	self assert: (Duration minutes: 61) asMilliseconds = 3660000.	self assert: (Duration seconds: 61) asMilliseconds = 61000.	self assert: (Duration milliseconds: 1001) asMilliseconds = 1001!
 
 testZero	| duration |	duration := Duration zero.	self assert: duration isZero.	self assert: duration asMilliseconds = 0.	self assert: duration = (Duration seconds: 0)! !
-!GRDurationTest categoriesFor: #testAccessors!public!tests! !
-!GRDurationTest categoriesFor: #testBasicInstanceCreation!public!tests! !
-!GRDurationTest categoriesFor: #testConversions!public!tests! !
-!GRDurationTest categoriesFor: #testIntegerConvenienceMethods!public!testing! !
-!GRDurationTest categoriesFor: #testMixedInstanceCreation!public!tests! !
-!GRDurationTest categoriesFor: #testNegativeInstanceCreation!public!tests! !
-!GRDurationTest categoriesFor: #testPartialSecondsInstanceCreation!public!tests! !
-!GRDurationTest categoriesFor: #testRolloverInstanceCreation!public!tests! !
-!GRDurationTest categoriesFor: #testZero!public!tests! !
+
+!GRDurationTest categoriesForMethods!
+testAccessors!public!tests! !
+testBasicInstanceCreation!public!tests! !
+testConversions!public!tests! !
+testIntegerConvenienceMethods!public!testing! !
+testMixedInstanceCreation!public!tests! !
+testNegativeInstanceCreation!public!tests! !
+testPartialSecondsInstanceCreation!public!tests! !
+testRolloverInstanceCreation!public!tests! !
+testZero!public!tests! !
+!
 

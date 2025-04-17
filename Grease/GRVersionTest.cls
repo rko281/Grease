@@ -1,13 +1,17 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 TestCase subclass: #GRVersionTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRVersionTest guid: (GUID fromString: '{8190cc26-5985-437f-bbcf-36db72b4eb08}')!
+
+GRVersionTest guid: (GUID fromString: '{3c2d88f6-6b2d-40d7-a385-112a3ae09c73}')!
+
 GRVersionTest comment: ''!
-!GRVersionTest categoriesForClass!Grease-Tests-Core! !
+
+!GRVersionTest categoriesForClass!Unclassified! !
+
 !GRVersionTest methodsFor!
 
 assert: aVersionArray equals: bVersionArray	| a b |	a := self buildVersion: aVersionArray.	b := self buildVersion: bVersionArray.	self deny: a < b.	self assert: a <= b.	self deny: b < a.	self assert: b <= a.	self deny: b > a.	self assert: b >= a.	self deny: a > b.	self assert: a >= b.	self assert: a = b.	self assert: a hash = b hash!
@@ -25,12 +29,15 @@ testConvenience	| version |	version := GRVersion major: 1 minor: 2 revision: 3
 testEquality	self assert: #(1) equals: #(1).	self assert: #(1) equals: #(1 0).	self assert: #(1) equals: #(1 0 0).	self assert: #(1 0) equals: #(1 0).	self assert: #(1 0) equals: #(1 0 0).	self assert: #(1 0 0) equals: #(1 0 0).	self assert: #(1 0 0 #alpha) equals: #(1 0 0 #alpha 1).	self assert: #(1 0 0 #beta) equals: #(1 0 0 #beta 1)!
 
 testStringConversion	self assert: (GRVersion major: 1 minor: 2 revision: 3) greaseString = '1.2.3'.	self assert: (GRVersion major: 11 minor: 12 revision: 13) greaseString = '11.12.13'.	self assert: (GRVersion major: 1 minor: 2) greaseString = '1.2'.	self assert: (GRVersion major: 1 minor: 2 revision: 0) greaseString = '1.2.0'.	self assert: (GRVersion major: 1) greaseString = '1.0'.	self assert: ((GRVersion major: 1 minor: 2 revision: 3) beAlpha) greaseString = '1.2.3alpha'.	self assert: ((GRVersion major: 1 minor: 2 revision: 3) beAlpha: 1) greaseString = '1.2.3alpha1'.	self assert: ((GRVersion major: 1 minor: 2 revision: 3) beBeta) greaseString = '1.2.3beta'.	self assert: ((GRVersion major: 1 minor: 2 revision: 3) beBeta: 1) greaseString = '1.2.3beta1'! !
-!GRVersionTest categoriesFor: #assert:equals:!asserting!public! !
-!GRVersionTest categoriesFor: #assert:sortsBefore:!asserting!public! !
-!GRVersionTest categoriesFor: #buildVersion:!private! !
-!GRVersionTest categoriesFor: #testAccessors!public!tests! !
-!GRVersionTest categoriesFor: #testComparison!public!tests! !
-!GRVersionTest categoriesFor: #testConvenience!public!tests! !
-!GRVersionTest categoriesFor: #testEquality!public!tests! !
-!GRVersionTest categoriesFor: #testStringConversion!public!tests! !
+
+!GRVersionTest categoriesForMethods!
+assert:equals:!asserting!public! !
+assert:sortsBefore:!asserting!public! !
+buildVersion:!private! !
+testAccessors!public!tests! !
+testComparison!public!tests! !
+testConvenience!public!tests! !
+testEquality!public!tests! !
+testStringConversion!public!tests! !
+!
 

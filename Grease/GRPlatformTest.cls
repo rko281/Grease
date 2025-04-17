@@ -1,22 +1,32 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 TestCase subclass: #GRPlatformTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRPlatformTest guid: (GUID fromString: '{2085f599-9cfe-4d54-997b-01d25ea3317b}')!
+
+GRPlatformTest guid: (GUID fromString: '{5d24de39-3ec4-4ed1-b763-4102846bc9bc}')!
+
 GRPlatformTest comment: 'A GRPlatformTest is a test to make sure the platform (= the Smalltalk dialect we are running on) implements the protocol we need for system classes like Collection. An example would be to make sure Collection implements #count: with the semantics we need.'!
-!GRPlatformTest categoriesForClass!Grease-Tests-Core! !
+
+!GRPlatformTest categoriesForClass!Unclassified! !
+
 !GRPlatformTest methodsFor!
 
 decodeUtf8Character: aCollectionOfIntegers 	"Decodes a collection of bytes into a single character. We have this so we can avoid having non-ASCII characters in the source."	| codec toDecode decoded |	codec := GRCodec forEncoding: 'utf-8'.	toDecode := aCollectionOfIntegers asByteArray.	decoded := codec decode: toDecode.	self assert: decoded size = 1.	^ decoded first!
 
-platform	^ GRPlatform current!
+platform	##(Pragma ignoreForCoverage).	^ GRPlatform current!
+
+returnSender	##(Pragma ignoreForCoverage).	^ GRPlatform current thisContext sender!
+
+runCase	GRPlatform current doSilently: [ super runCase ]!
 
 testAsNumber	self assert: 2007 asNumber = 2007.	self assert: '2007' asNumber = 2007!
 
 testBase64Decode	| input |	input := #(		'YW55IGNhcm5hbCBwbGVhc3VyZS4='  'any carnal pleasure.'		'YW55IGNhcm5hbCBwbGVhc3VyZQ==' 'any carnal pleasure'		'YW55IGNhcm5hbCBwbGVhc3Vy' 'any carnal pleasur'		'YW55IGNhcm5hbCBwbGVhc3U=' 'any carnal pleasu'		'YW55IGNhcm5hbCBwbGVhcw==' 'any carnal pleas').	1 to: input size by: 2 do: [ :index |		| decoded expected |		decoded := GRPlatform current base64Decode: (input at: index).		expected := input at: index + 1.		self assert: decoded = expected ]!
+
+testBase64Encode	| input |	input := #(		(97 110 121 32 99 97 114 110 97 108 32 112 108 101 97 115 117 114 101 46) 'YW55IGNhcm5hbCBwbGVhc3VyZS4=' 		(97 110 121 32 99 97 114 110 97 108 32 112 108 101 97 115 117 114 101) 'YW55IGNhcm5hbCBwbGVhc3VyZQ=='		(97 110 121 32 99 97 114 110 97 108 32 112 108 101 97 115 117 114) 'YW55IGNhcm5hbCBwbGVhc3Vy'		(97 110 121 32 99 97 114 110 97 108 32 112 108 101 97 115 117) 'YW55IGNhcm5hbCBwbGVhc3U=' 		(97 110 121 32 99 97 114 110 97 108 32 112 108 101 97 115) 'YW55IGNhcm5hbCBwbGVhcw==').	1 to: input size by: 2 do: [ :index |		| decoded expected |		decoded := GRPlatform current base64Encode: (input at: index) asByteArray.		expected := input at: index + 1.		self assert: decoded = expected ]!
 
 testBindingOf	| binding |	binding := GRPlatform current bindingOf: GRPlatform.	self assert: binding value == GRPlatform!
 
@@ -28,6 +38,10 @@ testCharacterAsUnicode	"test for:	Character >> #asUnicode		^self asInteger"	
 
 testCharacterTo	| actual expected |	actual := Array withAll: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-'.	actual := actual collect: [ :each | each greaseInteger ].	expected := #(		97		98		99		100		101		102		103		104		105		106		107		108		109		110		111		112		113		114		115		116		117		118		119		120		121		122		65		66		67		68		69		70		71		72		73		74		75		76		77		78		79		80		81		82		83		84		85		86		87		88		89		90		48		49		50		51		52		53		54		55		56		57		95		45	).	self assert: actual size = expected size.	actual 		with: expected		do: [ :first :second | self assert: first = second ]!
 
+testCompileAsciiString	| selector expected source |		GRPlatform current supportsUnicode ifFalse: [		^ self ].		selector := #stringMethod.	expected := 'test ok'.	source := GRPlatform current asMethodReturningString: expected named: selector.	[ 		| actual |		GRPlatform current compile: source into: self class classified: 'private'.		actual := self perform: selector.		self assert: expected = actual	] ensure: [ 		GRPlatform current removeSelector: #stringMethod from: self class ]!
+
+testCompileUnicodeString	| selector expected source |	selector := #stringMethod.	expected := String		with: (Character value: 16r1F1F3)		with: (Character value: 16r1F1F1).	source := GRPlatform current asMethodReturningString: expected named: selector.	[ 		| actual |		GRPlatform current compile: source into: self class classified: 'private'.		actual := self perform: selector.		self assert: expected = actual	] ensure: [ 		GRPlatform current removeSelector: #stringMethod from: self class ]!
+
 testConvertToSmalltalkNewlines	| expected |	expected := 'a' , GRPlatform current newline , 'b'.	self assert: (GRPlatform current convertToSmalltalkNewlines: nil) isNil.	self assert: (GRPlatform current convertToSmalltalkNewlines: '') = ''.	self assert: (GRPlatform current convertToSmalltalkNewlines: 'abc') = 'abc'.	self 		assert: (GRPlatform current convertToSmalltalkNewlines: 'a' , (String with: Character cr with: Character lf) , 'b')			= expected		description: 'Multics, Unix and Unix-like systems (GNU/Linux, AIX, Xenix, Mac OS X, FreeBSD, etc.), BeOS, Amiga, RISC OS, and others'.	self		assert: (GRPlatform current convertToSmalltalkNewlines: 'a' , (String with: Character lf) , 'b')			= expected		description: 'DEC RT-11 and most other early non-Unix, non-IBM OSes, CP/M, MP/M, MS-DOS, OS/2, Microsoft Windows, Symbian OS'.	self 		assert: (GRPlatform current convertToSmalltalkNewlines: 'a' , (String with: Character cr) , 'b')			= expected		description: 'Commodore 8-bit machines, TRS-80, Apple II family, Mac OS up to version 9 and OS-9'!
 
 testDateArithmetic	| today tomorrow oneDay minusOneDay |	today := DateAndTime year: 2008 month: 9 day: 13 hour: 14 minute: 32 second: 05 offset: Duration zero.	tomorrow := DateAndTime year: 2008 month: 9 day: 14 hour: 14 minute: 32 second: 05 offset: Duration zero.	oneDay := Duration days: 1 hours: 0 minutes: 0 seconds: 0.	minusOneDay := Duration days: -1 hours: 0 minutes: 0 seconds: 0.	self assert: tomorrow - today = oneDay.	self assert: today - tomorrow = minusOneDay.	self assert: today + oneDay = tomorrow.	self assert: tomorrow - oneDay = today.	self assert: tomorrow + minusOneDay = today.	self assert: today - minusOneDay = tomorrow!
@@ -37,6 +51,14 @@ testDaysInMonthForYear	(1 to: 12) with: #(31 28 31 30 31 30 31 31 30 31 30 31) 
 testDigitValue	'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ' 		with: (0 to: 35)		do: [ :each :expected | self assert: each digitValue = expected ]!
 
 testEmptyOrNil	self assert: '' isEmptyOrNil.	self assert: nil isEmptyOrNil.	self assert: Array new isEmptyOrNil.	self deny: 'Timberwolf' isEmptyOrNil!
+
+testFileExists	| theFileName |	self 		writeToFile: 'test' 		withFileNameDo:[ :fileName |			self assert: (GRPlatform current fileExists: fileName).			theFileName := fileName ].	self deny: (GRPlatform current fileExists: theFileName)!
+
+testGreaseAsByteArray	self assert: 1024 greaseAsByteArray equals: #[4 0].	self assert: (SmallInteger maxVal + 10) greaseAsByteArray equals: #[16 0 0 0 0 0 0 9].	self assert: (SmallInteger minVal - 10) greaseAsByteArray equals: #[16 0 0 0 0 0 0 10].	self assert: #[1 2 3] greaseAsByteArray equals: #[1 2 3].	self assert: '123' greaseAsByteArray equals: #[49 50 51]!
+
+testGreaseByteAt	self assert: (1024 greaseByteAt: 1) equals: 0.	self assert: (1024 greaseByteAt: 2) equals: 4.	self assert: ((SmallInteger maxVal + 10) greaseByteAt: 1) equals: 9.	self assert: ((SmallInteger maxVal + 10) greaseByteAt: 8) equals: 16.	self assert: ((SmallInteger minVal - 10) greaseByteAt: 1) equals: 10.	self assert: ((SmallInteger minVal - 10) greaseByteAt: 8) equals: 16!
+
+testGreaseBytesCount	self assert: 1024 greaseBytesCount equals: 2.	self assert: (SmallInteger maxVal + 10) greaseBytesCount equals: 8.	self assert: (SmallInteger minVal + 10) greaseBytesCount equals: 8!
 
 testGreaseIntegerOnCharacterAscii	"ASCII (1 byte)"	self assert: $a greaseInteger = 97.	self assert: $A greaseInteger = 65!
 
@@ -67,6 +89,10 @@ testIsUnary	self assert: #isUnary isUnary.	self deny: #+ isUnary.	self deny: 
 testLabel	self assert: (self platform label isKindOf: String).	self deny: self platform label isEmpty!
 
 testNewline	self assert: GRPlatform current newline isString.	self deny: GRPlatform current newline isEmpty!
+
+testNewTemporaryFile	| temporaryFile1 temporaryFile2 |	[		temporaryFile1 := GRPlatform current newTemporaryFile.		temporaryFile2 := GRPlatform current newTemporaryFile.		GRPlatform current			writeFileStreamOn: temporaryFile1			do: [ :str | str nextPutAll: 'test temporary' ]			binary: false.		GRPlatform current			writeFileStreamOn: temporaryFile2			do: [ :str | str nextPutAll: #[116 101 115 116 32 116 101 109 112 111 114 97 114 121] ]			binary: true.		self assert: (GRPlatform current fileExists: temporaryFile1).		self deny: (GRPlatform current localNameOf: temporaryFile1) equals: (GRPlatform current localNameOf: temporaryFile2)	] ensure: [ GRPlatform current deleteFile: temporaryFile1. GRPlatform current deleteFile: temporaryFile2  ].	self deny: (GRPlatform current fileExists: temporaryFile1).	self deny: (GRPlatform current fileExists: temporaryFile2)!
+
+testNewTemporaryFileNamed	| temporaryFile fileName |	fileName := 'GRPlatformTestTemporaryFile'.	[		temporaryFile := GRPlatform current newTemporaryFileNamed: fileName.		GRPlatform current			writeFileStreamOn: temporaryFile			do: [ :str | str nextPutAll: 'test temporary' ]			binary: false.		self assert: (GRPlatform current fileExists: temporaryFile).		self should: [ GRPlatform current newTemporaryFileNamed: fileName ] raise: GRError.	] ensure: [ GRPlatform current deleteFile: temporaryFile ].	self deny: (GRPlatform current fileExists: temporaryFile).	!
 
 testNumArgs	self assert: #not numArgs isZero.	self assert: #+ numArgs = 1.	self assert: #and: numArgs = 1.	self assert: #value:value: numArgs = 2!
 
@@ -130,15 +156,17 @@ testSecureHashFor	"Make sure the platform class provides a #secureHashFor: meth
 
 testShutDownList	"A smoke test: checks if the test-class can be added and removed to the shutdown list."		[ self platform addToShutDownList: self class ]		ensure: [  self platform removeFromShutDownList: self class ]!
 
+testSizeOfFile	| theFileName |	self		writeToFile: 'test me'		withFileNameDo:[ :fileName |			self assert: (GRPlatform current sizeOfFile: fileName) equals: 7.			theFileName := fileName ].	self deny: (GRPlatform current fileExists: theFileName)!
+
 testStackDepth	| stackDepth someBlock |	stackDepth := self platform stackDepth.	self assert: stackDepth isInteger.	self assert: stackDepth > 0.	someBlock := [ self assert: self platform stackDepth > stackDepth ].	someBlock value.	self assert: stackDepth = self platform stackDepth!
 
 testStartUpList	"A smoke test: checks if the test-class can be added and removed to the startup list."		[  self platform addToStartUpList: self class ]		ensure: [  self platform removeFromStartUpList: self class ]!
 
-testSymbolAsMutator	"test for:	Symbol >> #asMutator	^ (self copyWith: $:) asSymbol"	self assert: #name asMutator = #name:!
+testSymbolAsMutator	"test for:	Symbol >> #asMutator	^ (self copyWith: $:) asSymbol"	self assert: #name greaseAsMutator = #name:!
 
 testTerminate	| ensureRun ifCurtailedRun semaphore1 semaphore2 semaphore3 semaphore4 process |	ensureRun := false.	ifCurtailedRun := false.	semaphore1 := self platform semaphoreClass new.	semaphore2 := self platform semaphoreClass new.	semaphore3 := self platform semaphoreClass new.	semaphore4 := self platform semaphoreClass new.	process := [		[ [ semaphore1 signal. semaphore2 wait ]			ensure: [ ensureRun := true. semaphore3 signal ] ]			ifCurtailed: [ ifCurtailedRun := true. semaphore4 signal ] ] newProcess.	self deny: (self platform isProcessTerminated: process).	process resume.	semaphore1 wait.	self deny: (self platform isProcessTerminated: process).	self platform terminateProcess: process.	semaphore3 wait.	self assert: ensureRun.	semaphore4 wait.	self assert: ifCurtailedRun.	self assert: (self platform isProcessTerminated: process)!
 
-testThisContext  | methodContext |  methodContext := self platform thisContext.  [   | blockContext |  blockContext := self platform thisContext.  self assert: blockContext sender = methodContext ]    value!
+testThisContext	| methodContext block ctx |	"This is just a basic test to see if thisContext works"	methodContext := self platform thisContext.	block := [ | blockContext |		blockContext := self platform thisContext.		self assert: blockContext sender = methodContext.		"The following is a difference between Gemstone and Pharo... "		(Smalltalk includesKey: #GRGemStonePlatform)			ifTrue: [ self assert: blockContext receiver = block ]			ifFalse: [ 				self assert: blockContext receiver = self.				(blockContext respondsTo: #tempNamed:)					ifTrue:[ self assert: (blockContext tempNamed: 'blockContext') == blockContext ]					ifFalse:[ self assert:  (blockContext namedTempAt: (blockContext tempNames indexOf: #blockContext)) == blockContext ] ].		(blockContext respondsTo: #tempNamed:)			ifTrue:[ self assert: (blockContext tempNamed: 'methodContext') == methodContext ]			ifFalse: [ self assert: (blockContext namedTempAt: (blockContext tempNames indexOf: #methodContext)) == methodContext ] ].			block value.	self assert: self returnSender = methodContext.	self assert: methodContext receiver = self.	ctx := self platform thisContext.	(ctx respondsTo: #tempNamed:)		ifTrue:[	self assert: (ctx tempNamed: 'block') == block ]		ifFalse: [ self assert: (ctx namedTempAt: (ctx tempNames indexOf: #block)) == block ]!
 
 testTotalSeconds	"Answer the total seconds since the Squeak epoch: 1 January 1901."	| seconds |	seconds := Time totalSeconds.	self assert: seconds isInteger.	self assert: seconds > 3421645167!
 
@@ -158,80 +186,98 @@ testWriteStreamReset	"ANSI 5.9.1.6"		| stream |	stream := WriteStream on: St
 
 testWriteStreamSpace	"ANSI 5.9.4.5"		| stream |	stream := WriteStream on: String new.	stream space.	self assert: stream contents first = Character space!
 
-testWriteStreamTab	"ANSI 5.9.4.6"		| stream |	stream := WriteStream on: String new.	stream tab.	self assert: stream contents first = Character tab! !
-!GRPlatformTest categoriesFor: #decodeUtf8Character:!private! !
-!GRPlatformTest categoriesFor: #platform!accessing!public! !
-!GRPlatformTest categoriesFor: #testAsNumber!public!tests! !
-!GRPlatformTest categoriesFor: #testBase64Decode!public!tests! !
-!GRPlatformTest categoriesFor: #testBindingOf!public!tests! !
-!GRPlatformTest categoriesFor: #testBlockContextWithPossibleArguments!public!tests! !
-!GRPlatformTest categoriesFor: #testBlockValuableProtocol!public!tests! !
-!GRPlatformTest categoriesFor: #testCharacterAsUnicode!public!tests! !
-!GRPlatformTest categoriesFor: #testCharacterTo!public!tests! !
-!GRPlatformTest categoriesFor: #testConvertToSmalltalkNewlines!public!tests! !
-!GRPlatformTest categoriesFor: #testDateArithmetic!public!tests! !
-!GRPlatformTest categoriesFor: #testDaysInMonthForYear!public!tests! !
-!GRPlatformTest categoriesFor: #testDigitValue!public!tests! !
-!GRPlatformTest categoriesFor: #testEmptyOrNil!public!tests! !
-!GRPlatformTest categoriesFor: #testGreaseIntegerOnCharacterAscii!public!tests! !
-!GRPlatformTest categoriesFor: #testGreaseIntegerOnCharacterBmp!public!tests! !
-!GRPlatformTest categoriesFor: #testGreaseIntegerOnCharacterLatin1!public!tests! !
-!GRPlatformTest categoriesFor: #testGreaseIntegerOnCharacterSmp!public!tests! !
-!GRPlatformTest categoriesFor: #testGreaseIntegerOnNumber!public!tests! !
-!GRPlatformTest categoriesFor: #testGreaseIntegerOnString!public!tests! !
-!GRPlatformTest categoriesFor: #testGreaseString!public!tests! !
-!GRPlatformTest categoriesFor: #testIfNil!public!tests! !
-!GRPlatformTest categoriesFor: #testIfTrueIfFalse!public!tests! !
-!GRPlatformTest categoriesFor: #testIsCharacter!public!tests! !
-!GRPlatformTest categoriesFor: #testIsCollection!public!tests! !
-!GRPlatformTest categoriesFor: #testIsKeyword!public!tests! !
-!GRPlatformTest categoriesFor: #testIsUnary!public!tests! !
-!GRPlatformTest categoriesFor: #testLabel!public!tests! !
-!GRPlatformTest categoriesFor: #testNewline!public!tests! !
-!GRPlatformTest categoriesFor: #testNumArgs!public!tests! !
-!GRPlatformTest categoriesFor: #testPathSeparator!public!tests! !
-!GRPlatformTest categoriesFor: #testPrintStringLimitedTo!public!tests! !
-!GRPlatformTest categoriesFor: #testRandomGenerator!public!tests/streams! !
-!GRPlatformTest categoriesFor: #testReadStreamAtEnd!public!tests/streams! !
-!GRPlatformTest categoriesFor: #testReadStreamContents!public!tests/streams! !
-!GRPlatformTest categoriesFor: #testReadStreamNegativeSkip!public!tests/streams! !
-!GRPlatformTest categoriesFor: #testReadStreamNext!public!tests/streams! !
-!GRPlatformTest categoriesFor: #testReadStreamPeek!public!tests/streams! !
-!GRPlatformTest categoriesFor: #testReadStreamPosition!public!tests/streams! !
-!GRPlatformTest categoriesFor: #testReadStreamReset!public!tests/streams! !
-!GRPlatformTest categoriesFor: #testReadStreamSeasideUpToAll!public!tests/streams/seaside! !
-!GRPlatformTest categoriesFor: #testReadStreamSkip!public!tests/streams! !
-!GRPlatformTest categoriesFor: #testReadStreamUpTo!public!tests/streams! !
-!GRPlatformTest categoriesFor: #testReadStreamUpToEnd!public!tests/streams! !
-!GRPlatformTest categoriesFor: #testReadWriteStreamAtEnd!public!tests/streams! !
-!GRPlatformTest categoriesFor: #testReadWriteStreamContents!public!tests/streams! !
-!GRPlatformTest categoriesFor: #testReadWriteStreamNegativeSkip!public!tests/streams! !
-!GRPlatformTest categoriesFor: #testReadWriteStreamNext!public!tests/streams! !
-!GRPlatformTest categoriesFor: #testReadWriteStreamNextPut!public!tests/streams! !
-!GRPlatformTest categoriesFor: #testReadWriteStreamNextPutAll!public!tests/streams! !
-!GRPlatformTest categoriesFor: #testReadWriteStreamPeek!public!tests/streams! !
-!GRPlatformTest categoriesFor: #testReadWriteStreamPosition!public!tests/streams! !
-!GRPlatformTest categoriesFor: #testReadWriteStreamReset!public!tests/streams! !
-!GRPlatformTest categoriesFor: #testReadWriteStreamSkip!public!tests/streams! !
-!GRPlatformTest categoriesFor: #testReadWriteStreamTab!public!tests/streams! !
-!GRPlatformTest categoriesFor: #testReadWriteStreamUpTo!public!tests/streams! !
-!GRPlatformTest categoriesFor: #testReadWriteStreamUpToEnd!public!tests/streams! !
-!GRPlatformTest categoriesFor: #testSeconds!public!tests! !
-!GRPlatformTest categoriesFor: #testSecureHashFor!public!tests! !
-!GRPlatformTest categoriesFor: #testShutDownList!public!tests/image! !
-!GRPlatformTest categoriesFor: #testStackDepth!public!tests! !
-!GRPlatformTest categoriesFor: #testStartUpList!public!tests/image! !
-!GRPlatformTest categoriesFor: #testSymbolAsMutator!public!tests! !
-!GRPlatformTest categoriesFor: #testTerminate!public!tests/processes! !
-!GRPlatformTest categoriesFor: #testThisContext!public!tests/processes! !
-!GRPlatformTest categoriesFor: #testTotalSeconds!public!tests! !
-!GRPlatformTest categoriesFor: #testVersion!public!tests! !
-!GRPlatformTest categoriesFor: #testWriteStreamContents!public!tests/streams! !
-!GRPlatformTest categoriesFor: #testWriteStreamCrLf!public!tests/streams! !
-!GRPlatformTest categoriesFor: #testWriteStreamNextPut!public!tests/streams! !
-!GRPlatformTest categoriesFor: #testWriteStreamNextPutAll!public!tests/streams! !
-!GRPlatformTest categoriesFor: #testWriteStreamPosition!public!tests/streams! !
-!GRPlatformTest categoriesFor: #testWriteStreamReset!public!tests/streams! !
-!GRPlatformTest categoriesFor: #testWriteStreamSpace!public!tests/streams! !
-!GRPlatformTest categoriesFor: #testWriteStreamTab!public!tests/streams! !
+testWriteStreamTab	"ANSI 5.9.4.6"		| stream |	stream := WriteStream on: String new.	stream tab.	self assert: stream contents first = Character tab!
+
+testWriteToFileInFolder	| bytes text |	bytes := ByteArray new.	self		writeToFile: bytes 		withFileNameDo:[ :fileName |			self assert: (GRPlatform current contentsOfFile: fileName binary: true) equals: bytes ].	bytes := #[80 104 39 110 103 108 117 105 32 109 103 108 119 39 110 97 102 104 32 67 116 104 117 108 104 117 32 82 39 108 121 101 104 32 119 103 97 104 39 110 97 103 108 32 102 104 116 97 103 110].	self 		writeToFile: bytes 		withFileNameDo:[ :fileName |			self assert:(GRPlatform current contentsOfFile: fileName binary: true) equals: bytes ].	text := String new.	self 		writeToFile: text 		withFileNameDo:[ :fileName |			self assert: (GRPlatform current contentsOfFile: fileName binary: false) equals: text ].			text := 'Ph''nglui mglw''nafh Cthulhu R''lyeh wgah''nagl fhtagn'.	self 		writeToFile: text 		withFileNameDo:[ :fileName |			self assert: (GRPlatform current contentsOfFile: fileName binary: false) equals: text ] ! !
+
+!GRPlatformTest categoriesForMethods!
+decodeUtf8Character:!private! !
+platform!accessing!public! !
+returnSender!private! !
+runCase!public!running! !
+testAsNumber!public!tests! !
+testBase64Decode!public!tests/encoding! !
+testBase64Encode!public!tests/encoding! !
+testBindingOf!public!tests! !
+testBlockContextWithPossibleArguments!public!tests! !
+testBlockValuableProtocol!public!tests! !
+testCharacterAsUnicode!public!tests! !
+testCharacterTo!public!tests! !
+testCompileAsciiString!public!tests/file library! !
+testCompileUnicodeString!public!tests/file library! !
+testConvertToSmalltalkNewlines!public!tests! !
+testDateArithmetic!public!tests! !
+testDaysInMonthForYear!public!tests! !
+testDigitValue!public!tests! !
+testEmptyOrNil!public!tests! !
+testFileExists!public!tests/files! !
+testGreaseAsByteArray!public!tests/encoding! !
+testGreaseByteAt!public!tests/encoding! !
+testGreaseBytesCount!public!tests/encoding! !
+testGreaseIntegerOnCharacterAscii!public!tests! !
+testGreaseIntegerOnCharacterBmp!public!tests! !
+testGreaseIntegerOnCharacterLatin1!public!tests! !
+testGreaseIntegerOnCharacterSmp!public!tests! !
+testGreaseIntegerOnNumber!public!tests! !
+testGreaseIntegerOnString!public!tests! !
+testGreaseString!public!tests! !
+testIfNil!public!tests! !
+testIfTrueIfFalse!public!tests! !
+testIsCharacter!public!tests! !
+testIsCollection!public!tests! !
+testIsKeyword!public!tests! !
+testIsUnary!public!tests! !
+testLabel!public!tests! !
+testNewline!public!tests! !
+testNewTemporaryFile!public!tests/files! !
+testNewTemporaryFileNamed!public!tests/files! !
+testNumArgs!public!tests! !
+testPathSeparator!public!tests! !
+testPrintStringLimitedTo!public!tests! !
+testRandomGenerator!public!tests/streams! !
+testReadStreamAtEnd!public!tests/streams! !
+testReadStreamContents!public!tests/streams! !
+testReadStreamNegativeSkip!public!tests/streams! !
+testReadStreamNext!public!tests/streams! !
+testReadStreamPeek!public!tests/streams! !
+testReadStreamPosition!public!tests/streams! !
+testReadStreamReset!public!tests/streams! !
+testReadStreamSeasideUpToAll!public!tests/streams/seaside! !
+testReadStreamSkip!public!tests/streams! !
+testReadStreamUpTo!public!tests/streams! !
+testReadStreamUpToEnd!public!tests/streams! !
+testReadWriteStreamAtEnd!public!tests/streams! !
+testReadWriteStreamContents!public!tests/streams! !
+testReadWriteStreamNegativeSkip!public!tests/streams! !
+testReadWriteStreamNext!public!tests/streams! !
+testReadWriteStreamNextPut!public!tests/streams! !
+testReadWriteStreamNextPutAll!public!tests/streams! !
+testReadWriteStreamPeek!public!tests/streams! !
+testReadWriteStreamPosition!public!tests/streams! !
+testReadWriteStreamReset!public!tests/streams! !
+testReadWriteStreamSkip!public!tests/streams! !
+testReadWriteStreamTab!public!tests/streams! !
+testReadWriteStreamUpTo!public!tests/streams! !
+testReadWriteStreamUpToEnd!public!tests/streams! !
+testSeconds!public!tests! !
+testSecureHashFor!public!tests! !
+testShutDownList!public!tests/image! !
+testSizeOfFile!public!tests/files! !
+testStackDepth!public!tests! !
+testStartUpList!public!tests/image! !
+testSymbolAsMutator!public!tests! !
+testTerminate!public!tests/processes! !
+testThisContext!public!tests! !
+testTotalSeconds!public!tests! !
+testVersion!public!tests! !
+testWriteStreamContents!public!tests/streams! !
+testWriteStreamCrLf!public!tests/streams! !
+testWriteStreamNextPut!public!tests/streams! !
+testWriteStreamNextPutAll!public!tests/streams! !
+testWriteStreamPosition!public!tests/streams! !
+testWriteStreamReset!public!tests/streams! !
+testWriteStreamSpace!public!tests/streams! !
+testWriteStreamTab!public!tests/streams! !
+testWriteToFileInFolder!public!tests/files! !
+!
 
