@@ -1,13 +1,17 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 GRObject subclass: #GRDelegatingStream
 	instanceVariableNames: 'stream'
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRDelegatingStream guid: (GUID fromString: '{4df4d4c8-4bd1-4ea9-bafd-7e17eba8733e}')!
+
+GRDelegatingStream guid: (GUID fromString: '{006d3617-4082-4339-b91d-33593246a678}')!
+
 GRDelegatingStream comment: 'A GRDelegatingStream is a wrapper around a write stream and defines common behavior.Instance Variables	stream:		<WriteStream>stream	- a WriteStream'!
-!GRDelegatingStream categoriesForClass!Grease-Core-Text! !
+
+!GRDelegatingStream categoriesForClass!Text! !
+
 !GRDelegatingStream methodsFor!
 
 atEnd	^ stream atEnd!
@@ -32,6 +36,8 @@ nextPutAll: aString	self subclassResponsibility!
 
 position	^ stream position!
 
+position: anInteger	^ stream position: anInteger!
+
 print: anObject	anObject printOn: self!
 
 reset	"Reset the stream"	stream reset!
@@ -41,25 +47,32 @@ size	^ stream size!
 space	self nextPut: Character space!
 
 tab	self nextPut: Character tab! !
-!GRDelegatingStream categoriesFor: #atEnd!public!testing! !
-!GRDelegatingStream categoriesFor: #contents!accessing!public! !
-!GRDelegatingStream categoriesFor: #crlf!public!streaming! !
-!GRDelegatingStream categoriesFor: #flush!accessing!public! !
-!GRDelegatingStream categoriesFor: #initializeOn:!initialization!public! !
-!GRDelegatingStream categoriesFor: #isStream!public!testing! !
-!GRDelegatingStream categoriesFor: #next!public!streaming! !
-!GRDelegatingStream categoriesFor: #next:!public!streaming! !
-!GRDelegatingStream categoriesFor: #nextPut:!public!streaming! !
-!GRDelegatingStream categoriesFor: #nextPutAll:!public!streaming! !
-!GRDelegatingStream categoriesFor: #position!accessing!public! !
-!GRDelegatingStream categoriesFor: #print:!public!streaming! !
-!GRDelegatingStream categoriesFor: #reset!accessing!public! !
-!GRDelegatingStream categoriesFor: #size!accessing!public! !
-!GRDelegatingStream categoriesFor: #space!public!streaming! !
-!GRDelegatingStream categoriesFor: #tab!public!streaming! !
+
+!GRDelegatingStream categoriesForMethods!
+atEnd!public!testing! !
+contents!accessing!public! !
+crlf!public!streaming! !
+flush!accessing!public! !
+initializeOn:!initialization!public! !
+isStream!public!testing! !
+next!public!streaming! !
+next:!public!streaming! !
+nextPut:!public!streaming! !
+nextPutAll:!public!streaming! !
+position!accessing!public! !
+position:!accessing!public! !
+print:!public!streaming! !
+reset!accessing!public! !
+size!accessing!public! !
+space!public!streaming! !
+tab!public!streaming! !
+!
 
 !GRDelegatingStream class methodsFor!
 
 on: aStream	^ self basicNew initializeOn: aStream! !
-!GRDelegatingStream class categoriesFor: #on:!instance creation!public! !
+
+!GRDelegatingStream class categoriesForMethods!
+on:!instance creation!public! !
+!
 

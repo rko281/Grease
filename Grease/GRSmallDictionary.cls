@@ -1,13 +1,17 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 GRObject subclass: #GRSmallDictionary
 	instanceVariableNames: 'size keys values'
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRSmallDictionary guid: (GUID fromString: '{f890efe5-2480-4923-955c-cec3c15a5617}')!
+
+GRSmallDictionary guid: (GUID fromString: '{4b9ae8b4-30ba-470d-8e75-d00a8e121d28}')!
+
 GRSmallDictionary comment: 'I am an implementation of a dictionary. Compared to other dictionaries I am very efficient for small sizes, speed- and space-wise. I also mantain the order in which elements are added when iterating. My implementation features some ideas from the RefactoringBrowser.'!
-!GRSmallDictionary categoriesForClass!Grease-Core-Collections! !
+
+!GRSmallDictionary categoriesForClass!Collections! !
+
 !GRSmallDictionary methodsFor!
 
 add: anAssociation	self at: anAssociation key put: anAssociation value.	^ anAssociation!
@@ -60,11 +64,11 @@ notEmpty	^ size ~= 0!
 
 postCopy	super postCopy.	keys := keys copy.	values := values copy!
 
-printOn: aStream	super printOn: aStream.		aStream nextPut: $(.	self size <= 100		ifTrue: [			| first |			first := true.			self keysAndValuesDo: [ :key :value |				"keysAndValuesDo:separatedBy: would be nice"				first					ifTrue: [ first := false ]					ifFalse: [ aStream space ].				aStream					print: key;					nextPutAll: '->';									print: value ] ]		ifFalse: [			aStream				nextPutAll: 'size ';				print: self size ].	aStream nextPut: $)	!
+printOn: aStream	super printOn: aStream.	aStream nextPut: $(.	self size <= 100		ifTrue: [			| first |			first := true.			self keysAndValuesDo: [ :key :value |				"keysAndValuesDo:separatedBy: would be nice"				first					ifTrue: [ first := false ]					ifFalse: [ aStream space ].				aStream					print: key;					nextPutAll: '->';					print: value ] ]		ifFalse: [			aStream				nextPutAll: 'size ';				print: self size ].	aStream nextPut: $)!
 
 privateAt: aKey put: aValue	size = keys size ifTrue: [ self grow ].	keys at: (size := size + 1) put: aKey.	^ values at: size put: aValue!
 
-removeIndex: index	| value |	value := values at: index.	index to: size - 1 do:			[ :i | 			keys at: i put: (keys at: i + 1).			values at: i put: (values at: i + 1) ].	keys at: size put: nil.	values at: size put: nil.	size := size - 1.	^ value!
+removeIndex: index	| value |	value := values at: index.	index to: size - 1 do:			[ :i |			keys at: i put: (keys at: i + 1).			values at: i put: (values at: i + 1) ].	keys at: size put: nil.	values at: size put: nil.	size := size - 1.	^ value!
 
 removeKey: aKey	"Remove aKey from the receiver, raise an exception if the element is missing."	^ self removeKey: aKey ifAbsent: [ self errorKeyNotFound ]!
 
@@ -77,40 +81,43 @@ sorted	^ self values sorted!
 sorted: aTwoArgumentBlock	^ self values sorted: aTwoArgumentBlock!
 
 values	^ values copyFrom: 1 to: size! !
-!GRSmallDictionary categoriesFor: #add:!accessing!public! !
-!GRSmallDictionary categoriesFor: #addAll:!adding!public! !
-!GRSmallDictionary categoriesFor: #any!accessing!public! !
-!GRSmallDictionary categoriesFor: #associations!accessing!public! !
-!GRSmallDictionary categoriesFor: #associationsDo:!enumerating!public! !
-!GRSmallDictionary categoriesFor: #at:!accessing!public! !
-!GRSmallDictionary categoriesFor: #at:ifAbsent:!accessing!public! !
-!GRSmallDictionary categoriesFor: #at:ifAbsentPut:!accessing!public! !
-!GRSmallDictionary categoriesFor: #at:ifPresent:!accessing!public! !
-!GRSmallDictionary categoriesFor: #at:put:!accessing!public! !
-!GRSmallDictionary categoriesFor: #do:!enumerating!public! !
-!GRSmallDictionary categoriesFor: #errorEmptyCollection!private! !
-!GRSmallDictionary categoriesFor: #errorKeyNotFound!private! !
-!GRSmallDictionary categoriesFor: #findIndexFor:!private! !
-!GRSmallDictionary categoriesFor: #grow!private! !
-!GRSmallDictionary categoriesFor: #includesKey:!public!testing! !
-!GRSmallDictionary categoriesFor: #initialize:!initialization!public! !
-!GRSmallDictionary categoriesFor: #isCollection!public!testing! !
-!GRSmallDictionary categoriesFor: #isEmpty!public!testing! !
-!GRSmallDictionary categoriesFor: #keys!enumerating!public! !
-!GRSmallDictionary categoriesFor: #keysAndValuesDo:!enumerating!public! !
-!GRSmallDictionary categoriesFor: #keysDo:!enumerating!public! !
-!GRSmallDictionary categoriesFor: #noneSatisfy:!enumerating!public! !
-!GRSmallDictionary categoriesFor: #notEmpty!public!testing! !
-!GRSmallDictionary categoriesFor: #postCopy!copying!public! !
-!GRSmallDictionary categoriesFor: #printOn:!printing!public! !
-!GRSmallDictionary categoriesFor: #privateAt:put:!private! !
-!GRSmallDictionary categoriesFor: #removeIndex:!private! !
-!GRSmallDictionary categoriesFor: #removeKey:!accessing!public! !
-!GRSmallDictionary categoriesFor: #removeKey:ifAbsent:!accessing!public! !
-!GRSmallDictionary categoriesFor: #size!accessing!public! !
-!GRSmallDictionary categoriesFor: #sorted!public!sorting! !
-!GRSmallDictionary categoriesFor: #sorted:!public!sorting! !
-!GRSmallDictionary categoriesFor: #values!enumerating!public! !
+
+!GRSmallDictionary categoriesForMethods!
+add:!accessing!public! !
+addAll:!adding!public! !
+any!accessing!public! !
+associations!accessing!public! !
+associationsDo:!enumerating!public! !
+at:!accessing!public! !
+at:ifAbsent:!accessing!public! !
+at:ifAbsentPut:!accessing!public! !
+at:ifPresent:!accessing!public! !
+at:put:!accessing!public! !
+do:!enumerating!public! !
+errorEmptyCollection!private! !
+errorKeyNotFound!private! !
+findIndexFor:!private! !
+grow!private! !
+includesKey:!public!testing! !
+initialize:!initialization!public! !
+isCollection!public!testing! !
+isEmpty!public!testing! !
+keys!enumerating!public! !
+keysAndValuesDo:!enumerating!public! !
+keysDo:!enumerating!public! !
+noneSatisfy:!enumerating!public! !
+notEmpty!public!testing! !
+postCopy!copying!public! !
+printOn:!printing!public! !
+privateAt:put:!private! !
+removeIndex:!private! !
+removeKey:!accessing!public! !
+removeKey:ifAbsent:!accessing!public! !
+size!accessing!public! !
+sorted!public!sorting! !
+sorted:!public!sorting! !
+values!enumerating!public! !
+!
 
 !GRSmallDictionary class methodsFor!
 
@@ -119,7 +126,10 @@ new	^ self new: 3!
 new: anInteger	^ self basicNew initialize: anInteger; yourself!
 
 withAll: aDictionary	^ (self new: aDictionary size)		addAll: aDictionary;		yourself! !
-!GRSmallDictionary class categoriesFor: #new!instance creation!public! !
-!GRSmallDictionary class categoriesFor: #new:!instance creation!public! !
-!GRSmallDictionary class categoriesFor: #withAll:!instance creation!public! !
+
+!GRSmallDictionary class categoriesForMethods!
+new!instance creation!public! !
+new:!instance creation!public! !
+withAll:!instance creation!public! !
+!
 

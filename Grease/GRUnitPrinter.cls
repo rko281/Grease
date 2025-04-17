@@ -1,13 +1,17 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 GRPrinter subclass: #GRUnitPrinter
 	instanceVariableNames: 'integerPrinter fractionPrinter units base'
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRUnitPrinter guid: (GUID fromString: '{fa93ad36-4a70-404f-b89e-ccb0d87c2872}')!
+
+GRUnitPrinter guid: (GUID fromString: '{f545db87-7aea-496f-bc30-6cfe89fcedc3}')!
+
 GRUnitPrinter comment: ''!
-!GRUnitPrinter categoriesForClass!Grease-Core-Text! !
+
+!GRUnitPrinter categoriesForClass!Text! !
+
 !GRUnitPrinter methodsFor!
 
 base: anInteger	base := anInteger!
@@ -23,16 +27,22 @@ print: anObject on: aStream	anObject = 1		ifTrue: [ ^ self print: anObject uni
 print: aNumber unit: aString on: aStream	(units first = aString or: [ units second = aString ])		ifTrue: [ integerPrinter print: aNumber on: aStream ]		ifFalse: [ fractionPrinter print: aNumber on: aStream ].	aStream nextPut: $ ; nextPutAll: aString!
 
 units: anArray	units := anArray! !
-!GRUnitPrinter categoriesFor: #base:!accessing!public! !
-!GRUnitPrinter categoriesFor: #fractionPrinter:!accessing!public! !
-!GRUnitPrinter categoriesFor: #initialize!initialization!public! !
-!GRUnitPrinter categoriesFor: #integerPrinter:!accessing!public! !
-!GRUnitPrinter categoriesFor: #print:on:!printing!public! !
-!GRUnitPrinter categoriesFor: #print:unit:on:!printing!public! !
-!GRUnitPrinter categoriesFor: #units:!accessing!public! !
+
+!GRUnitPrinter categoriesForMethods!
+base:!accessing!public! !
+fractionPrinter:!accessing!public! !
+initialize!initialization!public! !
+integerPrinter:!accessing!public! !
+print:on:!printing!public! !
+print:unit:on:!printing!public! !
+units:!accessing!public! !
+!
 
 !GRUnitPrinter class methodsFor!
 
-base: anInteger units: anArray	^ self new 		base: anInteger;		units: anArray;		yourself! !
-!GRUnitPrinter class categoriesFor: #base:units:!instance creation!public! !
+base: anInteger units: anArray	^ self new		base: anInteger;		units: anArray;		yourself! !
+
+!GRUnitPrinter class categoriesForMethods!
+base:units:!instance creation!public! !
+!
 

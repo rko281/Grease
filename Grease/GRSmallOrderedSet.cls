@@ -1,13 +1,17 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 GRObject subclass: #GRSmallOrderedSet
 	instanceVariableNames: 'size table'
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRSmallOrderedSet guid: (GUID fromString: '{b24983e4-28f4-42af-b732-61b8452a322f}')!
+
+GRSmallOrderedSet guid: (GUID fromString: '{a5e3b0d6-3baa-4c80-aede-77da6f4b2720}')!
+
 GRSmallOrderedSet comment: 'I am an implementation of a dictionary. Compared to other dictionaries I am very efficient for small sizes, speed- and space-wise. I also mantain the order in which elements are added when iterating.'!
-!GRSmallOrderedSet categoriesForClass!Grease-Core-Collections! !
+
+!GRSmallOrderedSet categoriesForClass!Collections! !
+
 !GRSmallOrderedSet methodsFor!
 
 add: newObject	(self findIndexFor: newObject) = 0		ifTrue: [ self privateAdd: newObject ].	^ newObject!
@@ -34,7 +38,7 @@ isEmpty	^ size = 0!
 
 postCopy	super postCopy.	table := table copy!
 
-privateAdd: newObject	size = table size ifTrue: [ self grow ].	table at: (size := size + 1) put: newObject.!
+privateAdd: newObject	size = table size ifTrue: [ self grow ].	table at: (size := size + 1) put: newObject!
 
 remove: anObject	^ self remove: anObject ifAbsent: [ self errorNotFound ]!
 
@@ -43,23 +47,26 @@ remove: anObject ifAbsent: aNiladicBlock	| index |	index := self findIndexFor:
 removeIndex: index	table at: index put: nil.	index to: size - 1 do: [ :i |		table at: i put: (table at: i + 1) ].	size := size - 1!
 
 size	^ size! !
-!GRSmallOrderedSet categoriesFor: #add:!adding!public! !
-!GRSmallOrderedSet categoriesFor: #addAll:!adding!public! !
-!GRSmallOrderedSet categoriesFor: #do:!enumerating!public! !
-!GRSmallOrderedSet categoriesFor: #do:separatedBy:!enumerating!public! !
-!GRSmallOrderedSet categoriesFor: #errorNotFound!private !public! !
-!GRSmallOrderedSet categoriesFor: #findIndexFor:!private !public! !
-!GRSmallOrderedSet categoriesFor: #grow!private !public! !
-!GRSmallOrderedSet categoriesFor: #includes:!public!testing! !
-!GRSmallOrderedSet categoriesFor: #initialize:!initialization!public! !
-!GRSmallOrderedSet categoriesFor: #isCollection!public!testing! !
-!GRSmallOrderedSet categoriesFor: #isEmpty!public!testing! !
-!GRSmallOrderedSet categoriesFor: #postCopy!copying!public! !
-!GRSmallOrderedSet categoriesFor: #privateAdd:!private !public! !
-!GRSmallOrderedSet categoriesFor: #remove:!public!removing! !
-!GRSmallOrderedSet categoriesFor: #remove:ifAbsent:!public!removing! !
-!GRSmallOrderedSet categoriesFor: #removeIndex:!private !public! !
-!GRSmallOrderedSet categoriesFor: #size!accessing!public! !
+
+!GRSmallOrderedSet categoriesForMethods!
+add:!adding!public! !
+addAll:!adding!public! !
+do:!enumerating!public! !
+do:separatedBy:!enumerating!public! !
+errorNotFound!private !public! !
+findIndexFor:!private !public! !
+grow!private !public! !
+includes:!public!testing! !
+initialize:!initialization!public! !
+isCollection!public!testing! !
+isEmpty!public!testing! !
+postCopy!copying!public! !
+privateAdd:!private !public! !
+remove:!public!removing! !
+remove:ifAbsent:!public!removing! !
+removeIndex:!private !public! !
+size!accessing!public! !
+!
 
 !GRSmallOrderedSet class methodsFor!
 
@@ -68,7 +75,10 @@ new	^ self new: 3!
 new: anInteger	^ self basicNew initialize: anInteger; yourself!
 
 withAll: aDictionary	^ (self new: aDictionary size)		addAll: aDictionary;		yourself! !
-!GRSmallOrderedSet class categoriesFor: #new!instance creation!public! !
-!GRSmallOrderedSet class categoriesFor: #new:!instance creation!public! !
-!GRSmallOrderedSet class categoriesFor: #withAll:!instance creation!public! !
+
+!GRSmallOrderedSet class categoriesForMethods!
+new!instance creation!public! !
+new:!instance creation!public! !
+withAll:!instance creation!public! !
+!
 

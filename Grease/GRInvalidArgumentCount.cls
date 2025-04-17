@@ -1,10 +1,14 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 GRError subclass: #GRInvalidArgumentCount
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRInvalidArgumentCount guid: (GUID fromString: '{8d1b683c-43ce-453f-9225-39e82a5a35d1}')!
-GRInvalidArgumentCount comment: 'GRNotification subclass: #GRNotificationBasedDynamicVariable	instanceVariableNames: ''''	classVariableNames: ''''	package: ''Grease-Core-Utilities'''!
-!GRInvalidArgumentCount categoriesForClass!Grease-Core-Utilities! !
+
+GRInvalidArgumentCount guid: (GUID fromString: '{9a6fac08-4e7d-4442-bf43-3f975fecc23d}')!
+
+GRInvalidArgumentCount comment: 'Signaled whenever a message is sent with the incorrect number of arguments.'!
+
+!GRInvalidArgumentCount categoriesForClass!Utilities! !
+

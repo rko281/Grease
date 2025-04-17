@@ -1,13 +1,17 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 GRPlatform subclass: #GRDolphinPlatform
 	instanceVariableNames: ''
 	classVariableNames: 'SmtpServer UrlTable XmlTable'
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRDolphinPlatform guid: (GUID fromString: '{1edc8b9c-2d1c-494f-b8b3-e4ec6f548bac}')!
+
 GRDolphinPlatform comment: ''!
+
 !GRDolphinPlatform categoriesForClass!Unclassified! !
+
 !GRDolphinPlatform methodsFor!
 
 addToShutDownList: anObject
@@ -59,6 +63,14 @@ base64Decode: aString
 
 	^(ByteArray fromBase64String: aString) asString!
 
+base64Encode: aByteArray
+
+	| stream |
+
+	stream := WriteStream on: (String new: aByteArray size * 2).
+	aByteArray printBase64On: stream.
+	^stream contents!
+
 categoryNamed: aString
 	"Private - Answer the MethodCategory named aString."
 
@@ -92,6 +104,8 @@ convertToSmalltalkNewlines: aString
 
 	^aString ifNotNil: [aString withNormalizedLineDelimiters]!
 
+deleteFile: aPathString	File delete: aPathString!
+
 deliverMailFrom: fromAddress to: recipientList text: messageText
 
 	CDOIMessage new
@@ -102,9 +116,15 @@ deliverMailFrom: fromAddress to: recipientList text: messageText
 		configuration: self smtpConfiguration;
 		Send!
 
+directoriesIn: aPathString	"Answer a collection of absolute paths for all the directories (no files) in the directory given by aPathString	must not include directory names that start with ."	self subclassResponsibility!
+
 ensureExistenceOfFolder: aString
 	"creates a folder named aString in the image directory"
 	File createDirectory: (FileLocator imageRelative localFileSpecFor: aString)!
+
+fileExists: aString
+
+	^File exists: aString!
 
 filesIn: aPathString
 	"Return a collection of absolute paths for all the files (no directories) in the directory given by aPathString
@@ -142,6 +162,23 @@ includesUnsafeXmlCharacter: aString
 				inSet: XmlTable
 				startingAt: 1) ~= 0]!
 
+integerAsByteArray: anInteger
+
+	"1 - no leading zeroes
+	2 - Dolphin encoding for negatives differs from Pharo; raise an Error for the moment"
+
+	| stream started |
+
+	anInteger negative ifTrue: [Error notYetImplemented].
+
+	stream := ByteArray new writeStream.
+	started := false.
+	anInteger byteSize to: 1 by: -1 do: [:digitIndex || byte |
+		byte := anInteger byteAt: digitIndex.
+		started ifFalse: [started := byte > 0].
+		started ifTrue: [stream nextPut: byte]].
+	^ stream contents!
+
 isProcessTerminated: aProcess
 	"Return a boolean indicating whether aProcess has been terminated."
 	^ aProcess isTerminated!
@@ -163,6 +200,16 @@ newRandom
 	
 	^Random new!
 
+newTemporaryFile	"Create a new temporary file in the systems temp directory and answer its pathString.	It is the users responsibility to delete or move the file, it will not be cleaned up automatically 	(unless the host system has a policy for it)."	^ File temporaryFilename!
+
+newTemporaryFileNamed: aName	"Create a new temporary file in the systems temp directory and answer its pathString.	It is the users responsibility to delete or move the file, it will not be cleaned up automatically 	(unless the host system has a policy for it)."	| path file |
+
+	path := File composePath: File tempPath subPath: aName.
+	(File exists: path) ifTrue: [self error: 'file exists'].
+	file := File open: path mode: #create.
+	file close.
+	^path!
+
 openDebuggerOn: anError
 	
 	^SessionManager current onUnhandledError: anError!
@@ -170,6 +217,8 @@ openDebuggerOn: anError
 pathSeparator
 
 	^File pathDelimiter asString!
+
+readFileStreamOn: aString do: aBlock binary: aBoolean	self subclassResponsibility!
 
 readWriteByteStream
 	"ByteArray based read write stream"
@@ -214,9 +263,17 @@ removeSelector: aSymbol from: aClass
 secureHashFor: aString
 	^ SecureHashAlgorithm new hashMessageReturningBytes: aString!
 
+selectorOfPragma: aPragma
+	^ aPragma selector!
+
 semaphoreClass
 	"used by Gemstone/S traditional Semaphores which cannot be persisted"
 	^Semaphore!
+
+sizeOfFile: aString
+	| file |
+	file := File open: aString mode: #read.
+	^[file size] ensure: [file close]!
 
 smtpConfiguration
 
@@ -268,46 +325,66 @@ write: aStringOrByteArray toFile: aFileNameString inFolder: aFolderString
 	folder := FileLocator imageRelative localFileSpecFor: aFolderString.
 	fullFilePath := File fullPathOf: aFileNameString relativeTo: folder.
 	stream := FileStream write: fullFilePath text: aStringOrByteArray isString.
-	[stream nextPutAll: aStringOrByteArray] ensure: [stream close]! !
-!GRDolphinPlatform categoriesFor: #addToShutDownList:!public!startup! !
-!GRDolphinPlatform categoriesFor: #addToStartUpList:!public!startup! !
-!GRDolphinPlatform categoriesFor: #asMethodReturningByteArray:named:!file library!public! !
-!GRDolphinPlatform categoriesFor: #asMethodReturningByteArrayLiteral:named:!private-file library!public! !
-!GRDolphinPlatform categoriesFor: #asMethodReturningByteArrayWithCache:named:!private-file library!public! !
-!GRDolphinPlatform categoriesFor: #base64Decode:!encoding!public! !
-!GRDolphinPlatform categoriesFor: #categoryNamed:!file library!public! !
-!GRDolphinPlatform categoriesFor: #compile:into:classified:!file library!public! !
-!GRDolphinPlatform categoriesFor: #contentsOfFile:binary:!file library!public! !
-!GRDolphinPlatform categoriesFor: #convertToSmalltalkNewlines:!file library!public! !
-!GRDolphinPlatform categoriesFor: #deliverMailFrom:to:text:!email!public! !
-!GRDolphinPlatform categoriesFor: #ensureExistenceOfFolder:!file library!public! !
-!GRDolphinPlatform categoriesFor: #filesIn:!file library!public! !
-!GRDolphinPlatform categoriesFor: #findFirstInString:inSet:startingAt:!private!testing! !
-!GRDolphinPlatform categoriesFor: #includesUnsafeUrlCharacter:!public!testing! !
-!GRDolphinPlatform categoriesFor: #includesUnsafeXmlCharacter:!public!testing! !
-!GRDolphinPlatform categoriesFor: #isProcessTerminated:!processes!public! !
-!GRDolphinPlatform categoriesFor: #label!public! !
-!GRDolphinPlatform categoriesFor: #localNameOf:!file library!public! !
-!GRDolphinPlatform categoriesFor: #newline!public! !
-!GRDolphinPlatform categoriesFor: #newRandom!factory!public! !
-!GRDolphinPlatform categoriesFor: #openDebuggerOn:!exceptions!public! !
-!GRDolphinPlatform categoriesFor: #pathSeparator!file library!public! !
-!GRDolphinPlatform categoriesFor: #readWriteByteStream!factory!public! !
-!GRDolphinPlatform categoriesFor: #readWriteCharacterStream!factory!public! !
-!GRDolphinPlatform categoriesFor: #reducedConflictDictionary!public! !
-!GRDolphinPlatform categoriesFor: #removeFromShutDownList:!public!startup! !
-!GRDolphinPlatform categoriesFor: #removeFromStartUpList:!public!startup! !
-!GRDolphinPlatform categoriesFor: #removeSelector:from:!file library!public! !
-!GRDolphinPlatform categoriesFor: #secureHashFor:!cryptography!public! !
-!GRDolphinPlatform categoriesFor: #semaphoreClass!factory!public! !
-!GRDolphinPlatform categoriesFor: #smtpConfiguration!email!public! !
-!GRDolphinPlatform categoriesFor: #smtpServer!private-email!public! !
-!GRDolphinPlatform categoriesFor: #stackDepth!exceptions!public! !
-!GRDolphinPlatform categoriesFor: #terminateProcess:!processes!public! !
-!GRDolphinPlatform categoriesFor: #thisContext!processes!public! !
-!GRDolphinPlatform categoriesFor: #useByteArrayLiterals!private-file library!public! !
-!GRDolphinPlatform categoriesFor: #weakDictionaryOfSize:!factory!public! !
-!GRDolphinPlatform categoriesFor: #write:toFile:inFolder:!file library!public! !
+	[stream nextPutAll: aStringOrByteArray] ensure: [stream close]!
+
+writeFileStreamOn: aString do: aBlock binary: aBoolean	
+	| stream |
+
+	stream := FileStream write: aString mode: #truncate check: false text: aBoolean not.
+	^[aBlock value: stream] ensure: [stream close]! !
+
+!GRDolphinPlatform categoriesForMethods!
+addToShutDownList:!public!startup! !
+addToStartUpList:!public!startup! !
+asMethodReturningByteArray:named:!file library!public! !
+asMethodReturningByteArrayLiteral:named:!private-file library!public! !
+asMethodReturningByteArrayWithCache:named:!private-file library!public! !
+base64Decode:!encoding!public! !
+base64Encode:!encoding!public! !
+categoryNamed:!file library!public! !
+compile:into:classified:!file library!public! !
+contentsOfFile:binary:!file library!public! !
+convertToSmalltalkNewlines:!file library!public! !
+deleteFile:!file library!public! !
+deliverMailFrom:to:text:!email!public! !
+directoriesIn:!file library!public! !
+ensureExistenceOfFolder:!file library!public! !
+fileExists:!file library!public! !
+filesIn:!file library!public! !
+findFirstInString:inSet:startingAt:!private!testing! !
+includesUnsafeUrlCharacter:!public!testing! !
+includesUnsafeXmlCharacter:!public!testing! !
+integerAsByteArray:!encoding!public! !
+isProcessTerminated:!processes!public! !
+label!public! !
+localNameOf:!file library!public! !
+newline!public! !
+newRandom!factory!public! !
+newTemporaryFile!file library!public! !
+newTemporaryFileNamed:!file library!public! !
+openDebuggerOn:!exceptions!public! !
+pathSeparator!file library!public! !
+readFileStreamOn:do:binary:!file library!public! !
+readWriteByteStream!factory!public! !
+readWriteCharacterStream!factory!public! !
+reducedConflictDictionary!public! !
+removeFromShutDownList:!public!startup! !
+removeFromStartUpList:!public!startup! !
+removeSelector:from:!file library!public! !
+secureHashFor:!cryptography!public! !
+selectorOfPragma:!private! !
+semaphoreClass!factory!public! !
+sizeOfFile:!file library!public! !
+smtpConfiguration!email!public! !
+smtpServer!private-email!public! !
+stackDepth!exceptions!public! !
+terminateProcess:!processes!public! !
+thisContext!processes!public! !
+useByteArrayLiterals!private-file library!public! !
+weakDictionaryOfSize:!factory!public! !
+write:toFile:inFolder:!file library!public! !
+writeFileStreamOn:do:binary:!file library!public! !
+!
 
 !GRDolphinPlatform class methodsFor!
 
@@ -351,12 +428,15 @@ uninitialize
 
 unload
 	self unselect! !
-!GRDolphinPlatform class categoriesFor: #initialize!class initialization!public! !
-!GRDolphinPlatform class categoriesFor: #initializeUrlTable!class initialization!public! !
-!GRDolphinPlatform class categoriesFor: #initializeXmlTable!class initialization!public! !
-!GRDolphinPlatform class categoriesFor: #isSmtpServerSet!public! !
-!GRDolphinPlatform class categoriesFor: #setSmtpServer!public! !
-!GRDolphinPlatform class categoriesFor: #smtpServer!public! !
-!GRDolphinPlatform class categoriesFor: #uninitialize!class initialization!public! !
-!GRDolphinPlatform class categoriesFor: #unload!class initialization!public! !
+
+!GRDolphinPlatform class categoriesForMethods!
+initialize!class initialization!public! !
+initializeUrlTable!class initialization!public! !
+initializeXmlTable!class initialization!public! !
+isSmtpServerSet!public! !
+setSmtpServer!public! !
+smtpServer!public! !
+uninitialize!class initialization!public! !
+unload!class initialization!public! !
+!
 

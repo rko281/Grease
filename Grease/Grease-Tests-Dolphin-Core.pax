@@ -5,7 +5,6 @@ package paxVersion: 1;
 
 package basicPackageVersion: '8'.
 
-
 package classNames
 	add: #GRDolphinCodecTest;
 	add: #GRDolphinColorTest;
@@ -55,34 +54,36 @@ TestCase subclass: #GRDolphinCodecTest
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 TestCase subclass: #GRDolphinColorTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRStringTest subclass: #GRDolphinStringTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRCountingStreamTest subclass: #GRDolphinCountingStreamTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRPlatformTest subclass: #GRDolphinPlatformTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRUtf8CodecTest subclass: #GRDolphinUtf8CodecTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-
-"Global Aliases"!
-
 
 "Loose Methods"!
 
@@ -93,7 +94,10 @@ isAbstract
 	"Use Dolphin-specific subclass"
 
 	^self == ##(self)! !
-!GRCountingStreamTest class categoriesFor: #isAbstract!public! !
+
+!GRCountingStreamTest class categoriesForMethods!
+isAbstract!public! !
+!
 
 !GRPackage class methodsFor!
 
@@ -105,7 +109,10 @@ greaseTestsDolphinCore
 		addDependency: 'Grease-Tests-Core';
 		url: #seasideUrl;
 		yourself! !
-!GRPackage class categoriesFor: #greaseTestsDolphinCore!*grease-tests-pharo-core!public! !
+
+!GRPackage class categoriesForMethods!
+greaseTestsDolphinCore!*grease-tests-pharo-core!public! !
+!
 
 !GRPlatformTest class methodsFor!
 
@@ -114,14 +121,20 @@ isAbstract
 	"Use Dolphin-specific subclass"
 
 	^self == ##(self)! !
-!GRPlatformTest class categoriesFor: #isAbstract!public! !
+
+!GRPlatformTest class categoriesForMethods!
+isAbstract!public! !
+!
 
 !GRSmallOrderedSetTest class methodsFor!
 
 shouldInheritSelectors
 
 	^false! !
-!GRSmallOrderedSetTest class categoriesFor: #shouldInheritSelectors!public! !
+
+!GRSmallOrderedSetTest class categoriesForMethods!
+shouldInheritSelectors!public! !
+!
 
 !GRStringTest class methodsFor!
 
@@ -143,9 +156,12 @@ testSelectors
 	^super testSelectors reject: [ :each | self subStringsTestSelectors includes: each]
 
 ! !
-!GRStringTest class categoriesFor: #allTestSelectors!public! !
-!GRStringTest class categoriesFor: #subStringsTestSelectors!public! !
-!GRStringTest class categoriesFor: #testSelectors!public! !
+
+!GRStringTest class categoriesForMethods!
+allTestSelectors!public! !
+subStringsTestSelectors!public! !
+testSelectors!public! !
+!
 
 !GRUtf8CodecTest class methodsFor!
 
@@ -154,7 +170,10 @@ isAbstract
 	"Use Dolphin-specific subclass"
 
 	^self == ##(self)! !
-!GRUtf8CodecTest class categoriesFor: #isAbstract!public! !
+
+!GRUtf8CodecTest class categoriesForMethods!
+isAbstract!public! !
+!
 
 !MessageSend methodsFor!
 
@@ -163,8 +182,11 @@ value: aFirstObject valueX: aSecondObject
 
 valueX: anObject
 	^ self valueWithArguments: (Array with: anObject)! !
-!MessageSend categoriesFor: #value:valueX:!*seaside-squeak-platform!public! !
-!MessageSend categoriesFor: #valueX:!*seaside-squeak-platform!public! !
+
+!MessageSend categoriesForMethods!
+value:valueX:!*seaside-squeak-platform!public! !
+valueX:!*seaside-squeak-platform!public! !
+!
 
 "End of package definition"!
 

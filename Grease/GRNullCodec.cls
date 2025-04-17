@@ -1,32 +1,39 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 GRCodec subclass: #GRNullCodec
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRNullCodec guid: (GUID fromString: '{ffbdd2b9-25aa-41aa-bdb3-b614654e8dcc}')!
+
+GRNullCodec guid: (GUID fromString: '{c55fe7f8-f386-40a0-ad66-27dd6c1ce5d3}')!
+
 GRNullCodec comment: 'The null codec always returns the original streams. It assumes that the outside world uses the same encoding as the inside world. This is highly efficient as no transformation is applied to the data, but has its drawbacks.'!
-!GRNullCodec categoriesForClass!Grease-Core-Text! !
+
+!GRNullCodec categoriesForClass!Text! !
+
 !GRNullCodec methodsFor!
 
 decode: aString	"Overridden for efficiency."	^ aString!
 
-decoderFor: aReadStream 	"wrap to avoid String vs ByteArray issues"	^ GRNullCodecStream on: aReadStream!
+decoderFor: aReadStream	"wrap to avoid String vs ByteArray issues"	^ GRNullCodecStream on: aReadStream!
 
 encode: aString	"Overridden for efficiency."	^ aString!
 
-encoderFor: aWriteStream 	"wrap to avoid String vs ByteArray issues"	^ GRNullCodecStream on: aWriteStream!
+encoderFor: aWriteStream	"wrap to avoid String vs ByteArray issues"	^ GRNullCodecStream on: aWriteStream!
 
 name	^ GRNullCodec codecName!
 
-url	"The selfish method. Let's do it with ourselves."		^ self! !
-!GRNullCodec categoriesFor: #decode:!convenience!public! !
-!GRNullCodec categoriesFor: #decoderFor:!conversion!public! !
-!GRNullCodec categoriesFor: #encode:!convenience!public! !
-!GRNullCodec categoriesFor: #encoderFor:!conversion!public! !
-!GRNullCodec categoriesFor: #name!accessing!public! !
-!GRNullCodec categoriesFor: #url!accessing!public! !
+url	"The selfish method. Let's do it with ourselves."	^ self! !
+
+!GRNullCodec categoriesForMethods!
+decode:!convenience!public! !
+decoderFor:!conversion!public! !
+encode:!convenience!public! !
+encoderFor:!conversion!public! !
+name!accessing!public! !
+url!accessing!public! !
+!
 
 !GRNullCodec class methodsFor!
 
@@ -37,8 +44,11 @@ codecName	^ '(none)'!
 codecs	^ Array with: self new!
 
 supportsEncoding: aString	^ aString isNil! !
-!GRNullCodec class categoriesFor: #basicForEncoding:!private! !
-!GRNullCodec class categoriesFor: #codecName!accessing!public! !
-!GRNullCodec class categoriesFor: #codecs!accessing!public! !
-!GRNullCodec class categoriesFor: #supportsEncoding:!public!testing! !
+
+!GRNullCodec class categoriesForMethods!
+basicForEncoding:!private! !
+codecName!accessing!public! !
+codecs!accessing!public! !
+supportsEncoding:!public!testing! !
+!
 

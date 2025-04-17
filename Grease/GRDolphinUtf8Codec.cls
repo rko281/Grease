@@ -1,13 +1,17 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 GRCodec subclass: #GRDolphinUtf8Codec
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRDolphinUtf8Codec guid: (GUID fromString: '{297842bb-dc96-43b2-aa89-f8d24dfd52b7}')!
+
 GRDolphinUtf8Codec comment: 'A WAUtf8Codec is a WACodec optimized for UTF-8.'!
+
 !GRDolphinUtf8Codec categoriesForClass!Unclassified! !
+
 !GRDolphinUtf8Codec methodsFor!
 
 decode: aString
@@ -34,12 +38,15 @@ name
 
 url
 	^ self! !
-!GRDolphinUtf8Codec categoriesFor: #decode:!decoding!public! !
-!GRDolphinUtf8Codec categoriesFor: #decoderFor:!decoding!public! !
-!GRDolphinUtf8Codec categoriesFor: #encode:!convenience!public! !
-!GRDolphinUtf8Codec categoriesFor: #encoderFor:!decoding!public! !
-!GRDolphinUtf8Codec categoriesFor: #name!accessing!public! !
-!GRDolphinUtf8Codec categoriesFor: #url!accessing!public! !
+
+!GRDolphinUtf8Codec categoriesForMethods!
+decode:!decoding!public! !
+decoderFor:!decoding!public! !
+encode:!convenience!public! !
+encoderFor:!decoding!public! !
+name!accessing!public! !
+url!accessing!public! !
+!
 
 !GRDolphinUtf8Codec class methodsFor!
 
@@ -51,7 +58,10 @@ codecs
 
 supportsEncoding: aString
 	^##(#('UTF-8' 'UTF8' 'UTF 8')) includes: aString asUppercase! !
-!GRDolphinUtf8Codec class categoriesFor: #basicForEncoding:!private! !
-!GRDolphinUtf8Codec class categoriesFor: #codecs!accessing!public! !
-!GRDolphinUtf8Codec class categoriesFor: #supportsEncoding:!public!testing! !
+
+!GRDolphinUtf8Codec class categoriesForMethods!
+basicForEncoding:!private! !
+codecs!accessing!public! !
+supportsEncoding:!public!testing! !
+!
 

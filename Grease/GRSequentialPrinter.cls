@@ -1,21 +1,28 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 GRPrinter subclass: #GRSequentialPrinter
 	instanceVariableNames: 'parts'
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRSequentialPrinter guid: (GUID fromString: '{a89071a5-3de4-47bc-a094-3f5b47bf6ead}')!
+
+GRSequentialPrinter guid: (GUID fromString: '{3e3f7a56-4286-4b1f-83fb-e0ae3b11f34c}')!
+
 GRSequentialPrinter comment: ''!
-!GRSequentialPrinter categoriesForClass!Grease-Core-Text! !
+
+!GRSequentialPrinter categoriesForClass!Text! !
+
 !GRSequentialPrinter methodsFor!
 
 , aConverter	parts add: aConverter!
 
 initialize	super initialize.	parts := OrderedCollection new!
 
-print: anObject on: aStream 	parts do: [ :each | each print: anObject on: aStream ]! !
-!GRSequentialPrinter categoriesFor: #,!operators!public! !
-!GRSequentialPrinter categoriesFor: #initialize!initialization!public! !
-!GRSequentialPrinter categoriesFor: #print:on:!printing!public! !
+print: anObject on: aStream	parts do: [ :each | each print: anObject on: aStream ]! !
+
+!GRSequentialPrinter categoriesForMethods!
+,!operators!public! !
+initialize!initialization!public! !
+print:on:!printing!public! !
+!
 

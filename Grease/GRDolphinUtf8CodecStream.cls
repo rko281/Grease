@@ -1,15 +1,19 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 GRDolphinConverterCodecStream subclass: #GRDolphinUtf8CodecStream
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRDolphinUtf8CodecStream guid: (GUID fromString: '{fad8b1f2-047e-4385-b87b-bf044c0e8783}')!
+
 GRDolphinUtf8CodecStream comment: '
 A WAUtf8CodecStream is a WACodecStream optimized for UTF-8 performance in the case where most of the characters are ASCII.
 '!
+
 !GRDolphinUtf8CodecStream categoriesForClass!Unclassified! !
+
 !GRDolphinUtf8CodecStream methodsFor!
 
 crlf
@@ -43,12 +47,15 @@ nextPut: aCharacter
 nextPutAll: aString 
 
 	stream nextPutAll: aString! !
-!GRDolphinUtf8CodecStream categoriesFor: #crlf!public!streaming! !
-!GRDolphinUtf8CodecStream categoriesFor: #handlePutError:for:startingAt:!private! !
-!GRDolphinUtf8CodecStream categoriesFor: #invalidUtf8!private! !
-!GRDolphinUtf8CodecStream categoriesFor: #next!public!streaming! !
-!GRDolphinUtf8CodecStream categoriesFor: #next:!public!streaming! !
-!GRDolphinUtf8CodecStream categoriesFor: #next:putAll:startingAt:!public! !
-!GRDolphinUtf8CodecStream categoriesFor: #nextPut:!public!streaming! !
-!GRDolphinUtf8CodecStream categoriesFor: #nextPutAll:!public! !
+
+!GRDolphinUtf8CodecStream categoriesForMethods!
+crlf!public!streaming! !
+handlePutError:for:startingAt:!private! !
+invalidUtf8!private! !
+next!public!streaming! !
+next:!public!streaming! !
+next:putAll:startingAt:!public! !
+nextPut:!public!streaming! !
+nextPutAll:!public! !
+!
 

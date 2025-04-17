@@ -1,10 +1,14 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 GRDelegatingStream subclass: #GRCodecStream
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRCodecStream guid: (GUID fromString: '{1445f22a-a942-4cbe-a8b3-d71a84d7eb73}')!
-GRCodecStream comment: 'GRObject subclass: #GRInflector	instanceVariableNames: ''''	classVariableNames: ''InflectionRules Uninflected''	package: ''Grease-Core-Text'''!
-!GRCodecStream categoriesForClass!Grease-Core-Text! !
+
+GRCodecStream guid: (GUID fromString: '{31b57e5c-1735-4496-ac61-526f03e958d2}')!
+
+GRCodecStream comment: 'GRCodecStream is the abstract base class for codec streams'!
+
+!GRCodecStream categoriesForClass!Text! !
+

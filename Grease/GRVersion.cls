@@ -1,16 +1,20 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 GRObject subclass: #GRVersion
 	instanceVariableNames: 'major minor revision stageLabel stageNumber'
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRVersion guid: (GUID fromString: '{7fabd82f-5152-4b08-9b06-f258cbacf135}')!
+
+GRVersion guid: (GUID fromString: '{05359cb1-3c24-4280-8f59-bd2160da4683}')!
+
 GRVersion comment: 'I model version numbers. I am comparable and I define a natural order.'!
-!GRVersion categoriesForClass!Grease-Core! !
+
+!GRVersion categoriesForClass!Unclassified! !
+
 !GRVersion methodsFor!
 
-< otherVersion	(major < otherVersion major) ifTrue: [ ^ true ].	(otherVersion major < major) ifTrue: [ ^ false ].	((minor ifNil: [ 0 ]) < (otherVersion minor ifNil: [ 0 ])) ifTrue: [ ^ true ].	((otherVersion minor ifNil: [ 0 ]) < (minor ifNil: [ 0 ])) ifTrue: [ ^ false ].	((revision ifNil: [ 0 ]) < (otherVersion revision ifNil: [ 0 ])) ifTrue: [ ^ true ].	((otherVersion revision ifNil: [ 0 ]) < (revision ifNil: [ 0 ])) ifTrue: [ ^ false ].	(stageLabel = otherVersion stage) ifTrue: [		^ ((stageNumber ifNil: [ 1 ]) < (otherVersion stageNumber ifNil: [ 1 ])) ].	stageLabel isNil ifTrue: [ ^ false ].	otherVersion stage isNil ifTrue: [ ^ true ].	^ stageLabel < otherVersion stage		!
+< otherVersion	(major < otherVersion major) ifTrue: [ ^ true ].	(otherVersion major < major) ifTrue: [ ^ false ].	((minor ifNil: [ 0 ]) < (otherVersion minor ifNil: [ 0 ])) ifTrue: [ ^ true ].	((otherVersion minor ifNil: [ 0 ]) < (minor ifNil: [ 0 ])) ifTrue: [ ^ false ].	((revision ifNil: [ 0 ]) < (otherVersion revision ifNil: [ 0 ])) ifTrue: [ ^ true ].	((otherVersion revision ifNil: [ 0 ]) < (revision ifNil: [ 0 ])) ifTrue: [ ^ false ].	(stageLabel = otherVersion stage) ifTrue: [		^ ((stageNumber ifNil: [ 1 ]) < (otherVersion stageNumber ifNil: [ 1 ])) ].	stageLabel isNil ifTrue: [ ^ false ].	otherVersion stage isNil ifTrue: [ ^ true ].	^ stageLabel < otherVersion stage!
 
 <= otherVersion	^ (self > otherVersion) not!
 
@@ -65,34 +69,37 @@ stage	^ stageLabel!
 stage: aSymbol number: anInteger	stageLabel := aSymbol.	stageNumber := anInteger!
 
 stageNumber	^ stageNumber! !
-!GRVersion categoriesFor: #<!comparing!public! !
-!GRVersion categoriesFor: #<=!comparing!public! !
-!GRVersion categoriesFor: #=!comparing!public! !
-!GRVersion categoriesFor: #>!comparing!public! !
-!GRVersion categoriesFor: #>=!comparing!public! !
-!GRVersion categoriesFor: #beAlpha!convenience!public! !
-!GRVersion categoriesFor: #beAlpha:!convenience!public! !
-!GRVersion categoriesFor: #beBeta!convenience!public! !
-!GRVersion categoriesFor: #beBeta:!convenience!public! !
-!GRVersion categoriesFor: #beFinal!convenience!public! !
-!GRVersion categoriesFor: #beReleaseCandidate!convenience!public! !
-!GRVersion categoriesFor: #beReleaseCandidate:!convenience!public! !
-!GRVersion categoriesFor: #greaseString!converting!public! !
-!GRVersion categoriesFor: #hash!comparing!public! !
-!GRVersion categoriesFor: #initializeWithMajor:minor:revision:!initialization!public! !
-!GRVersion categoriesFor: #isAlpha!public!testing! !
-!GRVersion categoriesFor: #isBeta!public!testing! !
-!GRVersion categoriesFor: #isFinal!public!testing! !
-!GRVersion categoriesFor: #isReleaseCandidate!public!testing! !
-!GRVersion categoriesFor: #major!accessing!public! !
-!GRVersion categoriesFor: #major:!accessing!public! !
-!GRVersion categoriesFor: #minor!accessing!public! !
-!GRVersion categoriesFor: #minor:!accessing!public! !
-!GRVersion categoriesFor: #revision!accessing!public! !
-!GRVersion categoriesFor: #revision:!accessing!public! !
-!GRVersion categoriesFor: #stage!accessing!public! !
-!GRVersion categoriesFor: #stage:number:!accessing!public! !
-!GRVersion categoriesFor: #stageNumber!accessing!public! !
+
+!GRVersion categoriesForMethods!
+<!comparing!public! !
+<=!comparing!public! !
+=!comparing!public! !
+>!comparing!public! !
+>=!comparing!public! !
+beAlpha!convenience!public! !
+beAlpha:!convenience!public! !
+beBeta!convenience!public! !
+beBeta:!convenience!public! !
+beFinal!convenience!public! !
+beReleaseCandidate!convenience!public! !
+beReleaseCandidate:!convenience!public! !
+greaseString!converting!public! !
+hash!comparing!public! !
+initializeWithMajor:minor:revision:!initialization!public! !
+isAlpha!public!testing! !
+isBeta!public!testing! !
+isFinal!public!testing! !
+isReleaseCandidate!public!testing! !
+major!accessing!public! !
+major:!accessing!public! !
+minor!accessing!public! !
+minor:!accessing!public! !
+revision!accessing!public! !
+revision:!accessing!public! !
+stage!accessing!public! !
+stage:number:!accessing!public! !
+stageNumber!accessing!public! !
+!
 
 !GRVersion class methodsFor!
 
@@ -103,8 +110,11 @@ major: majorInteger minor: minorInteger	^ self major: majorInteger minor: minor
 major: majorInteger minor: minorInteger revision: revisionInteger	^ self basicNew		initializeWithMajor: majorInteger minor: minorInteger revision: revisionInteger;		yourself!
 
 new	^ self major: 1! !
-!GRVersion class categoriesFor: #major:!instance creation!public! !
-!GRVersion class categoriesFor: #major:minor:!instance creation!public! !
-!GRVersion class categoriesFor: #major:minor:revision:!instance creation!public! !
-!GRVersion class categoriesFor: #new!instance creation!public! !
+
+!GRVersion class categoriesForMethods!
+major:!instance creation!public! !
+major:minor:!instance creation!public! !
+major:minor:revision:!instance creation!public! !
+new!instance creation!public! !
+!
 

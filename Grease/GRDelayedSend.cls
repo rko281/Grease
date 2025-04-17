@@ -1,16 +1,20 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 GRObject subclass: #GRDelayedSend
 	instanceVariableNames: 'receiver message'
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRDelayedSend guid: (GUID fromString: '{8749193c-f955-497a-8f8e-e6929565b714}')!
+
+GRDelayedSend guid: (GUID fromString: '{7ebf7e98-8827-4e27-8d33-d071a87b62a8}')!
+
 GRDelayedSend comment: 'A GRDelayedSend is a future message send of a message to an object. Some of the arguments can be predefined. Instances are intended to be interchangeable with blocks.This class should conform the ANSI (block) valuable protocol. Unlike a block, a GRDelayedSend is not a closure so doesn''t hold onto the method context. GRDelayedSend provides similar, but portable, functionality to Pharo''s MessageSend.This is an abstract class. Use the methods in the ''instance-creation'' protocol on the class side to create intances.Instance Variables	receiver:		<Object>	selector:		<Symbol>receiver	- the object receiving the messageselector	- the message selector sent to the receiver'!
-!GRDelayedSend categoriesForClass!Grease-Core-Utilities! !
+
+!GRDelayedSend categoriesForClass!Utilities! !
+
 !GRDelayedSend methodsFor!
 
-argumentCount	"Answer the number of arguments that must be provided to the receiver when sending it."		^ message argumentCount!
+argumentCount	"Answer the number of arguments that must be provided to the receiver when sending it."	^ message argumentCount!
 
 initializeWithReceiver: anObject message: aDelayedSendMessage	self initialize.	receiver := anObject.	message := aDelayedSendMessage!
 
@@ -25,14 +29,17 @@ value: aFirstObject value: aSecondObject	^ self valueWithArguments: (Array with
 valueWithArguments: anArray	^ message valueFor: receiver withArguments: anArray!
 
 valueWithPossibleArguments: anArray	^ message valueFor: receiver withPossibleArguments: anArray! !
-!GRDelayedSend categoriesFor: #argumentCount!accessing!public! !
-!GRDelayedSend categoriesFor: #initializeWithReceiver:message:!initialization!public! !
-!GRDelayedSend categoriesFor: #printOn:!printing!public! !
-!GRDelayedSend categoriesFor: #value!evaluating!public! !
-!GRDelayedSend categoriesFor: #value:!evaluating!public! !
-!GRDelayedSend categoriesFor: #value:value:!evaluating!public! !
-!GRDelayedSend categoriesFor: #valueWithArguments:!evaluating!public! !
-!GRDelayedSend categoriesFor: #valueWithPossibleArguments:!evaluating!public! !
+
+!GRDelayedSend categoriesForMethods!
+argumentCount!accessing!public! !
+initializeWithReceiver:message:!initialization!public! !
+printOn:!printing!public! !
+value!evaluating!public! !
+value:!evaluating!public! !
+value:value:!evaluating!public! !
+valueWithArguments:!evaluating!public! !
+valueWithPossibleArguments:!evaluating!public! !
+!
 
 !GRDelayedSend class methodsFor!
 
@@ -40,14 +47,17 @@ empty	^ self receiver: nil selector: #yourself!
 
 new	^ self empty!
 
-receiver: anObject selector: aSymbol 	^ self basicNew 		initializeWithReceiver: anObject			message: (GRUnboundMessage selector: aSymbol);		yourself!
+receiver: anObject selector: aSymbol	^ self basicNew		initializeWithReceiver: anObject			message: (GRUnboundMessage selector: aSymbol);		yourself!
 
 receiver: anObject selector: aSymbol argument: aParameter	^ self receiver: anObject selector: aSymbol arguments: (Array with: aParameter)!
 
-receiver: anObject selector: aSymbol arguments: anArray 	^ self basicNew 		initializeWithReceiver: anObject			message: (GRBoundMessage selector: aSymbol arguments: anArray);		yourself! !
-!GRDelayedSend class categoriesFor: #empty!instance creation!public! !
-!GRDelayedSend class categoriesFor: #new!instance creation!public! !
-!GRDelayedSend class categoriesFor: #receiver:selector:!instance creation!public! !
-!GRDelayedSend class categoriesFor: #receiver:selector:argument:!instance creation!public! !
-!GRDelayedSend class categoriesFor: #receiver:selector:arguments:!instance creation!public! !
+receiver: anObject selector: aSymbol arguments: anArray	^ self basicNew		initializeWithReceiver: anObject			message: (GRBoundMessage selector: aSymbol arguments: anArray);		yourself! !
+
+!GRDelayedSend class categoriesForMethods!
+empty!instance creation!public! !
+new!instance creation!public! !
+receiver:selector:!instance creation!public! !
+receiver:selector:argument:!instance creation!public! !
+receiver:selector:arguments:!instance creation!public! !
+!
 

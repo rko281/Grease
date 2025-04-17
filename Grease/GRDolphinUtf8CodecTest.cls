@@ -1,13 +1,17 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 GRUtf8CodecTest subclass: #GRDolphinUtf8CodecTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRDolphinUtf8CodecTest guid: (GUID fromString: '{83b895eb-2ac4-42d0-8439-754247d3896b}')!
+
 GRDolphinUtf8CodecTest comment: ''!
+
 !GRDolphinUtf8CodecTest categoriesForClass!Grease-Tests-Core! !
+
 !GRDolphinUtf8CodecTest methodsFor!
 
 asString: aCollectionOfIntegers
@@ -32,7 +36,10 @@ testCodecUtf8ShortestForm
 
 	"Changed should:raise: to shouldnt:raise: - not sure why an error is expected, however Pharo lists this test as an expected failure"
 	"Non shortest form characters should be rejected	See Corrigendum #1: UTF-8 Shortest Form http://www.unicode.org/versions/corrigendum1.html"	#('UTF-8' 'utf-8') do: [ :codecName |		| codec abc |		codec := GRCodec forEncoding: codecName.		abc := self asString: #(193 129 193 130 193 131 ).		self			shouldnt: [ self deny: (codec decode: abc) = 'ABC' ]			raise: Error ]! !
-!GRDolphinUtf8CodecTest categoriesFor: #asString:!private! !
-!GRDolphinUtf8CodecTest categoriesFor: #testCodecUtf8BorderLineString!public! !
-!GRDolphinUtf8CodecTest categoriesFor: #testCodecUtf8ShortestForm!public!tests! !
+
+!GRDolphinUtf8CodecTest categoriesForMethods!
+asString:!private! !
+testCodecUtf8BorderLineString!public! !
+testCodecUtf8ShortestForm!public!tests! !
+!
 

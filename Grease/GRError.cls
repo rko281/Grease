@@ -1,10 +1,14 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 Error subclass: #GRError
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-GRError guid: (GUID fromString: '{d1c06336-a306-4b29-a2ab-382bce08b0e3}')!
-GRError comment: 'Notification subclass: #GRNotification	instanceVariableNames: ''''	classVariableNames: ''''	package: ''Grease-Core-Exceptions'''!
-!GRError categoriesForClass!Grease-Core-Exceptions! !
+
+GRError guid: (GUID fromString: '{b23965fa-72c7-40b6-b52f-2e049238087e}')!
+
+GRError comment: 'This class provides consistent initialization and exception signaling behaviour across platforms. All platforms must provide the ANSI-standard signaling protocol on this class. #signal: can therefore be safely called on any subclass.Packages that are using Seaside-Platform should usually subclass GRError instead of Error.'!
+
+!GRError categoriesForClass!Exceptions! !
+

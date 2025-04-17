@@ -5,7 +5,6 @@ package paxVersion: 1;
 
 package basicPackageVersion: '4'.
 
-
 package classNames
 	add: #GRDolphinConverterCodecStream;
 	add: #GRDolphinCountingStream;
@@ -42,7 +41,6 @@ package methodNames
 	add: #Color -> #asHTMLColor;
 	add: #Date -> #-;
 	add: #Date -> #printFormat:;
-	add: #DateAndTime -> #asDateAndTime;
 	add: #DateAndTime -> #monthIndex;
 	add: #Dictionary -> #isDictionary;
 	add: #Dictionary -> #keysSortedSafely;
@@ -50,10 +48,13 @@ package methodNames
 	add: #Dictionary -> #valuesDo:;
 	add: #Duration -> #asMilliSeconds;
 	add: #GRDelegatingStream -> #greaseNext:putAll:startingAt:;
+	add: #GRDelegatingStream -> #next:put:;
 	add: #Integer -> #printPaddedWith:to:;
 	add: #Integer -> #printPaddedWith:to:base:;
 	add: #Integer -> #second;
 	add: #Integer -> #seconds;
+	add: #LargeInteger -> #greaseByteAt:;
+	add: #LargeInteger -> #greaseBytesCount;
 	add: #MessageSend -> #argumentCount;
 	add: #MessageSend -> #fixCallbackTemps;
 	add: #MessageSend -> #isMessageSend;
@@ -92,8 +93,12 @@ package methodNames
 	add: #SequenceableCollection -> #copyUpTo:;
 	add: #SequenceableCollection -> #copyUpToLast:;
 	add: #SequenceableCollection -> #endsWithSubCollection:;
+	add: #SequenceableCollection -> #greaseBeginsWith:;
+	add: #SequenceableCollection -> #greaseEndsWith:;
 	add: #SequenceableCollection -> #isSequenceable;
 	add: #SequenceableCollection -> #reversed;
+	add: #SmallInteger -> #greaseByteAt:;
+	add: #SmallInteger -> #greaseBytesCount;
 	add: #StackFrame -> #equalsTo:;
 	add: #String -> #caseInsensitiveLessOrEqual:;
 	add: #String -> #characterCount;
@@ -117,8 +122,8 @@ package methodNames
 	add: #String -> #trimRight;
 	add: #String -> #trimRight:;
 	add: #String -> #withCRs;
-	add: #Symbol -> #asMutator;
 	add: #Symbol -> #capitalized;
+	add: #Symbol -> #greaseAsMutator;
 	add: #Symbol -> #greaseString;
 	add: #Symbol -> #isKeyword;
 	add: #Symbol -> #isUnary;
@@ -177,44 +182,48 @@ DynamicVariable subclass: #GRDynamicVariable
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRCodec subclass: #GRDolphinUtf8Codec
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRNullCodec subclass: #GRDolphinLatin1Codec
 	instanceVariableNames: 'name'
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRCodecStream subclass: #GRDolphinConverterCodecStream
 	instanceVariableNames: 'converter'
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRDolphinConverterCodecStream subclass: #GRDolphinUtf8CodecStream
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRNullCodecStream subclass: #GRDolphinLatin1CodecStream
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRCountingStream subclass: #GRDolphinCountingStream
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRPlatform subclass: #GRDolphinPlatform
 	instanceVariableNames: ''
 	classVariableNames: 'SmtpServer UrlTable XmlTable'
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
-
-"Global Aliases"!
-
 
 "Loose Methods"!
 
@@ -227,8 +236,11 @@ beMutable
 
 isArray
 	^true! !
-!Array categoriesFor: #beMutable!public! !
-!Array categoriesFor: #isArray!public!testing! !
+
+!Array categoriesForMethods!
+beMutable!public! !
+isArray!public!testing! !
+!
 
 !ArrayedCollection class methodsFor!
 
@@ -246,7 +258,10 @@ with: element1 with: element2 with: element3 with: element4 with: element5 with:
 		at: 5 put: element5;
 		at: 6 put: element6;
 		yourself! !
-!ArrayedCollection class categoriesFor: #with:with:with:with:with:with:!instance creation!public! !
+
+!ArrayedCollection class categoriesForMethods!
+with:with:with:with:with:with:!instance creation!public! !
+!
 
 !Bag methodsFor!
 
@@ -255,7 +270,10 @@ sortedCounts
 	counts := SortedCollection sortBlock: [:x :y | x >= y].
 	contents associationsDo: [:assoc | counts add: assoc value -> assoc key].
 	^ counts! !
-!Bag categoriesFor: #sortedCounts!enumerating!public! !
+
+!Bag categoriesForMethods!
+sortedCounts!enumerating!public! !
+!
 
 !Behavior methodsFor!
 
@@ -285,13 +303,16 @@ startUp!
 startUp: isResuming
 
 	self startUp! !
-!Behavior categoriesFor: #allInstancesDo:!instances!public! !
-!Behavior categoriesFor: #allSubInstancesDo:!instances!public! !
-!Behavior categoriesFor: #fullName!*seaside-squeak-platform!public! !
-!Behavior categoriesFor: #shutDown!must not strip!public! !
-!Behavior categoriesFor: #shutDown:!must not strip!public! !
-!Behavior categoriesFor: #startUp!must not strip!public! !
-!Behavior categoriesFor: #startUp:!must not strip!public! !
+
+!Behavior categoriesForMethods!
+allInstancesDo:!instances!public! !
+allSubInstancesDo:!instances!public! !
+fullName!*seaside-squeak-platform!public! !
+shutDown!must not strip!public! !
+shutDown:!must not strip!public! !
+startUp!must not strip!public! !
+startUp:!must not strip!public! !
+!
 
 !BlockClosure methodsFor!
 
@@ -316,10 +337,13 @@ valueWithPossibleArguments: anArray
 		with: anArray
 		startingAt: 1.
 	^ self valueWithArguments: args! !
-!BlockClosure categoriesFor: #callCC:!evaluating!public! !
-!BlockClosure categoriesFor: #fixCallbackTemps!*seaside-squeak-platform!public! !
-!BlockClosure categoriesFor: #isBlock!*seaside-squeak-platform!public! !
-!BlockClosure categoriesFor: #valueWithPossibleArguments:!*seaside-squeak-platform!public! !
+
+!BlockClosure categoriesForMethods!
+callCC:!evaluating!public! !
+fixCallbackTemps!*seaside-squeak-platform!public! !
+isBlock!*seaside-squeak-platform!public! !
+valueWithPossibleArguments:!*seaside-squeak-platform!public! !
+!
 
 !ByteArray methodsFor!
 
@@ -327,7 +351,10 @@ greaseString
 	"ByteArrays should not automatically be converted to Strings. You should use a WACodec for this."
 
 	^self printString! !
-!ByteArray categoriesFor: #greaseString!*seaside-squeak-platform!public! !
+
+!ByteArray categoriesForMethods!
+greaseString!*seaside-squeak-platform!public! !
+!
 
 !Character methodsFor!
 
@@ -338,8 +365,11 @@ greaseInteger
 	"Answer an unicode code point of the receiver."
 
 	^self codePoint bitAnd: 16r3FFFFF! !
-!Character categoriesFor: #asUnicode!public! !
-!Character categoriesFor: #greaseInteger!*seaside-squeak-platform!public! !
+
+!Character categoriesForMethods!
+asUnicode!public! !
+greaseInteger!*seaside-squeak-platform!public! !
+!
 
 !Character class methodsFor!
 
@@ -353,7 +383,10 @@ leadingChar: leadChar code: code
 	].
 
 	^self value: (leadChar bitShift: 22) + code! !
-!Character class categoriesFor: #leadingChar:code:!OmniBase!public! !
+
+!Character class categoriesForMethods!
+leadingChar:code:!OmniBase!public! !
+!
 
 !Collection methodsFor!
 
@@ -379,10 +412,13 @@ noneSatisfy: aBlock
 
 	self do: [:item | (aBlock value: item) ifTrue: [^false]].
 	^true! !
-!Collection categoriesFor: #any!*grease-pharo-core!public! !
-!Collection categoriesFor: #associationsDo:!enumerating!public! !
-!Collection categoriesFor: #isSequenceable!public! !
-!Collection categoriesFor: #noneSatisfy:!enumerating!public! !
+
+!Collection categoriesForMethods!
+any!*grease-pharo-core!public! !
+associationsDo:!enumerating!public! !
+isSequenceable!public! !
+noneSatisfy:!enumerating!public! !
+!
 
 !Collection class methodsFor!
 
@@ -398,7 +434,10 @@ with: firstObject with: secondObject with: thirdObject with: fourthObject with: 
 		add: sixthObject;
 		yourself
 ! !
-!Collection class categoriesFor: #with:with:with:with:with:with:!instance creation!public! !
+
+!Collection class categoriesForMethods!
+with:with:with:with:with:with:!instance creation!public! !
+!
 
 !Color methodsFor!
 
@@ -413,7 +452,10 @@ asHTMLColor
 	^stream contents
 
 ! !
-!Color categoriesFor: #asHTMLColor!public! !
+
+!Color categoriesForMethods!
+asHTMLColor!public! !
+!
 
 !Color class methodsFor!
 
@@ -441,8 +483,11 @@ fromThreeDigitString: aString
 	blue := (aString third digitValue * 16) + aString third digitValue.
 
 	^self red: red green: green blue: blue! !
-!Color class categoriesFor: #fromString:!instance creation!public! !
-!Color class categoriesFor: #fromThreeDigitString:!instance creation!public! !
+
+!Color class categoriesForMethods!
+fromString:!instance creation!public! !
+fromThreeDigitString:!instance creation!public! !
+!
 
 !Date methodsFor!
 
@@ -457,8 +502,11 @@ printFormat: format
 	Not implemented yet."
 
 	^String streamContents: [:stream | self printOn: stream format: Locale default dateFormat]! !
-!Date categoriesFor: #-!public! !
-!Date categoriesFor: #printFormat:!printing!public! !
+
+!Date categoriesForMethods!
+-!public! !
+printFormat:!printing!public! !
+!
 
 !Date class methodsFor!
 
@@ -466,21 +514,21 @@ daysInMonthNumber: monthIndex forYear: yearInteger
 
 	^self daysInMonthIndex: monthIndex forYear: yearInteger
 ! !
-!Date class categoriesFor: #daysInMonthNumber:forYear:!*seaside-squeak-platform!public! !
+
+!Date class categoriesForMethods!
+daysInMonthNumber:forYear:!*seaside-squeak-platform!public! !
+!
 
 !DateAndTime methodsFor!
-
-asDateAndTime
-	"Answer the receiver asDateAndTime."
-
-	^self!
 
 monthIndex
 	"Answer the month integer index of the receiver."
 
 	^self month! !
-!DateAndTime categoriesFor: #asDateAndTime!public! !
-!DateAndTime categoriesFor: #monthIndex!converting!public! !
+
+!DateAndTime categoriesForMethods!
+monthIndex!converting!public! !
+!
 
 !DateAndTime class methodsFor!
 
@@ -491,8 +539,11 @@ fromSeconds: seconds
 	"Answer a DateAndTime since the Squeak epoch: 1 January 1901"
 
 	^ self utcSeconds: seconds offset: Locale timeZoneInformation offset seconds! !
-!DateAndTime class categoriesFor: #date:time:!public! !
-!DateAndTime class categoriesFor: #fromSeconds:!initializing!public! !
+
+!DateAndTime class categoriesForMethods!
+date:time:!public! !
+fromSeconds:!initializing!public! !
+!
 
 !Dictionary methodsFor!
 
@@ -524,10 +575,13 @@ valuesDo: aBlock
 	"Evaluate aBlock for each of the receiver's values."
 
 	self associationsDo: [:association | aBlock value: association value]! !
-!Dictionary categoriesFor: #isDictionary!public! !
-!Dictionary categoriesFor: #keysSortedSafely!public! !
-!Dictionary categoriesFor: #removeAll!public!removing! !
-!Dictionary categoriesFor: #valuesDo:!public! !
+
+!Dictionary categoriesForMethods!
+isDictionary!public! !
+keysSortedSafely!public! !
+removeAll!public!removing! !
+valuesDo:!public! !
+!
 
 !Duration methodsFor!
 
@@ -535,7 +589,10 @@ asMilliSeconds
 	"Seaside Compatibility."
 
 	^self asSeconds * 1000! !
-!Duration categoriesFor: #asMilliSeconds!converting!public! !
+
+!Duration categoriesForMethods!
+asMilliSeconds!converting!public! !
+!
 
 !Duration class methodsFor!
 
@@ -546,8 +603,11 @@ milliSeconds: milliSeconds
 
 weeks: aNumber
 	^self days: (aNumber * 7)! !
-!Duration class categoriesFor: #milliSeconds:!instance creation!public! !
-!Duration class categoriesFor: #weeks:!*grease-pharo-core!public! !
+
+!Duration class categoriesForMethods!
+milliSeconds:!instance creation!public! !
+weeks:!*grease-pharo-core!public! !
+!
 
 !GRCountingStream class methodsFor!
 
@@ -556,13 +616,25 @@ on: aStream
 	^self == ##(self)
 		ifTrue: [GRDolphinCountingStream on: aStream]
 		ifFalse: [super on: aStream]! !
-!GRCountingStream class categoriesFor: #on:!public! !
+
+!GRCountingStream class categoriesForMethods!
+on:!public! !
+!
 
 !GRDelegatingStream methodsFor!
 
 greaseNext: anInteger putAll: aCollection startingAt: startIndex
-	stream greaseNext: anInteger putAll: aCollection startingAt: startIndex! !
-!GRDelegatingStream categoriesFor: #greaseNext:putAll:startingAt:!public!streaming! !
+	stream greaseNext: anInteger putAll: aCollection startingAt: startIndex!
+
+next: anInteger put: anObject
+
+	anInteger timesRepeat: [self nextPut: anObject].
+	^anObject! !
+
+!GRDelegatingStream categoriesForMethods!
+greaseNext:putAll:startingAt:!public!streaming! !
+next:put:!public! !
+!
 
 !GRPackage class methodsFor!
 
@@ -572,7 +644,10 @@ greaseDolphinCore
 		addDependency: 'Grease-Core';
 		url: #seasideUrl;
 		yourself! !
-!GRPackage class categoriesFor: #greaseDolphinCore!*grease-pharo-core!public! !
+
+!GRPackage class categoriesForMethods!
+greaseDolphinCore!*grease-pharo-core!public! !
+!
 
 !Integer methodsFor!
 
@@ -607,10 +682,28 @@ second
 
 seconds
 	^Duration seconds: self! !
-!Integer categoriesFor: #printPaddedWith:to:!printing!public! !
-!Integer categoriesFor: #printPaddedWith:to:base:!printing!public! !
-!Integer categoriesFor: #second!public! !
-!Integer categoriesFor: #seconds!public! !
+
+!Integer categoriesForMethods!
+printPaddedWith:to:!printing!public! !
+printPaddedWith:to:base:!printing!public! !
+second!public! !
+seconds!public! !
+!
+
+!LargeInteger methodsFor!
+
+greaseByteAt: index
+	self negative ifTrue: [Error notYetImplemented].
+	^ self byteAt: index!
+
+greaseBytesCount
+
+	^self greaseAsByteArray size! !
+
+!LargeInteger categoriesForMethods!
+greaseByteAt:!*Grease/Core!public! !
+greaseBytesCount!*Grease/Core!public! !
+!
 
 !MessageSend methodsFor!
 
@@ -649,12 +742,15 @@ valueWithPossibleArguments: anArray
      fill up the rest with nils."
 
 	^self valueWithEnoughArguments: anArray! !
-!MessageSend categoriesFor: #argumentCount!*seaside-squeak-platform!public! !
-!MessageSend categoriesFor: #fixCallbackTemps!*seaside-squeak-platform!public! !
-!MessageSend categoriesFor: #isMessageSend!public! !
-!MessageSend categoriesFor: #numArgs!*seaside-squeak-platform!public! !
-!MessageSend categoriesFor: #valueWithEnoughArguments:!public! !
-!MessageSend categoriesFor: #valueWithPossibleArguments:!*seaside-squeak-platform!public! !
+
+!MessageSend categoriesForMethods!
+argumentCount!*seaside-squeak-platform!public! !
+fixCallbackTemps!*seaside-squeak-platform!public! !
+isMessageSend!public! !
+numArgs!*seaside-squeak-platform!public! !
+valueWithEnoughArguments:!public! !
+valueWithPossibleArguments:!*seaside-squeak-platform!public! !
+!
 
 !Number methodsFor!
 
@@ -687,14 +783,17 @@ second
 weeks
 
 	^Duration weeks: self! !
-!Number categoriesFor: #asNumber!constants!public! !
-!Number categoriesFor: #day!public! !
-!Number categoriesFor: #isInfinite!public! !
-!Number categoriesFor: #isNaN!public! !
-!Number categoriesFor: #javascriptOn:!public! !
-!Number categoriesFor: #minute!public! !
-!Number categoriesFor: #second!public! !
-!Number categoriesFor: #weeks!public! !
+
+!Number categoriesForMethods!
+asNumber!constants!public! !
+day!public! !
+isInfinite!public! !
+isNaN!public! !
+javascriptOn:!public! !
+minute!public! !
+second!public! !
+weeks!public! !
+!
 
 !Object methodsFor!
 
@@ -745,16 +844,19 @@ printStringLimitedTo: limit
 	"Todo, the best"
 
 	^self printString readStream nextAvailable: limit! !
-!Object categoriesFor: #className!public! !
-!Object categoriesFor: #copyFrom:!copying!public! !
-!Object categoriesFor: #greaseString!*seaside-squeak-platform!public! !
-!Object categoriesFor: #isArray!public!testing! !
-!Object categoriesFor: #isBlock!*seaside-squeak-platform!public! !
-!Object categoriesFor: #isCollection!public!testing! !
-!Object categoriesFor: #isDictionary!public!testing! !
-!Object categoriesFor: #isFraction!public!testing! !
-!Object categoriesFor: #isMessageSend!public!testing! !
-!Object categoriesFor: #printStringLimitedTo:!public! !
+
+!Object categoriesForMethods!
+className!public! !
+copyFrom:!copying!public! !
+greaseString!*seaside-squeak-platform!public! !
+isArray!public!testing! !
+isBlock!*seaside-squeak-platform!public! !
+isCollection!public!testing! !
+isDictionary!public!testing! !
+isFraction!public!testing! !
+isMessageSend!public!testing! !
+printStringLimitedTo:!public! !
+!
 
 !PositionableStream methodsFor!
 
@@ -773,9 +875,12 @@ greaseUpToAll: aCollection
 isBinary
 
 	^self collection isKindOf: ByteArray! !
-!PositionableStream categoriesFor: #binary!public! !
-!PositionableStream categoriesFor: #greaseUpToAll:!*grease-pharo-core!public! !
-!PositionableStream categoriesFor: #isBinary!public! !
+
+!PositionableStream categoriesForMethods!
+binary!public! !
+greaseUpToAll:!*grease-pharo-core!public! !
+isBinary!public! !
+!
 
 !Random methodsFor!
 
@@ -797,8 +902,11 @@ randomFrom: aCollection
 					[:ea | 
 					count = random ifTrue: [^ea].
 					count := count + 1]]! !
-!Random categoriesFor: #nextInt:!public! !
-!Random categoriesFor: #randomFrom:!public! !
+
+!Random categoriesForMethods!
+nextInt:!public! !
+randomFrom:!public! !
+!
 
 !SecureHashAlgorithm methodsFor!
 
@@ -815,7 +923,10 @@ hashMessageReturningBytes: aStringOrByteArray
 	self resetContext.
 
 	^hashBytes! !
-!SecureHashAlgorithm categoriesFor: #hashMessageReturningBytes:!helpers!private! !
+
+!SecureHashAlgorithm categoriesForMethods!
+hashMessageReturningBytes:!helpers!private! !
+!
 
 !SequenceableCollection methodsFor!
 
@@ -827,7 +938,11 @@ atRandom: aRandom
 
 beginsWithSubCollection: aSequenceableCollection
 	"Some platforms implement #beginsWith: to answer true for an empty argument."
-	^ aSequenceableCollection isEmpty not and: [self beginsWith: aSequenceableCollection]!
+	self
+		greaseDeprecatedApi: 'SequenceableCollection>>#beginsWithSubCollection:'
+		details: 'Use SequenceableCollection>>#greaseBegins:'.
+	aSequenceableCollection isEmpty ifTrue: [ ^ false ].
+	^ self beginsWith: aSequenceableCollection!
 
 copyAfter: target
 	^self copyFrom: (self indexOf: target ifAbsent: [self size])+1 to: self size!
@@ -853,7 +968,21 @@ copyUpToLast: anElement
 
 endsWithSubCollection: aSequenceableCollection
 	"Some platforms implement #endsWith: to answer true for an empty argument."
-	^ aSequenceableCollection isEmpty not and: [self endsWith: aSequenceableCollection]!
+	self
+		greaseDeprecatedApi: 'SequenceableCollection>>#endsWithSubCollection:'
+		details: 'Use SequenceableCollection>>#greaseEndsWith:'.
+	aSequenceableCollection isEmpty ifTrue: [ ^ false ].
+	^ self endsWith: aSequenceableCollection!
+
+greaseBeginsWith: aSequenceableCollection
+
+	aSequenceableCollection isEmpty ifTrue: [ ^ true ].
+	^ self beginsWith: aSequenceableCollection!
+
+greaseEndsWith: aSequenceableCollection
+
+	aSequenceableCollection isEmpty ifTrue: [ ^ true ].
+	^ self endsWith: aSequenceableCollection!
 
 isSequenceable
 	^true!
@@ -862,23 +991,46 @@ reversed
 	"Answer a copy of receiver with its elements in reversed order."
 
 	^self reverse! !
-!SequenceableCollection categoriesFor: #atRandom!public! !
-!SequenceableCollection categoriesFor: #atRandom:!public! !
-!SequenceableCollection categoriesFor: #beginsWithSubCollection:!*grease-pharo-core!public! !
-!SequenceableCollection categoriesFor: #copyAfter:!copying!public! !
-!SequenceableCollection categoriesFor: #copyAfterLast:!public! !
-!SequenceableCollection categoriesFor: #copyUpTo:!public! !
-!SequenceableCollection categoriesFor: #copyUpToLast:!public! !
-!SequenceableCollection categoriesFor: #endsWithSubCollection:!*grease-pharo-core!public! !
-!SequenceableCollection categoriesFor: #isSequenceable!public! !
-!SequenceableCollection categoriesFor: #reversed!public! !
+
+!SequenceableCollection categoriesForMethods!
+atRandom!public! !
+atRandom:!public! !
+beginsWithSubCollection:!*grease-pharo-core!public! !
+copyAfter:!copying!public! !
+copyAfterLast:!public! !
+copyUpTo:!public! !
+copyUpToLast:!public! !
+endsWithSubCollection:!*grease-pharo-core!public! !
+greaseBeginsWith:!public!testing! !
+greaseEndsWith:!public!testing! !
+isSequenceable!public! !
+reversed!public! !
+!
+
+!SmallInteger methodsFor!
+
+greaseByteAt: index
+	self negative ifTrue: [Error notYetImplemented].
+	^ self byteAt: index!
+
+greaseBytesCount
+
+	^self greaseAsByteArray size! !
+
+!SmallInteger categoriesForMethods!
+greaseByteAt:!*Grease/Core!public! !
+greaseBytesCount!*Grease/Core!public! !
+!
 
 !StackFrame methodsFor!
 
 equalsTo: anObject
 
 	^self species == anObject species and: [index == anObject index]! !
-!StackFrame categoriesFor: #equalsTo:!public! !
+
+!StackFrame categoriesForMethods!
+equalsTo:!public! !
+!
 
 !String methodsFor!
 
@@ -1047,28 +1199,31 @@ withCRs
 	"Return a copy of the receiver in which backslash (\) characters have been replaced with carriage returns."
 
 	^self collect: [:c | c = $\ ifTrue: [Character cr] ifFalse: [c]]! !
-!String categoriesFor: #caseInsensitiveLessOrEqual:!public! !
-!String categoriesFor: #characterCount!accessing!public! !
-!String categoriesFor: #encodeForHTTP!copying!public! !
-!String categoriesFor: #findTokens:!copying!public! !
-!String categoriesFor: #greaseString!public! !
-!String categoriesFor: #greaseSubStrings:!public! !
-!String categoriesFor: #includesSubString:!public! !
-!String categoriesFor: #includesSubstring:caseSensitive:!public! !
-!String categoriesFor: #indexOf:startingAt:!accessing!public! !
-!String categoriesFor: #isByteString!converting!public! !
-!String categoriesFor: #isWideString!public!testing! !
-!String categoriesFor: #padded:to:with:!public! !
-!String categoriesFor: #replaceAll:with:!public!replacing! !
-!String categoriesFor: #skipDelimiters:startingAt:!copying!public! !
-!String categoriesFor: #trimBoth!copying!public! !
-!String categoriesFor: #trimBoth:!copying!public! !
-!String categoriesFor: #trimLeft!copying!public! !
-!String categoriesFor: #trimLeft:!copying!public! !
-!String categoriesFor: #trimLeft:right:!copying!public! !
-!String categoriesFor: #trimRight!copying!public! !
-!String categoriesFor: #trimRight:!copying!public! !
-!String categoriesFor: #withCRs!public! !
+
+!String categoriesForMethods!
+caseInsensitiveLessOrEqual:!public! !
+characterCount!accessing!public! !
+encodeForHTTP!copying!public! !
+findTokens:!copying!public! !
+greaseString!public! !
+greaseSubStrings:!public! !
+includesSubString:!public! !
+includesSubstring:caseSensitive:!public! !
+indexOf:startingAt:!accessing!public! !
+isByteString!converting!public! !
+isWideString!public!testing! !
+padded:to:with:!public! !
+replaceAll:with:!public!replacing! !
+skipDelimiters:startingAt:!copying!public! !
+trimBoth!copying!public! !
+trimBoth:!copying!public! !
+trimLeft!copying!public! !
+trimLeft:!copying!public! !
+trimLeft:right:!copying!public! !
+trimRight!copying!public! !
+trimRight:!copying!public! !
+withCRs!public! !
+!
 
 !String class methodsFor!
 
@@ -1076,16 +1231,12 @@ crlf
 	"Answer the crlf String"
 
 	^##(String with: Character cr with: Character lf)! !
-!String class categoriesFor: #crlf!public! !
+
+!String class categoriesForMethods!
+crlf!public! !
+!
 
 !Symbol methodsFor!
-
-asMutator
-	"Return a setter message from a getter message. For example,
-	#name asMutator returns #name:"
-	
-	^(self copyWith: $:) asSymbol
-!
 
 capitalized
 	"I have revised the senders of capitalized on a virgin Dolphin X6 image and
@@ -1093,6 +1244,13 @@ capitalized
 
 	^super capitalized asSymbol
 
+!
+
+greaseAsMutator
+	"Return a setter message from a getter message. For example,
+	#name asMutator returns #name:"
+	
+	^(self copyWith: $:) asSymbol
 !
 
 greaseString
@@ -1105,11 +1263,14 @@ isKeyword
 
 isUnary
 	^ self argumentCount = 0! !
-!Symbol categoriesFor: #asMutator!operations!public! !
-!Symbol categoriesFor: #capitalized!public! !
-!Symbol categoriesFor: #greaseString!public! !
-!Symbol categoriesFor: #isKeyword!public!testing! !
-!Symbol categoriesFor: #isUnary!public!testing! !
+
+!Symbol categoriesForMethods!
+capitalized!public! !
+greaseAsMutator!operations!public! !
+greaseString!public! !
+isKeyword!public!testing! !
+isUnary!public!testing! !
+!
 
 !Time methodsFor!
 
@@ -1117,7 +1278,10 @@ addSeconds: anInteger
 	"Adds anInteger seconds to the receiver."
 
 	^self class fromMilliseconds: self millisecond + (anInteger * 1000)! !
-!Time categoriesFor: #addSeconds:!arithmetic!public! !
+
+!Time categoriesForMethods!
+addSeconds:!arithmetic!public! !
+!
 
 !Time class methodsFor!
 
@@ -1144,10 +1308,13 @@ millisecondsSince: lastTime
  	Compensate for rollover."
  
  	^self milliseconds: self millisecondClockValue since: lastTime! !
-!Time class categoriesFor: #hour:minute:second:!instance creation!public! !
-!Time class categoriesFor: #midnight!public! !
-!Time class categoriesFor: #milliseconds:since:!public! !
-!Time class categoriesFor: #millisecondsSince:!public! !
+
+!Time class categoriesForMethods!
+hour:minute:second:!instance creation!public! !
+midnight!public! !
+milliseconds:since:!public! !
+millisecondsSince:!public! !
+!
 
 !UndefinedObject methodsFor!
 
@@ -1160,8 +1327,11 @@ isEmptyOrNil
 	"Answer whether receiver is emtpy or nil. God forbid receiver isn't nil!!!!."
 
 	^true! !
-!UndefinedObject categoriesFor: #greaseString!copying!public! !
-!UndefinedObject categoriesFor: #isEmptyOrNil!public!testing! !
+
+!UndefinedObject categoriesForMethods!
+greaseString!copying!public! !
+isEmptyOrNil!public!testing! !
+!
 
 !Utf16String methodsFor!
 
@@ -1171,8 +1341,11 @@ isByteString
 isWideString
 
 	^true! !
-!Utf16String categoriesFor: #isByteString!converting!public! !
-!Utf16String categoriesFor: #isWideString!public!testing! !
+
+!Utf16String categoriesForMethods!
+isByteString!converting!public! !
+isWideString!public!testing! !
+!
 
 !Utf16String class methodsFor!
 
@@ -1192,7 +1365,7 @@ fromUTF8Content: aByteArrayOrString
 
 	answer := self new: content size.
 	(answerSize := KernelLibrary default 
-				multiByteToWideChar: Win32Constants.CP_UTF8
+				multiByteToWideChar: NlsConstants.CP_UTF8
 				dwFlags: 0
 				lpMultiByteStr: content
 				cchMultiByte: content size
@@ -1200,14 +1373,20 @@ fromUTF8Content: aByteArrayOrString
 				cchWideChar: answer basicSize) == 0 
 		ifTrue: [^KernelLibrary default systemError].
 	^answer resize: answerSize! !
-!Utf16String class categoriesFor: #fromUTF8Content:!instance creation!public! !
+
+!Utf16String class categoriesForMethods!
+fromUTF8Content:!instance creation!public! !
+!
 
 !Utf8String methodsFor!
 
 isWideString
 
 	^true! !
-!Utf8String categoriesFor: #isWideString!public!testing! !
+
+!Utf8String categoriesForMethods!
+isWideString!public!testing! !
+!
 
 !UtfEncodedString methodsFor!
 
@@ -1224,7 +1403,10 @@ characterCount
 	stream nextAvailable isNil] whileFalse.
 
 	^count! !
-!UtfEncodedString categoriesFor: #characterCount!accessing!public! !
+
+!UtfEncodedString categoriesForMethods!
+characterCount!accessing!public! !
+!
 
 !WriteStream methodsFor!
 
@@ -1234,8 +1416,11 @@ crlf
 greaseNext: anInteger putAll: aCollection startingAt: startIndex
 	"Store the next anInteger elements from the given collection."
 	^ self next: anInteger putAll: aCollection startingAt: startIndex! !
-!WriteStream categoriesFor: #crlf!*seaside-squeak-platform!public! !
-!WriteStream categoriesFor: #greaseNext:putAll:startingAt:!*grease-pharo-core!public! !
+
+!WriteStream categoriesForMethods!
+crlf!*seaside-squeak-platform!public! !
+greaseNext:putAll:startingAt:!*grease-pharo-core!public! !
+!
 
 "End of package definition"!
 

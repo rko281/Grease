@@ -1,13 +1,17 @@
-﻿"Filed out from Dolphin Smalltalk 7"!
+﻿"Filed out from Dolphin Smalltalk"!
 
 TestCase subclass: #GRDolphinColorTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
+
 GRDolphinColorTest guid: (GUID fromString: '{0aefe2cb-4b37-49da-9acb-767763b9f3db}')!
+
 GRDolphinColorTest comment: ''!
+
 !GRDolphinColorTest categoriesForClass!Unclassified! !
+
 !GRDolphinColorTest methodsFor!
 
 expectedFailures
@@ -70,11 +74,14 @@ testFromStringThreeDigit
 	self assert: (Color fromString: 'F00') = Color red asRGB.
 	self assert: (Color fromString: '#f00') = Color red asRGB.
 	self assert: (Color fromString: '#F00') = Color red asRGB.! !
-!GRDolphinColorTest categoriesFor: #expectedFailures!public!testing! !
-!GRDolphinColorTest categoriesFor: #testAllColors!public!testing! !
-!GRDolphinColorTest categoriesFor: #testColorAsHtmlColor!public!testing! !
-!GRDolphinColorTest categoriesFor: #testFromSixDigit!public!testing! !
-!GRDolphinColorTest categoriesFor: #testFromStringName!public!testing! !
-!GRDolphinColorTest categoriesFor: #testFromStringSixDigit!public!testing! !
-!GRDolphinColorTest categoriesFor: #testFromStringThreeDigit!public!testing! !
+
+!GRDolphinColorTest categoriesForMethods!
+expectedFailures!public!testing! !
+testAllColors!public!testing! !
+testColorAsHtmlColor!public!testing! !
+testFromSixDigit!public!testing! !
+testFromStringName!public!testing! !
+testFromStringSixDigit!public!testing! !
+testFromStringThreeDigit!public!testing! !
+!
 
