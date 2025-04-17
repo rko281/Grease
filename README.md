@@ -1,6 +1,5 @@
 # Grease
-The Grease Portability Library
-Dolphin Smalltalk 7.1 port
+The Grease Portability Library<br>Dolphin Smalltalk 7.2 port
 
 Please see the main [Grease GitHub repository](https://github.com/SeasideSt/Grease)
 
